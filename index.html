@@ -278,10 +278,11 @@
             </div>
             
             <div class="quick-replies">
-                <button class="quick-reply" onclick="sendQuickReply('Selamat pagi!', 'Good morning!')">Selamat pagi!</button>
-                <button class="quick-reply" onclick="sendQuickReply('Apa khabar?', 'How are you?')">Apa khabar?</button>
-                <button class="quick-reply" onclick="sendQuickReply('Nak makan apa?', 'What do you want to eat?')">Nak makan apa?</button>
-                <button class="quick-reply" onclick="sendQuickReply('Boleh tolong saya?', 'Can you help me?')">Boleh tolong saya?</button>
+                <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
+                <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food Ordering</button>
+                <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
+                <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Directions</button>
+                <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 New Topic</button>
             </div>
         </div>
 
@@ -484,6 +485,9 @@
         let quizScore = 0;
         let quizTotal = 0;
         let currentQuiz = null;
+        let currentTopic = null;
+        let conversationStep = 0;
+        let conversationContext = {};
 
         // Quiz data for all 14 themes
         const quizData = {
@@ -573,24 +577,60 @@
             ]
         };
 
-        // Chat responses
-        const malayResponses = {
+        // Keyword detection patterns
+        const keywords = {
+            greetings: ['selamat', 'pagi', 'petang', 'malam', 'khabar', 'apa', 'hai', 'hello', 'terima kasih', 'thank you'],
+            food: ['nasi', 'ayam', 'makan', 'minum', 'teh', 'kopi', 'char kway teow', 'laksa', 'roti', 'goreng', 'order', 'lapar'],
+            shopping: ['beli', 'harga', 'berapa', 'murah', 'mahal', 'jual', 'kedai', 'pasar', 'kurang', 'bagi'],
+            directions: ['mana', 'jalan', 'kiri', 'kanan', 'dekat', 'jauh', 'pergi', 'sampai', 'tengok'],
+            numbers: ['satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'lapan', 'sembilan', 'sepuluh'],
+            help: ['tolong', 'bantu', 'help', 'tak faham', 'boleh', 'can']
+        };
+
+        // Conversation flow templates
+        const conversationFlows = {
             greetings: [
-                { malay: "Selamat pagi! Apa khabar?", english: "Good morning! How are you?" },
-                { malay: "Khabar baik, terima kasih!", english: "I'm fine, thank you!" },
-                { malay: "Selamat petang! Sihat?", english: "Good afternoon! Are you well?" }
+                { malay: "Selamat datang! Apa khabar hari ini?", english: "Welcome! How are you today?" },
+                { malay: "Khabar baik! Awak dari mana?", english: "I'm fine! Where are you from?" },
+                { malay: "Bagus! Nak belajar apa hari ini?", english: "Great! What do you want to learn today?" },
+                { malay: "Mari kita mulakan pembelajaran!", english: "Let's start learning!" }
             ],
             food: [
-                { malay: "Saya nak nasi ayam satu.", english: "I want one chicken rice." },
-                { malay: "Berapa harga char kway teow?", english: "How much is the char kway teow?" },
-                { malay: "Mee goreng ada tak?", english: "Do you have fried noodles?" }
+                { malay: "Selamat datang ke restoran! Nak order apa?", english: "Welcome to the restaurant! What would you like to order?" },
+                { malay: "Kami ada nasi ayam, char kway teow, dan laksa. Mana satu awak nak?", english: "We have chicken rice, char kway teow, and laksa. Which one do you want?" },
+                { malay: "Berapa banyak? Satu jer ke?", english: "How many? Just one?" },
+                { malay: "Nak minuman juga? Teh tarik ke air kosong?", english: "Want drinks too? Teh tarik or plain water?" },
+                { malay: "Okay, tunggu sekejap ya. Nanti saya panggilkan.", english: "Okay, please wait. I'll call you later." }
             ],
-            general: [
-                { malay: "Maaf, saya tak faham.", english: "Sorry, I don't understand." },
-                { malay: "Boleh tolong saya?", english: "Can you help me?" },
-                { malay: "Kat mana tandas?", english: "Where is the toilet?" }
+            shopping: [
+                { malay: "Selamat datang! Cari apa hari ini?", english: "Welcome! What are you looking for today?" },
+                { malay: "Berapa harga yang awak nak? Ada budget ke?", english: "What price are you looking for? Do you have a budget?" },
+                { malay: "Ini yang paling murah. Nak tengok lagi?", english: "This is the cheapest. Want to see more?" },
+                { malay: "Boleh kurang sikit. Berapa awak nak bagi?", english: "Can reduce a bit. How much do you want to offer?" },
+                { malay: "Okay, deal! Terima kasih beli sini.", english: "Okay, deal! Thank you for buying here." }
+            ],
+            directions: [
+                { malay: "Awak nak pergi mana?", english: "Where do you want to go?" },
+                { malay: "Dari sini, jalan terus sampai traffic light.", english: "From here, walk straight until the traffic light." },
+                { malay: "Lepas tu belok kiri. Nampak tak?", english: "Then turn left. Can you see?" },
+                { malay: "Jalan lagi 5 minit, sampai lah.", english: "Walk for another 5 minutes, then you'll arrive." },
+                { malay: "Kalau sesat, tanya orang lagi okay?", english: "If you get lost, ask people again okay?" }
+            ],
+            help: [
+                { malay: "Jangan risau, saya boleh tolong!", english: "Don't worry, I can help!" },
+                { malay: "Apa yang awak tak faham?", english: "What don't you understand?" },
+                { malay: "Cuba cakap perlahan-lahan.", english: "Try to speak slowly." },
+                { malay: "Saya akan terangkan step by step.", english: "I will explain step by step." }
             ]
         };
+
+        // Learning progression responses
+        const encouragementResponses = [
+            { malay: "Bagus! Awak dah pandai!", english: "Good! You're getting better!" },
+            { malay: "Betul! Teruskan belajar!", english: "Correct! Keep learning!" },
+            { malay: "Hebat! Pronunciation awak bagus!", english: "Great! Your pronunciation is good!" },
+            { malay: "Cuba lagi! Practice makes perfect!", english: "Try again! Practice makes perfect!" }
+        ];
 
         function showSection(section) {
             // Hide all sections
@@ -713,7 +753,7 @@
                 input.value = '';
                 
                 setTimeout(() => {
-                    const response = getRandomResponse();
+                    const response = getContextualResponse(message);
                     addMessage(response.malay, false, response.english);
                 }, 1000);
             }
@@ -723,17 +763,95 @@
             if (currentSection === 'chat') {
                 addMessage(malay, true);
                 setTimeout(() => {
-                    const response = getRandomResponse();
+                    const response = getContextualResponse(malay);
                     addMessage(response.malay, false, response.english);
                 }, 1000);
             }
         }
 
-        function getRandomResponse() {
-            const categories = Object.keys(malayResponses);
-            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-            const responses = malayResponses[randomCategory];
-            return responses[Math.floor(Math.random() * responses.length)];
+        function detectTopic(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            for (const [topic, keywordList] of Object.entries(keywords)) {
+                for (const keyword of keywordList) {
+                    if (lowerMessage.includes(keyword)) {
+                        return topic;
+                    }
+                }
+            }
+            return 'general';
+        }
+
+        function getContextualResponse(userMessage) {
+            const detectedTopic = detectTopic(userMessage);
+            
+            // If we detect a new topic, switch to it
+            if (detectedTopic !== 'general' && detectedTopic !== currentTopic) {
+                currentTopic = detectedTopic;
+                conversationStep = 0;
+            }
+            
+            // If we're in a topic conversation, continue the flow
+            if (currentTopic && conversationFlows[currentTopic]) {
+                const responses = conversationFlows[currentTopic];
+                const response = responses[conversationStep % responses.length];
+                conversationStep++;
+                
+                // Add some encouragement occasionally
+                if (conversationStep % 3 === 0) {
+                    const encouragement = encouragementResponses[Math.floor(Math.random() * encouragementResponses.length)];
+                    return encouragement;
+                }
+                
+                return response;
+            }
+            
+            // Fallback to general helpful responses
+            return getGeneralResponse(userMessage);
+        }
+
+        function getGeneralResponse(message) {
+            const generalResponses = [
+                { malay: "Maaf, saya tak faham. Boleh repeat?", english: "Sorry, I don't understand. Can you repeat?" },
+                { malay: "Cuba cakap dalam Bahasa Melayu.", english: "Try speaking in Malay." },
+                { malay: "Saya nak tolong awak belajar! Apa topic yang awak nak?", english: "I want to help you learn! What topic do you want?" },
+                { malay: "Mari cuba conversation lain! Selamat pagi!", english: "Let's try another conversation! Good morning!" }
+            ];
+            
+            return generalResponses[Math.floor(Math.random() * generalResponses.length)];
+        }
+
+        function resetConversation() {
+            currentTopic = null;
+            conversationStep = 0;
+            conversationContext = {};
+        }
+
+        function startTopicConversation(topic) {
+            currentTopic = topic;
+            conversationStep = 0;
+            
+            if (conversationFlows[topic]) {
+                const firstResponse = conversationFlows[topic][0];
+                addMessage(firstResponse.malay, false, firstResponse.english);
+                conversationStep = 1;
+            }
+        }
+
+        function updateQuickReplies() {
+            // This function can be expanded to show context-aware quick replies
+            const quickRepliesContainer = document.querySelector('.quick-replies');
+            if (currentTopic) {
+                // Show topic-specific quick replies
+                const topicReplies = {
+                    greetings: ['Khabar baik!', 'Saya sihat', 'Terima kasih'],
+                    food: ['Nasi ayam', 'Teh tarik', 'Berapa harga?'],
+                    shopping: ['Berapa harga?', 'Boleh kurang?', 'Saya nak beli'],
+                    directions: ['Kat mana?', 'Jalan kiri', 'Terima kasih']
+                };
+                
+                // Implementation can be expanded later for dynamic quick replies
+            }
         }
 
         function startRoleplay(scenario) {
