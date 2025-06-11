@@ -223,6 +223,18 @@
         .btn:hover {
             background: #2E7D32;
         }
+        .dialogue-preview {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #4CAF50;
+        }
+        .dialogue-preview p {
+            margin: 5px 0;
+            color: #2E7D32;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -345,6 +357,7 @@
         <!-- Role-Play Section -->
         <div class="section" id="roleplay">
             <h2>🎭 Role-Playing Scenarios</h2>
+            <p>Practice real-life Singapore/Malaysian situations with authentic dialogues!</p>
             
             <div class="roleplay-scenarios">
                 <div class="scenario-card">
@@ -375,6 +388,86 @@
                     <h3>🏪 At the Mama Shop</h3>
                     <p><strong>Situation:</strong> You need to buy some daily necessities from the neighborhood shop.</p>
                     <button class="btn" onclick="startRoleplay('shop')">Start Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🏦 At the Bank (Opening Account, Money Exchange)</h3>
+                    <p><strong>Characters:</strong> Encik Rahman (father) and Bank Officer</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Selamat pagi. Saya mahu buka akaun untuk anak saya."</em></p>
+                        <p><em>"Selamat pagi. Sila isi borang ini."</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('bank')">Start Banking Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>💼 Job Interview (Common Questions, Workplace Etiquette)</h3>
+                    <p><strong>Characters:</strong> New Worker and Manager</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Boleh perkenalkan diri?"</em></p>
+                        <p><em>"Nama saya Aminah. Saya rajin dan suka belajar."</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('jobinterview')">Start Interview Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🏨 At the Hotel (Check-in, Room Service, Complaints)</h3>
+                    <p><strong>Characters:</strong> Guest and Receptionist</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Selamat petang. Saya mahu daftar masuk."</em></p>
+                        <p><em>"Boleh. Sila beri kad pengenalan."</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('hotel')">Start Hotel Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🚨 Emergency Situations (Police, Ambulance, Reporting Incidents)</h3>
+                    <p><strong>Characters:</strong> Mother and Police Officer</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Encik, anak saya hilang di pasar."</em></p>
+                        <p><em>"Apa nama dan umur anak puan?"</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('emergency')">Start Emergency Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🤝 Making Friends (Introductions, Inviting to Events)</h3>
+                    <p><strong>Characters:</strong> Farah and Nurul</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Hai, nama saya Farah. Awak siapa?"</em></p>
+                        <p><em>"Saya Nurul. Saya baru pindah ke sini."</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('friends')">Start Friendship Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>✉️ At the Post Office (Sending Packages, Buying Stamps)</h3>
+                    <p><strong>Characters:</strong> Mak Cik and Post Office Clerk</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Saya mahu hantar bungkusan ke Johor."</em></p>
+                        <p><em>"Nak guna pos biasa atau ekspres?"</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('postoffice')">Start Post Office Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🏠 Rental/Housing (Viewing Apartments, Negotiating Rent)</h3>
+                    <p><strong>Characters:</strong> Pak Cik and House Agent</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Saya mahu lihat rumah sewa tiga bilik."</em></p>
+                        <p><em>"Ini rumahnya. Ada ruang tamu luas."</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('housing')">Start Housing Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🎊 Cultural Events (Weddings, Festivals, Religious Ceremonies)</h3>
+                    <p><strong>Characters:</strong> Iqbal and Nenek (Grandmother)</p>
+                    <div class="dialogue-preview">
+                        <p><em>"Nenek, kenapa ramai orang hari ini?"</em></p>
+                        <p><em>"Hari ini kenduri kahwin sepupu kamu."</em></p>
+                    </div>
+                    <button class="btn" onclick="startRoleplay('cultural')">Start Cultural Scenario</button>
                 </div>
             </div>
         </div>
@@ -651,7 +744,15 @@
                 shopping: { malay: "Nak beli apa hari ni?", english: "What would you like to buy today?" },
                 directions: { malay: "Boleh saya tolong?", english: "Can I help you?" },
                 clinic: { malay: "Apa masalah awak hari ni?", english: "What's your problem today?" },
-                shop: { malay: "Cari apa, bang?", english: "What are you looking for, bro?" }
+                shop: { malay: "Cari apa, bang?", english: "What are you looking for, bro?" },
+                bank: { malay: "Selamat pagi. Saya mahu buka akaun untuk anak saya.", english: "Good morning. I want to open an account for my child." },
+                jobinterview: { malay: "Boleh perkenalkan diri?", english: "Can I introduce myself?" },
+                hotel: { malay: "Selamat petang. Saya mahu daftar masuk.", english: "Good afternoon. I want to check in." },
+                emergency: { malay: "Encik, anak saya hilang di pasar.", english: "Sir, my child is lost in the market." },
+                friends: { malay: "Hai, nama saya Farah. Awak siapa?", english: "Hi, my name is Farah. Who are you?" },
+                postoffice: { malay: "Saya mahu hantar bungkusan ke Johor.", english: "I want to send a package to Johor." },
+                housing: { malay: "Saya mahu lihat rumah sewa tiga bilik.", english: "I want to view a three-room rental house." },
+                cultural: { malay: "Nenek, kenapa ramai orang hari ini?", english: "Grandmother, why are there so many people today?" }
             };
             
             // Clear chat and start scenario
