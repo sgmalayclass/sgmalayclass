@@ -1,0 +1,29 @@
+{
+  "apps": {
+    "Maya Chatbot Melayu": {
+      "versions": {
+        "1.0.0": {
+          "version": "1.0.0",
+          "filename": "maya_chatbot_melayu_v1.0.0.apk",
+          "file_path": "apk_releases\\maya_chatbot_melayu_v1.0.0.apk",
+          "file_hash": "40d31cc12118aba34712eeffe882e6d39e5c7ec2d3b5ae5b6360ec87692170bc",
+          "file_size": 42,
+          "description": "Maya is a friendly Malay chatbot designed to help you practice conversational Bahasa Melayu with Singapore context. Features include greetings, food ordering, family conversations, and cultural references specific to Singapore.",
+          "upload_date": "2025-06-10T18:59:31.441877",
+          "download_count": 0,
+          "download_url": "https://maya-chatbot.github.io/download/maya_chatbot_melayu_v1.0.0.apk",
+          "install_url": "intent://download/maya_chatbot_melayu_v1.0.0.apk#Intent;scheme=https;package=com.android.chrome;end"
+        }
+      },
+      "latest_version": "1.0.0",
+      "total_downloads": 0,
+      "created_date": "2025-06-10T18:29:15.439362"
+    }
+  },
+  "downloads": [],
+  "analytics": {
+    "total_downloads": 0,
+    "downloads_by_version": {},
+    "downloads_by_date": {}
+  }
+}

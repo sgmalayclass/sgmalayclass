@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maya Chatbot Melayu</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            text-align: center;
+            color: #2E7D32;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background: #4CAF50;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background: rgba(255,255,255,0.9);
+            color: #2E7D32;
+            align-self: flex-start;
+        }
+        .input-container {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        #messageInput {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+        }
+        #sendButton {
+            padding: 12px 24px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .quick-reply {
+            background: rgba(255,255,255,0.8);
+            color: #2E7D32;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">🇸🇬 Maya Chatbot Melayu</div>
+    
+    <div class="chat-container" id="chatContainer">
+        <div class="message bot-message">
+            Selamat datang! Saya Maya. Mari bercakap dalam Bahasa Melayu! 😊
+        </div>
+        
+        <div class="quick-replies">
+            <button class="quick-reply" onclick="sendQuickReply('Selamat pagi!')">Selamat pagi!</button>
+            <button class="quick-reply" onclick="sendQuickReply('Apa khabar?')">Apa khabar?</button>
+            <button class="quick-reply" onclick="sendQuickReply('Nak makan apa?')">Nak makan apa?</button>
+        </div>
+    </div>
+    
+    <div class="input-container">
+        <input type="text" id="messageInput" placeholder="Taip mesej anda..." 
+               onkeypress="if(event.key==='Enter') sendMessage()">
+        <button id="sendButton" onclick="sendMessage()">Hantar</button>
+    </div>
+
+    <script>
+        const responses = [
+            "Selamat pagi! Apa khabar?",
+            "Baik, terima kasih! Nak makan apa hari ni?",
+            "Saya suka nasi lemak! Sedap tau!",
+            "Wah, best! Kat mana nak beli?",
+            "Alamak, saya pun lapar dah!",
+            "Jom makan sama-sama!",
+            "Okay, jumpa nanti ye!",
+            "Salam! Selamat tinggal!",
+            "Terima kasih banyak-banyak!",
+            "Sama-sama! Jaga diri ye!"
+        ];
+
+        function addMessage(text, isUser) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = text;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message) {
+                addMessage(message, true);
+                input.value = '';
+                
+                setTimeout(() => {
+                    const response = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(response, false);
+                }, 1000);
+            }
+        }
+
+        function sendQuickReply(message) {
+            addMessage(message, true);
+            setTimeout(() => {
+                const response = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(response, false);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

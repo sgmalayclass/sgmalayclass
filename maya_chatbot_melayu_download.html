@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maya Chatbot Melayu - Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 20px;
+        }
+        
+        .app-title {
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .app-version {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .download-section {
+            text-align: center;
+        }
+        
+        .download-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            box-shadow: 0 4px 15px 0 rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover, .download-btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(76, 175, 80, 0.4);
+        }
+        
+        .qr-info {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .network-status {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .warning {
+            background: rgba(255, 152, 0, 0.2);
+            border: 1px solid rgba(255, 152, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            background: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+        }
+        
+        .info-item span:last-child {
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+            text-align: right;
+            max-width: 200px;
+        }
+        
+        .troubleshoot-btn {
+            background: #FF9800;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .troubleshoot-btn:hover {
+            background: #F57C00;
+        }
+        
+        #troubleshoot-details {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin: 5px;
+            }
+            
+            .download-btn {
+                padding: 12px 24px;
+                font-size: 16px;
+                display: block;
+                width: 100%;
+                max-width: 280px;
+                margin: 10px auto;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                text-align: left;
+            }
+            
+            .info-item span:last-child {
+                text-align: left;
+                max-width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="app-icon">🇸🇬</div>
+        <h1 class="app-title">Maya Chatbot Melayu</h1>
+        <p class="app-version">Version 1.0.0 - Singapore Edition</p>
+        
+        <div class="network-status">
+            <h4>🌐 Network Status</h4>
+            <p>Server IP: <span id="server-ip">Loading...</span></p>
+            <p>Your IP: <span id="client-ip">Loading...</span></p>
+            <p>Connection: <span id="connection-status">Testing...</span></p>
+        </div>
+        
+        <div class="section download-section">
+            <h3>📱 Download Options</h3>
+            
+            <a href="maya_chatbot_webapp.html" class="download-btn" style="background: #2196F3;">
+                🌐 Web App (Recommended)
+            </a>
+            <p style="font-size: 14px; opacity: 0.8; margin: 5px 0;">
+                Works on all phones - no installation needed!
+            </p>
+            
+            <a href="maya_chatbot_working_v1.0.0.apk" class="download-btn" id="download-btn">
+                ⬇️ APK v2 (5.1 KB)
+            </a>
+            <p style="font-size: 14px; opacity: 0.8; margin: 5px 0;">
+                Fixed Android APK
+            </p>
+            
+            <a href="maya_chatbot_melayu_v1.0.0.apk" class="download-btn" style="background: #757575;">
+                ⬇️ APK v1 (9.5 KB)
+            </a>
+            <p style="font-size: 14px; opacity: 0.8; margin: 5px 0;">
+                Original APK (may have parsing issues)
+            </p>
+        </div>
+        
+        <div class="qr-info">
+            <h4 style="color: #333; margin-bottom: 15px;">📱 QR Code Access</h4>
+            <div style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                If you scanned a QR code to get here, the connection is working! ✅
+            </div>
+            <button class="troubleshoot-btn" onclick="toggleTroubleshoot()">
+                ❌ Can't Connect from Phone?
+            </button>
+            
+            <div id="troubleshoot-details">
+                <h5>🔧 Connection Troubleshooting:</h5>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Check WiFi:</strong> Make sure your phone and computer are on the SAME WiFi network
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Firewall:</strong> Windows Firewall might be blocking connections. Try temporarily disabling it.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Router:</strong> Some routers block device-to-device communication. Try mobile hotspot.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Alternative:</strong> Email the APK file to yourself or use USB transfer.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning">
+            <h4>⚠️ Installation Requirements</h4>
+            <p>This app requires installation from "Unknown Sources" to be enabled on your Android device.</p>
+        </div>
+        
+        <div class="section">
+            <h3>📋 Installation Steps</h3>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>Download the APK file to your Android device</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Go to Settings → Security → Enable "Install from Unknown Sources" or "Allow from this source"</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Open the downloaded APK file and tap "Install"</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>Launch Maya Chatbot Melayu and start chatting in Bahasa Melayu!</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>ℹ️ App Information</h3>
+            <div class="info-item">
+                <span>Version:</span>
+                <span>1.0.0</span>
+            </div>
+            <div class="info-item">
+                <span>File Size:</span>
+                <span>9.5 KB</span>
+            </div>
+            <div class="info-item">
+                <span>Platform:</span>
+                <span>Android 5.0+</span>
+            </div>
+            <div class="info-item">
+                <span>Language:</span>
+                <span>Bahasa Melayu (SG)</span>
+            </div>
+            <div class="info-item">
+                <span>Last Updated:</span>
+                <span>2025-06-10</span>
+            </div>
+            <div class="info-item">
+                <span>Downloads:</span>
+                <span id="download-count">0</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>🇸🇬 About Maya Chatbot</h3>
+            <p>Maya is a friendly Malay chatbot designed to help you practice conversational Bahasa Melayu with Singapore context. Features include:</p>
+            <ul style="margin: 15px 0; padding-left: 20px;">
+                <li>Greetings and daily conversations</li>
+                <li>Food ordering (hawker center, restaurant)</li>
+                <li>Family and friends chat</li>
+                <li>Education and learning topics</li>
+                <li>Singapore cultural references (HDB, MRT, etc.)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Get network information
+        function updateNetworkInfo() {
+            // Server IP from current URL
+            const serverIP = window.location.hostname;
+            document.getElementById('server-ip').textContent = serverIP;
+            
+            // Test connection
+            fetch('/maya_chatbot_melayu_v1.0.0.apk', { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('connection-status').textContent = '✅ Connected';
+                    } else {
+                        document.getElementById('connection-status').textContent = '❌ APK not found';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('connection-status').textContent = '❌ Connection failed';
+                });
+            
+            // Get client IP (approximate)
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('client-ip').textContent = data.ip;
+                })
+                .catch(error => {
+                    document.getElementById('client-ip').textContent = 'Unknown';
+                });
+        }
+        
+        // Toggle troubleshooting details
+        function toggleTroubleshoot() {
+            const details = document.getElementById('troubleshoot-details');
+            if (details.style.display === 'none' || details.style.display === '') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
+        }
+        
+        // Track download clicks
+        document.getElementById('download-btn').addEventListener('click', function() {
+            const count = parseInt(document.getElementById('download-count').textContent) + 1;
+            document.getElementById('download-count').textContent = count;
+            console.log('Download started for Maya Chatbot Melayu v1.0.0');
+        });
+        
+        // Initialize when page loads
+        window.addEventListener('load', updateNetworkInfo);
+    </script>
+</body>
+</html> 

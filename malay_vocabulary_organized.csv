@@ -1,0 +1,282 @@
+Category,Word Type,Malay Word,English Translation
+,,,
+# SHOPPING,,,
+Shopping,Phrase,ada diskaun,is there discount
+Shopping,Phrase,boleh kurang sikit,can reduce a little
+Shopping,Phrase,saya cuma melihat,I am just looking
+Shopping,Phrase,saiz ini terlalu besar,this size is too big
+Shopping,Phrase,saiz ini terlalu kecil,this size is too small
+Shopping,Phrase,bungkuskan ya,please wrap it
+Shopping,Phrase,berapa harga,how much
+Shopping,Phrase,tunai,cash
+Shopping,Phrase,kad kredit,credit card
+Shopping,Noun,harga,price
+Shopping,Verb,beli,buy
+Shopping,Verb,jual,sell
+Shopping,Adjective,mahal,expensive
+Shopping,Adjective,murah,cheap
+,,,
+# SCHOOL & EDUCATION,,,
+School,Noun,sekolah,school
+School,Noun,perpustakaan,library
+School,Noun,kantin sekolah,school canteen
+School,Noun,bilik,room
+School,Noun,kerja rumah,homework
+School,Noun,buku,book
+School,Noun,pensel,pencil
+School,Noun,rak,shelf
+School,Noun,guru,teacher
+School,Noun,murid,student
+School,Noun,lawatan sekolah,school trip
+School,Verb,baca,read
+School,Verb,tulis,write
+School,Verb,belajar,learn
+School,Verb,ajar,teach
+School,Verb,faham,understand
+School,Activity,membaca buku,reading books
+School,Activity,melukis gambar,drawing pictures
+,,,
+# TRANSPORTATION,,,
+Transportation,Noun,bas,bus
+Transportation,Noun,teksi,taxi
+Transportation,Noun,kereta,car
+Transportation,Noun,mrt,MRT
+Transportation,Noun,stesen,station
+Transportation,Noun,tiket,ticket
+Transportation,Noun,peta,map
+Transportation,Noun,jalan,road/street
+Transportation,Verb,pandu,drive
+Transportation,Verb,pergi,go
+Transportation,Verb,datang,come
+,,,
+# FAMILY & RELATIONSHIPS,,,
+Family,Noun,keluarga,family
+Family,Noun,ibu,mother
+Family,Noun,bapa,father
+Family,Noun,anak,child
+Family,Noun,adik,younger sibling
+Family,Noun,abang,older brother
+Family,Noun,kakak,older sister
+Family,Noun,nenek,grandmother
+Family,Noun,datuk,grandfather
+Family,Noun,sepupu,cousin
+Family,Noun,tetangga,neighbor
+Family,Noun,kawan,friend
+Family,Noun,rakan,friend
+,,,
+# FOOD & DINING,,,
+Food,Noun,makanan,food
+Food,Noun,minuman,drink
+Food,Noun,nasi lemak,coconut rice dish
+Food,Noun,chicken rice,chicken rice
+Food,Noun,laksa,spicy noodle soup
+Food,Noun,bak chor mee,minced meat noodles
+Food,Noun,roti,bread
+Food,Noun,susu,milk
+Food,Noun,aiskrim,ice cream
+Food,Noun,kopi,coffee
+Food,Noun,teh,tea
+Food,Noun,teh tarik,pulled tea
+Food,Noun,milo,chocolate drink
+Food,Phrase,makan malam,dinner
+Food,Verb,makan,eat
+Food,Verb,minum,drink
+Food,Verb,masak,cook
+Food,Adjective,sedap,delicious
+Food,Adjective,pedas,spicy
+Food,Adjective,manis,sweet
+,,,
+# PLACES & LOCATIONS,,,
+Places,Noun,rumah,house
+Places,Noun,taman,park
+Places,Noun,taman permainan,playground
+Places,Noun,pasar,market
+Places,Noun,dapur,kitchen
+Places,Noun,tandas,toilet
+Places,Noun,muzium,museum
+Places,Noun,tempat,place
+Places,Noun,kopitiam,coffee shop
+Places,Noun,void deck,void deck
+Places,Noun,hdb,public housing
+Places,Noun,hawker centre,food centre
+,,,
+# PLAYGROUND & RECREATION,,,
+Playground,Noun,gelongsor,slide
+Playground,Noun,buaian,swing
+Playground,Noun,jongkang-jongkit,seesaw
+Playground,Verb,tolak,push
+Playground,Phrase,bermain bola,playing ball
+Playground,Phrase,kuat-kuat,strongly
+Playground,Phrase,hati-hati,be careful
+Playground,Verb,main,play
+,,,
+# HOUSEHOLD ACTIVITIES,,,
+Household,Activity,membantu ibu,helping mother
+Household,Activity,membasuh pinggan,washing dishes
+Household,Verb,cuci,wash
+Household,Verb,bersihkan,clean
+Household,Verb,hantar,send
+Household,Verb,terima,receive
+Household,Verb,simpan,keep
+Household,Verb,cari,search
+,,,
+# FESTIVALS & CULTURE,,,
+Culture,Noun,Hari Raya,Eid celebration
+Culture,Noun,Tahun Baru Cina,Chinese New Year
+Culture,Noun,angpao,red packet
+Culture,Noun,kuih raya,Eid cookies
+Culture,Noun,baju kurung,traditional Malay dress
+Culture,Noun,pakaian tradisional,traditional clothing
+Culture,Noun,Hari Kebangsaan,National Day
+Culture,Noun,haiwan liar,wild animals
+,,,
+# COMMON VERBS,,,
+Verbs,Verb,lihat,see
+Verbs,Verb,tengok,look
+Verbs,Verb,suka,like
+Verbs,Verb,cakap,speak
+Verbs,Verb,berkata,say
+Verbs,Verb,duduk,sit
+Verbs,Verb,bangun,wake up/stand up
+Verbs,Verb,ambil,take
+Verbs,Verb,beri,give
+Verbs,Verb,tidur,sleep
+Verbs,Verb,buka,open
+Verbs,Verb,tutup,close
+Verbs,Verb,dengar,hear
+Verbs,Verb,tunggu,wait
+Verbs,Verb,buat,make/do
+Verbs,Verb,jumpa,meet
+,,,
+# COMMON NOUNS,,,
+Nouns,Noun,air,water
+Nouns,Noun,duit,money
+Nouns,Noun,orang,person
+Nouns,Noun,masa,time
+Nouns,Noun,hari,day
+Nouns,Noun,tangan,hand
+Nouns,Noun,mata,eye
+Nouns,Noun,doktor,doctor
+Nouns,Noun,kasut,shoes
+,,,
+# TIME EXPRESSIONS,,,
+Time,Noun,minggu,week
+Time,Noun,bulan,month
+Time,Noun,tahun,year
+Time,Noun,pagi,morning
+Time,Noun,petang,afternoon
+Time,Noun,malam,night
+Time,Phrase,sekarang,now
+Time,Phrase,tadi,just now
+Time,Phrase,nanti,later
+Time,Phrase,kelmarin,yesterday
+Time,Phrase,lusa,day after tomorrow
+Time,Phrase,semalam,last night
+Time,Phrase,esok,tomorrow
+,,,
+# ADJECTIVES & DESCRIPTIONS,,,
+Adjectives,Adjective,baik,good
+Adjectives,Adjective,buruk,bad
+Adjectives,Adjective,besar,big
+Adjectives,Adjective,kecil,small
+Adjectives,Adjective,cantik,beautiful
+Adjectives,Adjective,panas,hot
+Adjectives,Adjective,sejuk,cold
+Adjectives,Adjective,cepat,fast
+Adjectives,Adjective,lambat,slow
+Adjectives,Adjective,rajin,diligent
+Adjectives,Adjective,malas,lazy
+Adjectives,Adjective,lama,long/old
+Adjectives,Adjective,baru,new
+,,,
+# EMOTIONS & FEELINGS,,,
+Emotions,Adjective,gembira,happy
+Emotions,Adjective,sedih,sad
+Emotions,Adjective,marah,angry
+Emotions,Adjective,lapar,hungry
+Emotions,Adjective,haus,thirsty
+Emotions,Adjective,penat,tired
+Emotions,Adjective,sibuk,busy
+,,,
+# WEATHER & NATURE,,,
+Nature,Noun,hujan,rain
+Nature,Noun,panorama,scenery
+Nature,Noun,pantai,beach
+Nature,Noun,gunung,mountain
+Nature,Noun,pohon,tree
+Nature,Noun,bunga,flower
+Nature,Noun,haiwan,animal
+,,,
+# COLORS,,,
+Colors,Adjective,merah,red
+Colors,Adjective,biru,blue
+Colors,Adjective,hijau,green
+Colors,Adjective,kuning,yellow
+Colors,Adjective,hitam,black
+Colors,Adjective,putih,white
+Colors,Adjective,coklat,brown
+Colors,Adjective,ungu,purple
+Colors,Adjective,oren,orange
+,,,
+# DAILY PHRASES,,,
+Daily Phrases,Phrase,apa khabar,how are you
+Daily Phrases,Phrase,khabar baik,I am fine
+Daily Phrases,Phrase,terima kasih,thank you
+Daily Phrases,Phrase,sama-sama,you are welcome
+Daily Phrases,Phrase,maafkan saya,excuse me
+Daily Phrases,Phrase,minta maaf,sorry
+Daily Phrases,Phrase,boleh saya,may I
+Daily Phrases,Phrase,di mana,where
+Daily Phrases,Phrase,saya tak faham,I do not understand
+Daily Phrases,Phrase,tolong bantu saya,please help me
+Daily Phrases,Phrase,jumpa lagi,see you again
+Daily Phrases,Phrase,selamat pagi,good morning
+Daily Phrases,Phrase,selamat tengah hari,good afternoon
+Daily Phrases,Phrase,selamat petang,good evening
+Daily Phrases,Phrase,selamat malam,good night
+Daily Phrases,Phrase,jangan risau,do not worry
+Daily Phrases,Phrase,boleh tolong,can you help
+Daily Phrases,Phrase,sila masuk,please come in
+Daily Phrases,Phrase,tumpang tanya,excuse me (to ask)
+,,,
+# CONVERSATION WORDS,,,
+Conversation,Word,akan,will/going to
+Conversation,Word,apa,what
+Conversation,Word,apa lagi,what else
+Conversation,Word,baiklah,alright/okay
+Conversation,Word,banyak,many/much
+Conversation,Word,begitu,like that/so
+Conversation,Word,belum,not yet
+Conversation,Word,benar,true/correct
+Conversation,Word,betul,correct/right
+Conversation,Word,bila,when
+Conversation,Word,bolehkah,can/may
+Conversation,Word,bukan,not/isn't
+Conversation,Word,cuba,try
+Conversation,Word,dalam,in/inside
+Conversation,Word,dengan,with
+Conversation,Word,di,at/in
+Conversation,Word,dia,he/she/him/her
+Conversation,Word,ini,this
+Conversation,Word,itu,that
+Conversation,Word,jaga,take care
+Conversation,Word,jangan,don't
+Conversation,Word,juga,also/too
+Conversation,Word,kalau,if
+Conversation,Word,kenapa,why
+Conversation,Word,kita,we/us
+Conversation,Word,kurang,less/not enough
+Conversation,Word,lagi,more/again
+Conversation,Word,mahu,want
+Conversation,Word,mana,which/where
+Conversation,Word,mari,come/let's
+Conversation,Word,mereka,they/them
+Conversation,Word,senang,easy/happy
+Conversation,Word,siapa,who
+Conversation,Word,sila,please
+Conversation,Word,sudah,already/finished
+Conversation,Word,tahu,know
+Conversation,Word,tapi,but
+Conversation,Word,tetapi,but
+Conversation,Word,yang,which/that
+Conversation,Word,sebelah,beside/next to 

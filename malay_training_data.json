@@ -1,0 +1,562 @@
+{
+  "greetings": [
+    {"user": "Apa khabar?", "bot": "Khabar baik! Awak macam mana hari ini?"},
+    {"user": "Selamat pagi", "bot": "Selamat pagi! Ada apa saya boleh bantu?"},
+    {"user": "Assalamualaikum", "bot": "Waalaikumussalam! Selamat datang! Apa yang boleh saya tolong?"},
+    {"user": "Hello", "bot": "Hi! Selamat datang! Mari kita berbual dalam Bahasa Melayu!"},
+    {"user": "Hai Maya", "bot": "Hai! Gembira berjumpa dengan awak. Apa khabar hari ini?"},
+    {"user": "Selamat petang", "bot": "Selamat petang! Hari yang cantik kan? Macam mana awak?"},
+    {"user": "Good morning", "bot": "Selamat pagi! Cuba cakap 'Selamat pagi' - ia mudah je!"},
+    {"user": "Ini kawan saya", "bot": "Wah, bagus! Selamat datang kepada kawan awak juga! Nama kawan awak siapa?"}
+  ],
+  
+  "food_ordering": [
+    {
+      "user": "Saya nak order nasi lemak",
+      "context": {"meal": "breakfast", "location": "Singapore"},
+      "bot": "Pedas level mana? Kami ada sambal biasa atau extra pedas. Nak tambah otah tak?"
+    },
+    {
+      "user": "Berapa harga roti prata?",
+      "context": {"meal": "breakfast", "currency": "SGD"},
+      "bot": "Roti prata kosong $1.20, roti telur $1.80. Nak order berapa keping?"
+    },
+    {
+      "user": "Ada mee goreng tak?",
+      "context": {"meal": "lunch", "dietary": "halal"},
+      "bot": "Ada! Mee goreng mamak ke mee goreng Cina? Yang mana awak suka?"
+    },
+    {
+      "user": "Saya vegetarian, ada apa?",
+      "context": {"dietary": "vegetarian"},
+      "bot": "Ada bee hoon goreng sayur, economical rice dengan sayur, dan tahu goreng. Nak cuba yang mana?"
+    },
+    {
+      "user": "Nak bungkus satu",
+      "context": {"takeaway": true},
+      "bot": "Baik! Minum apa? Teh tarik ke kopi O? Atau nak ice milo?"
+    },
+    {
+      "user": "Saya makan nasi",
+      "context": {"meal": "lunch", "food": "rice"},
+      "bot": "Nasi putih ke nasi goreng? Nak makan kat cai png stall ke western food?"
+    },
+    {
+      "user": "Dia suka makan ayam goreng",
+      "context": {"meal": "lunch", "food": "fried chicken"},
+      "bot": "Ayam goreng memang sedap! Pedas ke tidak pedas? Nak tambah nasi sekali? Ada jual kat food court?"
+    },
+    {
+      "user": "Saya beli roti",
+      "context": {"meal": "snack", "food": "bread"},
+      "bot": "Roti apa tu? Roti John ke roti bakar kaya? Kat mana awak beli?"
+    },
+    {
+      "user": "Saya minum susu setiap pagi",
+      "context": {"meal": "breakfast", "drink": "milk", "frequency": "daily"},
+      "bot": "Bagus! Minum susu baik untuk kesihatan. Susu segar ke Milo? Beli kat NTUC ke 7-Eleven?"
+    },
+    {
+      "user": "Ini epal merah",
+      "context": {"food": "fruit", "color": "red"},
+      "bot": "Epal merah nampak segar! Awak suka buah-buahan? Epal ni manis ke masam? Beli kat wet market ke supermarket?"
+    }
+  ],
+  
+  "language_help": [
+    {
+      "user": "Macam mana cakap 'thank you' dalam Bahasa Melayu?",
+      "bot": "'Terima kasih'! Contoh ayat: 'Terima kasih kerana membantu saya.'"
+    },
+    {
+      "user": "Apa maksud 'makan'?",
+      "bot": "'Makan' bermaksud 'to eat'. Contoh: 'Saya makan nasi' = 'I eat rice'."
+    },
+    {
+      "user": "How do you say 'where' in Malay?",
+      "bot": "'Di mana' atau 'mana'. Contoh: 'Di mana awak tinggal?' = 'Where do you live?'"
+    },
+    {
+      "user": "Macam mana sebut 'selamat'?",
+      "bot": "Sebut 'seh-lah-mat'. Cuba ulang: 'Selamat pagi' (seh-lah-mat pah-gi)."
+    },
+    {
+      "user": "Susah sangat bahasa Melayu",
+      "bot": "Jangan putus asa! Bahasa Melayu mudah sebab tiada conjugation. Praktis sikit-sikit sudah pandai!"
+    }
+  ],
+  
+  "daily_conversation": [
+    {
+      "user": "Apa awak buat hari ini?",
+      "context": {"time": "morning"},
+      "bot": "Saya tengah belajar bahasa dengan pelajar-pelajar macam awak! Awak ada plan apa?"
+    },
+    {
+      "user": "Saya pergi kerja",
+      "context": {"activity": "work"},
+      "bot": "Wah, rajinnya! Kerja apa awak buat? Jauh tak tempat kerja? Naik MRT ke bus?"
+    },
+    {
+      "user": "Cuaca panas hari ini",
+      "context": {"weather": "hot"},
+      "bot": "Betul tu! Cuaca Singapore memang panas dan lembap. Awak minum air banyak-banyak ye!"
+    },
+    {
+      "user": "Saya tinggal di Toa Payoh",
+      "context": {"location": "Toa Payoh"},
+      "bot": "Wah, Toa Payoh! HDB flats kat sana cantik. Awak suka makan kat food centre tu tak?"
+    },
+    {
+      "user": "Ayah saya pergi kerja",
+      "context": {"family": "father", "activity": "work"},
+      "bot": "Ayah awak kerja kat CBD ke? Pagi-pagi lagi dah pergi kerja ke? Naik MRT?"
+    },
+    {
+      "user": "Saya pergi ke sekolah",
+      "context": {"activity": "school", "education": true},
+      "bot": "Sekolah mana awak? Primary school ke secondary school? Naik school bus ke MRT?"
+    }
+  ],
+  
+  "family_and_friends": [
+    {
+      "user": "Saya ada tiga adik beradik",
+      "context": {"family_size": 3},
+      "bot": "Bestnya ada ramai adik beradik! Awak yang sulung ke?"
+    },
+    {
+      "user": "Mak saya pandai masak",
+      "context": {"family": "mother"},
+      "bot": "Bertuahnya! Masakan apa yang mak awak paling pandai masak? Rendang ke laksa?"
+    },
+    {
+      "user": "Kawan saya orang Singapura",
+      "context": {"friendship": "Singaporean"},
+      "bot": "Bagus! Dia boleh ajar awak bahasa Melayu Singapore lagi banyak. Awak kenal dia macam mana?"
+    },
+    {
+      "user": "Ibu saya memasak nasi",
+      "context": {"family": "mother", "activity": "cooking"},
+      "bot": "Wah, pandainya ibu awak! Nasi apa yang ibu masak? Nasi lemak ke nasi goreng ikan bilis?"
+    },
+    {
+      "user": "Abang saya bermain bola",
+      "context": {"family": "brother", "activity": "sports"},
+      "bot": "Abang awak suka sukan! Main kat void deck ke kat stadium? Awak pun main bola tak?"
+    },
+    {
+      "user": "Kakak saya membaca buku",
+      "context": {"family": "sister", "activity": "reading"},
+      "bot": "Bagus! Kakak awak rajin membaca. Buku apa yang dia baca? Beli kat Popular ke pinjam dari library?"
+    }
+  ],
+  
+  "education_and_school": [
+    {
+      "user": "Guru saya baik hati",
+      "context": {"education": "teacher", "personality": "kind"},
+      "bot": "Beruntungnya ada guru yang baik! Guru subjek apa? Primary school ke secondary school teacher?"
+    },
+    {
+      "user": "Murid itu menulis di papan putih",
+      "context": {"education": "student", "activity": "writing"},
+      "bot": "Dia jadi class monitor ke? Bagus kalau murid tolong-menolong. Awak pun pernah tulis di whiteboard tak?"
+    },
+    {
+      "user": "Buku itu tebal",
+      "context": {"education": "book", "description": "thick"},
+      "bot": "Buku apa tu? Textbook ke assessment book? Buku tebal biasanya banyak ilmu!"
+    },
+    {
+      "user": "Pensel saya berwarna merah",
+      "context": {"education": "pencil", "color": "red"},
+      "bot": "Cantik warna merah! Awak suka lukis ke tulis dengan pensel warna? Beli kat Popular ke?"
+    }
+  ],
+  
+  "animals_and_nature": [
+    {
+      "user": "Kucing itu comel",
+      "context": {"animal": "cat", "description": "cute"},
+      "bot": "Kucing memang comel! Awak ada pelihara kucing? HDB boleh pelihara kucing ke tak ye?"
+    },
+    {
+      "user": "Anjing itu berlari",
+      "context": {"animal": "dog", "activity": "running"},
+      "bot": "Anjing suka berlari! Main kat dog park ke? Kat Singapore ada banyak dog park yang cantik!"
+    },
+    {
+      "user": "Ikan itu berenang",
+      "context": {"animal": "fish", "activity": "swimming"},
+      "bot": "Ikan dalam aquarium ke kat Sentosa? Awak suka tengok ikan berenang? Ada pergi S.E.A. Aquarium tak?"
+    },
+    {
+      "user": "Burung itu terbang tinggi",
+      "context": {"animal": "bird", "activity": "flying"},
+      "bot": "Burung apa tu? Cantik tak? Awak pernah pergi Jurong Bird Park tengok burung?"
+    },
+    {
+      "user": "Arnab itu makan lobak",
+      "context": {"animal": "rabbit", "activity": "eating", "food": "carrot"},
+      "bot": "Arnab memang suka lobak! Comel tak tengok arnab makan? Awak pernah pergi zoo tengok arnab?"
+    }
+  ],
+  
+  "playground_and_recreation": [
+    {
+      "user": "Adik bermain di buaian",
+      "context": {"family": "younger_sibling", "activity": "swing", "location": "playground"},
+      "bot": "Bestnya main buaian! Playground kat void deck ke kat park? Adik awak berapa tahun?"
+    },
+    {
+      "user": "Saya turun dari gelongsor",
+      "context": {"activity": "slide", "location": "playground"},
+      "bot": "Gelongsor tu seronok kan? Kat playground mana? East Coast Park ke kat HDB playground?"
+    },
+    {
+      "user": "Mereka bermain jongkang-jongket",
+      "context": {"activity": "seesaw", "location": "playground"},
+      "bot": "Jongkang-jongket kena ada kawan untuk main! Seronok tak? Main kat void deck ke?"
+    },
+    {
+      "user": "Saya tendang bola",
+      "context": {"activity": "football", "sport": true},
+      "bot": "Awak pandai main bola? Main kat void deck ke kat stadium? Awak support Lions XII tak?"
+    },
+    {
+      "user": "Kita pergi taman permainan",
+      "context": {"activity": "playground", "location": "park"},
+      "bot": "Bagus! Kat taman permainan ada gelongsor, buaian dan jongkang-jongkit. Awak suka main apa?"
+    },
+    {
+      "user": "Tolak kuat-kuat",
+      "context": {"activity": "pushing", "instruction": "strong"},
+      "bot": "Hati-hati ye! Tolak perlahan-lahan dulu, jangan terlalu kuat nanti jatuh!"
+    }
+  ],
+  
+  "shopping": [
+    {
+      "user": "Berapa harga ni?",
+      "context": {"activity": "shopping"},
+      "bot": "Yang mana satu? Awak boleh tanya 'Berapa harga [barang]?' untuk lebih spesifik."
+    },
+    {
+      "user": "Mahal sangat",
+      "context": {"price_reaction": "expensive"},
+      "bot": "Boleh kurang sikit tak? Atau cuba cakap 'Got discount anot?' - very Singaporean!"
+    },
+    {
+      "user": "Ada saiz lain tak?",
+      "context": {"clothing": true},
+      "bot": "Cuba tanya 'Got other size?' atau 'Can try or not?'"
+    },
+    {
+      "user": "Ada diskaun?",
+      "context": {"shopping": "discount"},
+      "bot": "Boleh tanya! 'Got discount anot?' is very common in Singapore. Maybe they give you member price!"
+    },
+    {
+      "user": "Saya cuma melihat",
+      "context": {"shopping": "browsing"},
+      "bot": "No problem! 'Just looking' is okay. Take your time to tengok-tengok dulu."
+    },
+    {
+      "user": "Saiz ini terlalu besar",
+      "context": {"clothing": "size_big"},
+      "bot": "Cuba cari smaller size. Boleh tanya 'Got smaller size?' atau 'Can try other size?'"
+    },
+    {
+      "user": "Tunai atau kad kredit?",
+      "context": {"payment": "method"},
+      "bot": "Both okay! 'Cash or card?' is common question. Some places accept PayLah or GrabPay too!"
+    },
+    {
+      "user": "Bungkuskan, ya",
+      "context": {"shopping": "packaging"},
+      "bot": "Sure! 'Can wrap or not?' is also common. Some shops give nice plastic bag or paper bag."
+    }
+  ],
+  
+  "transportation": [
+    {
+      "user": "Macam mana nak pergi Orchard?",
+      "context": {"destination": "Orchard", "transport": "public"},
+      "bot": "Naik MRT dari mana? Red line or Blue line? Atau awak nak naik bus?"
+    },
+    {
+      "user": "Berapa harga tiket MRT?",
+      "context": {"transport": "MRT"},
+      "bot": "Depend on distance lah. Biasanya $1 ke $2 plus. Awak ada EZ-Link card?"
+    },
+    {
+      "user": "Traffic jam teruk",
+      "context": {"traffic": "heavy"},
+      "bot": "Ah, especially during peak hours! Awak selalu stuck dalam traffic ke? Better take MRT lah!"
+    }
+  ],
+  
+  "emotions_and_feelings": [
+    {
+      "user": "Saya gembira hari ini",
+      "context": {"emotion": "happy"},
+      "bot": "Bagus! Apa yang buat awak gembira? Saya pun jadi happy bila awak happy!"
+    },
+    {
+      "user": "Stress dengan kerja",
+      "context": {"emotion": "stressed", "source": "work"},
+      "bot": "Sabar ye. Kerja memang stress kadang-kadang. Awak rehat cukup tak? Maybe pergi East Coast Park jalan-jalan?"
+    },
+    {
+      "user": "Rindu family",
+      "context": {"emotion": "homesick"},
+      "bot": "Awak jauh dari family ke? Video call dengan mereka boleh kurangkan rindu."
+    }
+  ],
+  
+  "time_and_schedule": [
+    {
+      "user": "Pukul berapa sekarang?",
+      "context": {"query": "time"},
+      "bot": "Saya tak boleh tengok jam, tapi awak boleh tanya 'What time already?' kepada orang lain."
+    },
+    {
+      "user": "Esok saya ada meeting",
+      "context": {"schedule": "meeting", "time": "tomorrow"},
+      "bot": "Meeting penting ke? Pukul berapa? Kat office ke online meeting?"
+    },
+    {
+      "user": "Cuti esok",
+      "context": {"schedule": "holiday"},
+      "bot": "Bestnya! Nak buat apa time cuti? Nak pergi Sentosa ke shopping kat town?"
+    }
+  ],
+  
+  "compliments_and_encouragement": [
+    {
+      "user": "Bahasa Melayu saya teruk",
+      "context": {"self_doubt": true},
+      "bot": "Eh, mana ada teruk! Awak dah boleh cakap dengan saya ni. Keep practicing, confirm will improve one!"
+    },
+    {
+      "user": "Susah nak sebut perkataan ni",
+      "context": {"pronunciation": "difficult"},
+      "bot": "Normal je tu! Orang Singapore pun kadang-kadang mix English dengan Melayu. Yang penting awak try!"
+    },
+    {
+      "user": "Terima kasih ajar saya",
+      "context": {"gratitude": true},
+      "bot": "Sama-sama! Saya happy boleh tolong. Awak student yang bagus!"
+    }
+  ],
+  
+  "cultural_questions": [
+    {
+      "user": "Apa tu 'gotong royong'?",
+      "context": {"culture": "community"},
+      "bot": "'Gotong royong' ialah kerja bersama-sama dalam komuniti. Macam block party kat HDB or community cleaning!"
+    },
+    {
+      "user": "Kenapa orang Singapore cakap 'lah'?",
+      "context": {"language": "particles"},
+      "bot": "'Lah' tu very Singaporean! Untuk bagi emphasis. Macam 'Can lah!' lebih friendly dari 'Can'."
+    },
+    {
+      "user": "Apa festival paling besar Singapore?",
+      "context": {"culture": "festivals"},
+      "bot": "Hari Raya, Chinese New Year, Deepavali, Christmas - semua besar! Singapore celebrate racial harmony!"
+    }
+  ],
+  
+  "festivals_and_celebrations": [
+    {
+      "user": "Selamat Hari Raya",
+      "context": {"festival": "Hari Raya"},
+      "bot": "Selamat Hari Raya juga! Awak pakai baju kurung ke baju Melayu? Ada makan kuih raya?"
+    },
+    {
+      "user": "Tahun Baru Cina bulan depan",
+      "context": {"festival": "Chinese New Year"},
+      "bot": "Wah, excited tak? Awak akan dapat angpao? Chinatown mesti cantik dengan decorations!"
+    },
+    {
+      "user": "Hari Kebangsaan Singapore",
+      "context": {"festival": "National Day"},
+      "bot": "Happy National Day! Awak tengok parade tak? Fireworks cantik every year!"
+    },
+    {
+      "user": "Lawatan sekolah ke muzium",
+      "context": {"activity": "school_trip", "location": "museum"},
+      "bot": "Best! Muzium mana? National Museum ke Science Centre? Mesti belajar banyak benda baru!"
+    },
+    {
+      "user": "Haiwan liar di zoo",
+      "context": {"animals": "wild", "location": "zoo"},
+      "bot": "Singapore Zoo memang bagus! Ada tengok orangutan tak? Night Safari pun best untuk tengok nocturnal animals!"
+    }
+  ],
+  
+  "common_mistakes": [
+    {
+      "user": "Saya are Singaporean",
+      "context": {"error_type": "mixed_language"},
+      "bot": "Cuba 'Saya orang Singapura' atau 'I am Singaporean'. Jangan mix English dan Melayu dalam satu ayat ye!"
+    },
+    {
+      "user": "Saya makan nasi lemaks",
+      "context": {"error_type": "plural"},
+      "bot": "Dalam Bahasa Melayu tak payah tambah 's' untuk plural. Cukup cakap 'nasi lemak' je!"
+    },
+    {
+      "user": "Awak name apa?",
+      "context": {"error_type": "word_order"},
+      "bot": "Cuba 'Nama awak apa?' atau 'Siapa nama awak?'. Word order Melayu berbeza sikit dari English."
+    }
+  ],
+  
+  "restaurant_dining": [
+    {
+      "user": "Boleh order?",
+      "context": {"location": "restaurant", "action": "ordering"},
+      "bot": "Boleh! Nak makan apa? Ada nasi goreng, mi goreng, atau chicken rice."
+    },
+    {
+      "user": "Saya nak nasi goreng satu",
+      "context": {"food": "nasi goreng", "ordering": true},
+      "bot": "Nasi goreng satu, okay! Minum apa? Ada teh ais, kopi, atau air suam?"
+    },
+    {
+      "user": "Teh ais kurang manis",
+      "context": {"drink": "teh ais", "preference": "less sweet"},
+      "bot": "Teh ais kurang manis, noted! Total lima ringgit. Duduk dulu, nanti saya hantar."
+    }
+  ],
+  
+  "asking_directions": [
+    {
+      "user": "Tumpang tanya, di mana stesen LRT?",
+      "context": {"direction": "LRT station", "polite": true},
+      "bot": "Jalan lurus dari sini, kemudian pusing kiri. Dalam lima minit jalan kaki je!"
+    },
+    {
+      "user": "Jalan lurus, kemudian pusing kiri",
+      "context": {"direction": "instructions"},
+      "bot": "Betul! Stesen LRT ada signboard besar, senang nak nampak. Ada map kat sana juga."
+    }
+  ],
+  
+  "playground_activities": [
+    {
+      "user": "Jom main kejar-kejar!",
+      "context": {"activity": "chase game", "invitation": true},
+      "bot": "Bagus! Tapi main dengan selamat ye. Jangan lari terlalu laju!"
+    },
+    {
+      "user": "Jom main gelongsor!",
+      "context": {"playground": "slide", "activity": "playing"},
+      "bot": "Okay! Tapi tunggu turn ye. Lepas tu kita boleh main buaian pulak!"
+    },
+    {
+      "user": "Jangan tolak kuat-kuat",
+      "context": {"playground": "safety", "concern": true},
+      "bot": "Betul, safety first! Kita main perlahan-lahan je, hati-hati jangan jatuh."
+    }
+  ],
+  
+  "library_visit": [
+    {
+      "user": "Saya ingin meminjam buku cerita",
+      "context": {"location": "library", "activity": "borrowing"},
+      "bot": "Bagus sekali! Buku cerita apa yang awak suka? Adventure ke fairy tales?"
+    },
+    {
+      "user": "Saya suka membaca buku tentang haiwan",
+      "context": {"reading": "animals", "interest": true},
+      "bot": "Wah, best! Ada banyak buku tentang haiwan kat section kanak-kanak. Uncle boleh tunjukkan."
+    }
+  ],
+  
+  "home_activities": [
+    {
+      "user": "Tolong ibu sapu lantai ya",
+      "context": {"chore": "sweeping", "family": "helping"},
+      "bot": "Baik! Saya akan tolong. Lepas sapu, nak tolong apa lagi?"
+    },
+    {
+      "user": "Boleh bantu lipat pakaian?",
+      "context": {"chore": "folding clothes", "helping": true},
+      "bot": "Boleh! Saya suka tolong ibu. Mana nak letak pakaian yang dah lipat?"
+    }
+  ],
+  
+  "sports_activities": [
+    {
+      "user": "Saya suka acara lari pecut",
+      "context": {"sport": "sprint", "preference": true},
+      "bot": "Hebat! Awak pernah join competition tak? Lari pecut kena practice banyak!"
+    },
+    {
+      "user": "Saya menang tempat kedua tahun lepas",
+      "context": {"achievement": "second place", "proud": true},
+      "bot": "Wah, tahniah! Very good! Tahun ini target tempat pertama ke?"
+    }
+  ],
+  
+  "shopping_activities": [
+    {
+      "user": "Saya mahu beli dua bungkus nasi lemak",
+      "context": {"food": "nasi lemak", "quantity": 2},
+      "bot": "Dua bungkus nasi lemak, okay! Total tiga ringgit lima puluh sen. Tambah apa-apa lagi?"
+    },
+    {
+      "user": "Tolong ambilkan susu dan roti",
+      "context": {"shopping": "groceries", "request": true},
+      "bot": "Okay! Susu kat rak sejuk, roti kat section bakery. Nak brand apa?"
+    }
+  ],
+  
+  "festival_celebrations": [
+    {
+      "user": "Sudahkah kamu siap untuk pergi beraya?",
+      "context": {"festival": "Hari Raya", "preparation": true},
+      "bot": "Sudah! Pakai baju kurung cantik. Awak dah siap salam dengan family semua?"
+    },
+    {
+      "user": "Apa kamu buat semasa Tahun Baru Cina?",
+      "context": {"festival": "Chinese New Year", "activity": true},
+      "bot": "Saya lawat saudara, makan reunion dinner. Dapat angpao juga! Awak celebrate tak?"
+    },
+    {
+      "user": "Mengapa kita sambut Hari Kebangsaan?",
+      "context": {"festival": "National Day", "education": true},
+      "bot": "Untuk tunjuk patriotisme dan cinta kepada Malaysia! Awak akan tengok parade tak?"
+    }
+  ],
+  
+  "educational_visits": [
+    {
+      "user": "Apa haiwan yang kamu paling suka di zoo?",
+      "context": {"location": "zoo", "animals": true},
+      "bot": "Saya suka orangutan sebab pandai dan comel! Awak dah tengok animal show?"
+    },
+    {
+      "user": "Apa yang kamu lihat di muzium tadi?",
+      "context": {"location": "museum", "learning": true},
+      "bot": "Saya tengok pakaian tradisional dan sejarah Malaysia. Sangat menarik! Awak suka bahagian mana?"
+    }
+  ],
+  
+  "food_court_dining": [
+    {
+      "user": "Awak nak makan apa di medan selera ini?",
+      "context": {"location": "food court", "dining": true},
+      "bot": "Saya nak chicken rice! Awak? Jom duduk sama-sama makan."
+    },
+    {
+      "user": "Lepas makan, kita beli minuman",
+      "context": {"dining": "after meal", "drinks": true},
+      "bot": "Good idea! Saya nak air kelapa muda. Cuaca panas ni memang kena minum banyak air!"
+    }
+  ]
+} 
