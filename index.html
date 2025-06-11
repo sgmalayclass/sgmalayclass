@@ -55,95 +55,111 @@
             padding: 20px;
             overflow-y: auto;
         }
-        .intro-section {
+        .section {
+            display: none;
             background: rgba(255,255,255,0.9);
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 20px;
-            text-align: center;
         }
-        .intro-section h2 {
+        .section.active {
+            display: block;
+        }
+        .section h2 {
             color: #2E7D32;
             margin-bottom: 15px;
         }
-        .intro-section p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 10px;
+        .quiz-themes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
         }
-        .chat-container {
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 400px;
-            overflow-y: auto;
-            background: rgba(255,255,255,0.1);
+        .theme-card {
+            background: #f8f9fa;
+            border-radius: 10px;
             padding: 15px;
-            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
         }
-        .chat-container.active {
-            display: flex;
+        .theme-card:hover {
+            border-color: #4CAF50;
+            transform: translateY(-2px);
         }
-        .message {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            word-wrap: break-word;
-            line-height: 1.4;
-        }
-        .user-message {
-            background: #4CAF50;
-            color: white;
-            align-self: flex-end;
-        }
-        .bot-message {
-            background: rgba(255,255,255,0.95);
+        .theme-card h3 {
             color: #2E7D32;
-            align-self: flex-start;
+            font-size: 16px;
+            margin-bottom: 8px;
         }
-        .bilingual {
-            margin-top: 5px;
-            font-size: 0.9em;
-            opacity: 0.8;
-            font-style: italic;
-        }
-        .quiz-section, .roleplay-section {
-            display: none;
-            background: rgba(255,255,255,0.9);
-            padding: 20px;
-            border-radius: 15px;
-        }
-        .quiz-section.active, .roleplay-section.active {
-            display: block;
+        .theme-card p {
+            color: #666;
+            font-size: 14px;
         }
         .quiz-question {
-            margin-bottom: 20px;
-            padding: 15px;
             background: #f5f5f5;
+            padding: 15px;
             border-radius: 10px;
+            margin-bottom: 15px;
         }
         .quiz-options {
             display: grid;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 10px;
         }
         .quiz-option {
             background: #4CAF50;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
             text-align: left;
+            transition: all 0.3s;
         }
         .quiz-option:hover {
             background: #2E7D32;
         }
-        .roleplay-scenario {
-            margin-bottom: 20px;
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .score {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+        .chat-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background: rgba(255,255,255,0.1);
             padding: 15px;
-            background: #f5f5f5;
             border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background: #4CAF50;
+            color: white;
+            margin-left: auto;
+        }
+        .bot-message {
+            background: rgba(255,255,255,0.95);
+            color: #2E7D32;
+        }
+        .bilingual {
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 0.9em;
+            margin-top: 5px;
         }
         .input-container {
             background: rgba(255,255,255,0.9);
@@ -179,16 +195,32 @@
             color: #2E7D32;
             border: none;
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
             font-size: 14px;
         }
-        .score {
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #4CAF50;
-            margin-top: 20px;
+        .roleplay-scenarios {
+            display: grid;
+            gap: 15px;
+        }
+        .scenario-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #2E7D32;
         }
     </style>
 </head>
@@ -199,22 +231,22 @@
     </div>
     
     <div class="nav-menu">
-        <button class="nav-btn active" onclick="showSection('intro')">Home</button>
+        <button class="nav-btn active" onclick="showSection('home')">Home</button>
         <button class="nav-btn" onclick="showSection('chat')">Chat</button>
         <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
         <button class="nav-btn" onclick="showSection('roleplay')">Role-Play</button>
     </div>
     
     <div class="content-area">
-        <!-- Introduction Section -->
-        <div class="intro-section" id="intro-section">
+        <!-- Home Section -->
+        <div class="section active" id="home">
             <h2>Welcome to Maya! 🌟</h2>
             <p><strong>What is Maya?</strong><br>
             Maya is your friendly Singapore Malay learning companion! Practice conversational Malay, test your knowledge with quizzes, and engage in real-life scenarios.</p>
             
             <p><strong>Features:</strong><br>
             🗣️ <strong>Interactive Chat:</strong> Practice Malay conversations with English translations<br>
-            🧠 <strong>Knowledge Quiz:</strong> Test your vocabulary and grammar skills<br>
+            🧠 <strong>Knowledge Quiz:</strong> Test your vocabulary and grammar across 14 different themes<br>
             🎭 <strong>Role-Playing:</strong> Practice real-life scenarios like ordering food, shopping, and more<br>
             🌍 <strong>Singapore Context:</strong> Learn authentic Singapore Malay expressions</p>
             
@@ -223,61 +255,125 @@
         </div>
 
         <!-- Chat Section -->
-        <div class="chat-container" id="chat-container">
-            <div class="message bot-message">
-                Selamat datang! Saya Maya. Mari bercakap dalam Bahasa Melayu! 😊
-                <div class="bilingual">Welcome! I'm Maya. Let's chat in Malay!</div>
+        <div class="section" id="chat">
+            <h2>💬 Chat with Maya</h2>
+            <div class="chat-container" id="chat-container">
+                <div class="message bot-message">
+                    Selamat datang! Saya Maya. Mari bercakap dalam Bahasa Melayu! 😊
+                    <div class="bilingual">Welcome! I'm Maya. Let's chat in Malay!</div>
+                </div>
             </div>
             
             <div class="quick-replies">
                 <button class="quick-reply" onclick="sendQuickReply('Selamat pagi!', 'Good morning!')">Selamat pagi!</button>
                 <button class="quick-reply" onclick="sendQuickReply('Apa khabar?', 'How are you?')">Apa khabar?</button>
                 <button class="quick-reply" onclick="sendQuickReply('Nak makan apa?', 'What do you want to eat?')">Nak makan apa?</button>
+                <button class="quick-reply" onclick="sendQuickReply('Boleh tolong saya?', 'Can you help me?')">Boleh tolong saya?</button>
             </div>
         </div>
 
         <!-- Quiz Section -->
-        <div class="quiz-section" id="quiz-section">
-            <h2>🧠 Malay Vocabulary Quiz</h2>
-            <div id="quiz-content">
-                <div class="quiz-question">
-                    <h3>Question 1: What does "Terima kasih" mean in English?</h3>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="checkAnswer(this, false)">Good morning</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, true)">Thank you</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false)">Excuse me</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false)">How are you</button>
-                    </div>
+        <div class="section" id="quiz">
+            <h2>🧠 Malay Quiz - Choose Your Theme</h2>
+            <div class="quiz-themes" id="quiz-themes">
+                <div class="theme-card" onclick="startQuiz('greetings')">
+                    <h3>🤝 Greetings & Politeness</h3>
+                    <p>Basic greetings, please, thank you, and polite expressions</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('family')">
+                    <h3>👨‍👩‍👧‍👦 Family & Relationships</h3>
+                    <p>Family members, relationships, and personal connections</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('food')">
+                    <h3>🍜 Food & Drinks</h3>
+                    <p>Hawker center favorites, local dishes, and beverages</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('transport')">
+                    <h3>🚇 Transportation</h3>
+                    <p>MRT, buses, taxis, and getting around Singapore</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('shopping')">
+                    <h3>🛒 Shopping</h3>
+                    <p>Markets, malls, bargaining, and making purchases</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('numbers')">
+                    <h3>🔢 Numbers & Time</h3>
+                    <p>Counting, telling time, dates, and quantities</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('body')">
+                    <h3>🏥 Body & Health</h3>
+                    <p>Body parts, health conditions, and medical terms</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('colors')">
+                    <h3>🌈 Colors & Descriptions</h3>
+                    <p>Colors, sizes, shapes, and descriptive words</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('weather')">
+                    <h3>🌦️ Weather & Nature</h3>
+                    <p>Weather conditions, seasons, and natural elements</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('home')">
+                    <h3>🏠 Home & Living</h3>
+                    <p>House parts, furniture, and household items</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('work')">
+                    <h3>💼 Work & School</h3>
+                    <p>Occupations, school subjects, and workplace terms</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('hobbies')">
+                    <h3>🎨 Hobbies & Activities</h3>
+                    <p>Sports, entertainment, and leisure activities</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('directions')">
+                    <h3>🧭 Directions & Places</h3>
+                    <p>Locations, directions, and navigating around town</p>
+                </div>
+                <div class="theme-card" onclick="startQuiz('emotions')">
+                    <h3>😊 Emotions & Feelings</h3>
+                    <p>Expressing feelings, emotions, and personal states</p>
                 </div>
             </div>
-            <div class="score" id="quiz-score">Score: 0/0</div>
+            
+            <div id="quiz-content" style="display: none;">
+                <button class="btn" onclick="backToThemes()">← Back to Themes</button>
+                <div id="quiz-questions"></div>
+                <div class="score" id="quiz-score">Score: 0/0</div>
+            </div>
         </div>
 
         <!-- Role-Play Section -->
-        <div class="roleplay-section" id="roleplay-section">
+        <div class="section" id="roleplay">
             <h2>🎭 Role-Playing Scenarios</h2>
             
-            <div class="roleplay-scenario">
-                <h3>🍜 Scenario 1: Ordering Food at a Hawker Center</h3>
-                <p><strong>Situation:</strong> You're at a hawker center and want to order chicken rice.</p>
-                <div class="quick-replies">
-                    <button class="quick-reply" onclick="startRoleplay('food')">Start Scenario</button>
+            <div class="roleplay-scenarios">
+                <div class="scenario-card">
+                    <h3>🍜 Ordering Food at Hawker Center</h3>
+                    <p><strong>Situation:</strong> You're at Maxwell Food Centre and want to order chicken rice.</p>
+                    <button class="btn" onclick="startRoleplay('food')">Start Scenario</button>
                 </div>
-            </div>
-            
-            <div class="roleplay-scenario">
-                <h3>🛒 Scenario 2: Shopping at a Local Market</h3>
-                <p><strong>Situation:</strong> You're buying fruits at a wet market.</p>
-                <div class="quick-replies">
-                    <button class="quick-reply" onclick="startRoleplay('shopping')">Start Scenario</button>
+                
+                <div class="scenario-card">
+                    <h3>🛒 Shopping at Wet Market</h3>
+                    <p><strong>Situation:</strong> You're buying fresh fruits at Tekka Market.</p>
+                    <button class="btn" onclick="startRoleplay('shopping')">Start Scenario</button>
                 </div>
-            </div>
-            
-            <div class="roleplay-scenario">
-                <h3>🚇 Scenario 3: Asking for Directions (MRT Station)</h3>
-                <p><strong>Situation:</strong> You need directions to Orchard Road.</p>
-                <div class="quick-replies">
-                    <button class="quick-reply" onclick="startRoleplay('directions')">Start Scenario</button>
+                
+                <div class="scenario-card">
+                    <h3>🚇 Asking for Directions</h3>
+                    <p><strong>Situation:</strong> You're lost and need to get to Orchard Road.</p>
+                    <button class="btn" onclick="startRoleplay('directions')">Start Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🏥 At the Clinic</h3>
+                    <p><strong>Situation:</strong> You're not feeling well and visiting a local clinic.</p>
+                    <button class="btn" onclick="startRoleplay('clinic')">Start Scenario</button>
+                </div>
+                
+                <div class="scenario-card">
+                    <h3>🏪 At the Mama Shop</h3>
+                    <p><strong>Situation:</strong> You need to buy some daily necessities from the neighborhood shop.</p>
+                    <button class="btn" onclick="startRoleplay('shop')">Start Scenario</button>
                 </div>
             </div>
         </div>
@@ -290,11 +386,100 @@
     </div>
 
     <script>
-        let currentSection = 'intro';
+        let currentSection = 'home';
         let quizScore = 0;
         let quizTotal = 0;
-        let currentRoleplay = null;
+        let currentQuiz = null;
 
+        // Quiz data for all 14 themes
+        const quizData = {
+            greetings: [
+                { question: "What does 'Terima kasih' mean?", options: ["Good morning", "Thank you", "Excuse me", "How are you"], correct: 1 },
+                { question: "How do you say 'Good morning' in Malay?", options: ["Selamat malam", "Selamat petang", "Selamat pagi", "Selamat tengahari"], correct: 2 },
+                { question: "What does 'Maaf' mean?", options: ["Sorry", "Please", "Welcome", "Goodbye"], correct: 0 },
+                { question: "How do you say 'You're welcome'?", options: ["Terima kasih", "Sama-sama", "Maaf", "Selamat tinggal"], correct: 1 }
+            ],
+            family: [
+                { question: "What does 'Ayah' mean?", options: ["Mother", "Father", "Brother", "Sister"], correct: 1 },
+                { question: "How do you say 'older sister' in Malay?", options: ["Kakak", "Adik", "Ibu", "Nenek"], correct: 0 },
+                { question: "What does 'Cucu' mean?", options: ["Child", "Grandchild", "Nephew", "Cousin"], correct: 1 },
+                { question: "How do you say 'family' in Malay?", options: ["Rumah", "Keluarga", "Kawan", "Jiran"], correct: 1 }
+            ],
+            food: [
+                { question: "What is 'Nasi lemak'?", options: ["Fried rice", "Coconut rice", "White rice", "Rice noodles"], correct: 1 },
+                { question: "What does 'Minum' mean?", options: ["Eat", "Drink", "Cook", "Buy"], correct: 1 },
+                { question: "What is 'Teh tarik'?", options: ["Coffee", "Pulled tea", "Ice cream", "Soup"], correct: 1 },
+                { question: "What does 'Pedas' mean?", options: ["Sweet", "Sour", "Spicy", "Salty"], correct: 2 }
+            ],
+            transport: [
+                { question: "What does 'Bas' mean?", options: ["Train", "Bus", "Car", "Bicycle"], correct: 1 },
+                { question: "How do you say 'MRT station' in Malay?", options: ["Stesen bas", "Stesen MRT", "Lapangan terbang", "Pelabuhan"], correct: 1 },
+                { question: "What does 'Teksi' mean?", options: ["Bus", "Train", "Taxi", "Motorcycle"], correct: 2 },
+                { question: "How do you say 'airport' in Malay?", options: ["Stesen", "Lapangan terbang", "Pelabuhan", "Jalan raya"], correct: 1 }
+            ],
+            shopping: [
+                { question: "What does 'Berapa harga?' mean?", options: ["What color?", "How much?", "Where is?", "What time?"], correct: 1 },
+                { question: "How do you say 'cheap' in Malay?", options: ["Mahal", "Murah", "Besar", "Kecil"], correct: 1 },
+                { question: "What does 'Beli' mean?", options: ["Sell", "Buy", "Look", "Want"], correct: 1 },
+                { question: "How do you say 'expensive' in Malay?", options: ["Murah", "Cantik", "Mahal", "Bagus"], correct: 2 }
+            ],
+            numbers: [
+                { question: "What is 'Lima' in English?", options: ["Three", "Four", "Five", "Six"], correct: 2 },
+                { question: "How do you say '10' in Malay?", options: ["Sembilan", "Sepuluh", "Sebelas", "Lapan"], correct: 1 },
+                { question: "What does 'Pukul berapa?' mean?", options: ["How many?", "What time?", "How much?", "Which day?"], correct: 1 },
+                { question: "What is 'Satu' in English?", options: ["One", "Two", "Three", "Zero"], correct: 0 }
+            ],
+            body: [
+                { question: "What does 'Kepala' mean?", options: ["Hand", "Head", "Foot", "Eye"], correct: 1 },
+                { question: "How do you say 'sick' in Malay?", options: ["Sihat", "Sakit", "Penat", "Lapar"], correct: 1 },
+                { question: "What does 'Mata' mean?", options: ["Nose", "Mouth", "Eye", "Ear"], correct: 2 },
+                { question: "How do you say 'hand' in Malay?", options: ["Kaki", "Tangan", "Badan", "Muka"], correct: 1 }
+            ],
+            colors: [
+                { question: "What does 'Merah' mean?", options: ["Blue", "Green", "Red", "Yellow"], correct: 2 },
+                { question: "How do you say 'white' in Malay?", options: ["Hitam", "Putih", "Abu-abu", "Coklat"], correct: 1 },
+                { question: "What does 'Besar' mean?", options: ["Small", "Big", "Long", "Short"], correct: 1 },
+                { question: "How do you say 'beautiful' in Malay?", options: ["Hodoh", "Cantik", "Buruk", "Kotor"], correct: 1 }
+            ],
+            weather: [
+                { question: "What does 'Hujan' mean?", options: ["Sun", "Rain", "Wind", "Cloud"], correct: 1 },
+                { question: "How do you say 'hot' in Malay?", options: ["Sejuk", "Panas", "Basah", "Kering"], correct: 1 },
+                { question: "What does 'Angin' mean?", options: ["Rain", "Sun", "Wind", "Storm"], correct: 2 },
+                { question: "How do you say 'cold' in Malay?", options: ["Panas", "Sejuk", "Lembap", "Kering"], correct: 1 }
+            ],
+            home: [
+                { question: "What does 'Rumah' mean?", options: ["Room", "House", "Kitchen", "Bathroom"], correct: 1 },
+                { question: "How do you say 'bedroom' in Malay?", options: ["Dapur", "Bilik tidur", "Ruang tamu", "Bilik air"], correct: 1 },
+                { question: "What does 'Katil' mean?", options: ["Chair", "Table", "Bed", "Door"], correct: 2 },
+                { question: "How do you say 'kitchen' in Malay?", options: ["Dapur", "Bilik", "Tingkap", "Pintu"], correct: 0 }
+            ],
+            work: [
+                { question: "What does 'Kerja' mean?", options: ["Study", "Work", "Play", "Sleep"], correct: 1 },
+                { question: "How do you say 'teacher' in Malay?", options: ["Pelajar", "Cikgu", "Doktor", "Jurutera"], correct: 1 },
+                { question: "What does 'Sekolah' mean?", options: ["Office", "Hospital", "School", "Shop"], correct: 2 },
+                { question: "How do you say 'student' in Malay?", options: ["Cikgu", "Pelajar", "Pekerja", "Doktor"], correct: 1 }
+            ],
+            hobbies: [
+                { question: "What does 'Bola sepak' mean?", options: ["Basketball", "Football", "Tennis", "Swimming"], correct: 1 },
+                { question: "How do you say 'read' in Malay?", options: ["Tulis", "Baca", "Dengar", "Tengok"], correct: 1 },
+                { question: "What does 'Lagu' mean?", options: ["Dance", "Song", "Movie", "Book"], correct: 1 },
+                { question: "How do you say 'swim' in Malay?", options: ["Lari", "Berenang", "Lompat", "Berjalan"], correct: 1 }
+            ],
+            directions: [
+                { question: "What does 'Kiri' mean?", options: ["Right", "Left", "Straight", "Back"], correct: 1 },
+                { question: "How do you say 'near' in Malay?", options: ["Jauh", "Dekat", "Tinggi", "Rendah"], correct: 1 },
+                { question: "What does 'Jalan' mean?", options: ["House", "Road", "Bridge", "Building"], correct: 1 },
+                { question: "How do you say 'where is?' in Malay?", options: ["Bila?", "Apa?", "Kat mana?", "Kenapa?"], correct: 2 }
+            ],
+            emotions: [
+                { question: "What does 'Gembira' mean?", options: ["Sad", "Angry", "Happy", "Tired"], correct: 2 },
+                { question: "How do you say 'angry' in Malay?", options: ["Sedih", "Marah", "Takut", "Penat"], correct: 1 },
+                { question: "What does 'Takut' mean?", options: ["Brave", "Scared", "Calm", "Excited"], correct: 1 },
+                { question: "How do you say 'love' in Malay?", options: ["Benci", "Sayang", "Suka", "Rindu"], correct: 1 }
+            ]
+        };
+
+        // Chat responses
         const malayResponses = {
             greetings: [
                 { malay: "Selamat pagi! Apa khabar?", english: "Good morning! How are you?" },
@@ -304,13 +489,7 @@
             food: [
                 { malay: "Saya nak nasi ayam satu.", english: "I want one chicken rice." },
                 { malay: "Berapa harga char kway teow?", english: "How much is the char kway teow?" },
-                { malay: "Mee goreng ada tak?", english: "Do you have fried noodles?" },
-                { malay: "Saya nak teh tarik kurang manis.", english: "I want teh tarik less sweet." }
-            ],
-            shopping: [
-                { malay: "Berapa harga pisang ni?", english: "How much are these bananas?" },
-                { malay: "Boleh kurang sikit tak?", english: "Can you reduce the price a bit?" },
-                { malay: "Bagi saya dua kilo.", english: "Give me two kilos." }
+                { malay: "Mee goreng ada tak?", english: "Do you have fried noodles?" }
             ],
             general: [
                 { malay: "Maaf, saya tak faham.", english: "Sorry, I don't understand." },
@@ -319,51 +498,102 @@
             ]
         };
 
-        const quizQuestions = [
-            {
-                question: "What does 'Terima kasih' mean in English?",
-                options: ["Good morning", "Thank you", "Excuse me", "How are you"],
-                correct: 1
-            },
-            {
-                question: "How do you say 'How much?' in Malay?",
-                options: ["Berapa harga?", "Apa khabar?", "Kat mana?", "Boleh tak?"],
-                correct: 0
-            },
-            {
-                question: "What does 'Nasi lemak' mean?",
-                options: ["Fried rice", "Coconut rice", "White rice", "Rice noodles"],
-                correct: 1
-            }
-        ];
-
         function showSection(section) {
             // Hide all sections
-            document.getElementById('intro-section').style.display = 'none';
-            document.getElementById('chat-container').classList.remove('active');
-            document.getElementById('quiz-section').classList.remove('active');
-            document.getElementById('roleplay-section').classList.remove('active');
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             
             // Remove active class from all nav buttons
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             
             // Show selected section
-            if (section === 'intro') {
-                document.getElementById('intro-section').style.display = 'block';
-            } else if (section === 'chat') {
-                document.getElementById('chat-container').classList.add('active');
-            } else if (section === 'quiz') {
-                document.getElementById('quiz-section').classList.add('active');
-                loadQuiz();
-            } else if (section === 'roleplay') {
-                document.getElementById('roleplay-section').classList.add('active');
-            }
+            document.getElementById(section).classList.add('active');
             
             // Add active class to clicked button
             event.target.classList.add('active');
             currentSection = section;
         }
 
+        function startQuiz(theme) {
+            currentQuiz = theme;
+            quizScore = 0;
+            quizTotal = 0;
+            
+            document.getElementById('quiz-themes').style.display = 'none';
+            document.getElementById('quiz-content').style.display = 'block';
+            
+            const questionsContainer = document.getElementById('quiz-questions');
+            questionsContainer.innerHTML = `<h3>📚 ${getThemeTitle(theme)}</h3>`;
+            
+            quizData[theme].forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                questionDiv.innerHTML = `
+                    <h4>Question ${index + 1}: ${q.question}</h4>
+                    <div class="quiz-options">
+                        ${q.options.map((option, i) => 
+                            `<button class="quiz-option" onclick="checkAnswer(this, ${i === q.correct}, ${index})">${option}</button>`
+                        ).join('')}
+                    </div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            updateQuizScore();
+        }
+
+        function getThemeTitle(theme) {
+            const titles = {
+                greetings: 'Greetings & Politeness',
+                family: 'Family & Relationships',
+                food: 'Food & Drinks',
+                transport: 'Transportation',
+                shopping: 'Shopping',
+                numbers: 'Numbers & Time',
+                body: 'Body & Health',
+                colors: 'Colors & Descriptions',
+                weather: 'Weather & Nature',
+                home: 'Home & Living',
+                work: 'Work & School',
+                hobbies: 'Hobbies & Activities',
+                directions: 'Directions & Places',
+                emotions: 'Emotions & Feelings'
+            };
+            return titles[theme] || theme;
+        }
+
+        function checkAnswer(button, isCorrect, questionIndex) {
+            quizTotal++;
+            if (isCorrect) {
+                button.style.background = '#4CAF50';
+                quizScore++;
+            } else {
+                button.style.background = '#f44336';
+                // Highlight correct answer
+                const options = button.parentElement.querySelectorAll('.quiz-option');
+                const correctAnswer = quizData[currentQuiz][questionIndex].correct;
+                options[correctAnswer].style.background = '#4CAF50';
+            }
+            
+            // Disable all options for this question
+            button.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.disabled = true;
+                opt.style.cursor = 'not-allowed';
+            });
+            
+            updateQuizScore();
+        }
+
+        function updateQuizScore() {
+            document.getElementById('quiz-score').textContent = `Score: ${quizScore}/${quizTotal}`;
+        }
+
+        function backToThemes() {
+            document.getElementById('quiz-themes').style.display = 'grid';
+            document.getElementById('quiz-content').style.display = 'none';
+            currentQuiz = null;
+        }
+
+        // Chat functions
         function addMessage(text, isUser, english = null) {
             const chatContainer = document.getElementById('chat-container');
             const messageDiv = document.createElement('div');
@@ -412,72 +642,15 @@
             return responses[Math.floor(Math.random() * responses.length)];
         }
 
-        function loadQuiz() {
-            quizScore = 0;
-            quizTotal = 0;
-            const quizContent = document.getElementById('quiz-content');
-            quizContent.innerHTML = '';
-            
-            quizQuestions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'quiz-question';
-                questionDiv.innerHTML = `
-                    <h3>Question ${index + 1}: ${q.question}</h3>
-                    <div class="quiz-options">
-                        ${q.options.map((option, i) => 
-                            `<button class="quiz-option" onclick="checkAnswer(this, ${i === q.correct}, ${index})">${option}</button>`
-                        ).join('')}
-                    </div>
-                `;
-                quizContent.appendChild(questionDiv);
-            });
-            
-            updateQuizScore();
-        }
-
-        function checkAnswer(button, isCorrect, questionIndex) {
-            quizTotal++;
-            if (isCorrect) {
-                button.style.background = '#4CAF50';
-                quizScore++;
-            } else {
-                button.style.background = '#f44336';
-                // Highlight correct answer
-                const options = button.parentElement.querySelectorAll('.quiz-option');
-                const correctAnswer = quizQuestions[questionIndex].correct;
-                options[correctAnswer].style.background = '#4CAF50';
-            }
-            
-            // Disable all options for this question
-            button.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.disabled = true;
-                opt.style.cursor = 'not-allowed';
-            });
-            
-            updateQuizScore();
-        }
-
-        function updateQuizScore() {
-            document.getElementById('quiz-score').textContent = `Score: ${quizScore}/${quizTotal}`;
-        }
-
         function startRoleplay(scenario) {
-            currentRoleplay = scenario;
             showSection('chat');
             
             const scenarios = {
-                food: {
-                    malay: "Selamat datang! Nak order apa?",
-                    english: "Welcome! What would you like to order?"
-                },
-                shopping: {
-                    malay: "Nak beli apa hari ni?",
-                    english: "What would you like to buy today?"
-                },
-                directions: {
-                    malay: "Boleh saya tolong?",
-                    english: "Can I help you?"
-                }
+                food: { malay: "Selamat datang! Nak order apa?", english: "Welcome! What would you like to order?" },
+                shopping: { malay: "Nak beli apa hari ni?", english: "What would you like to buy today?" },
+                directions: { malay: "Boleh saya tolong?", english: "Can I help you?" },
+                clinic: { malay: "Apa masalah awak hari ni?", english: "What's your problem today?" },
+                shop: { malay: "Cari apa, bang?", english: "What are you looking for, bro?" }
             };
             
             // Clear chat and start scenario
@@ -487,7 +660,9 @@
         }
 
         // Initialize
-        showSection('intro');
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+        });
     </script>
 </body>
 </html>
