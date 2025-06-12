@@ -749,14 +749,18 @@
         function checkAnswer(button, isCorrect, questionIndex) {
             quizTotal++;
             if (isCorrect) {
-                button.style.background = '#4CAF50';
+                button.style.background = '#FFD700'; // Yellow for correct answer
+                button.style.color = '#000'; // Black text for better contrast on yellow
                 quizScore++;
             } else {
-                button.style.background = '#f44336';
-                // Highlight correct answer
+                button.style.background = '#f44336'; // Red for wrong answer
+                button.style.color = '#fff';
+                // Highlight correct answer in yellow
                 const options = button.parentElement.querySelectorAll('.quiz-option');
                 const correctAnswer = quizData[currentQuiz][questionIndex].correct;
-                options[correctAnswer].style.background = '#4CAF50';
+                options[correctAnswer].style.background = '#FFD700'; // Yellow for correct answer
+                options[correctAnswer].style.color = '#000'; // Black text for better contrast
+                options[correctAnswer].style.fontWeight = 'bold'; // Make it stand out more
             }
             
             // Disable all options for this question
