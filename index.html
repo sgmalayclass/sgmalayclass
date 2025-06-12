@@ -235,6 +235,185 @@
             color: #2E7D32;
             font-size: 14px;
         }
+
+        /* Daily Phrases Styles */
+        .phrase-container {
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .current-phrase {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .phrase-header h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        .phrase-meta {
+            opacity: 0.9;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .phrase-malay {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .phrase-english {
+            font-size: 1.4em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .phrase-audio-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .phrase-audio-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .phrase-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-phrase-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-phrase-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .week-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .week-selector h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .week-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .week-btn {
+            background: white;
+            border: 2px solid #3498db;
+            color: #3498db;
+            padding: 15px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .week-btn:hover, .week-btn.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .week-btn small {
+            display: block;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .phrases-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .phrase-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .phrase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .phrase-card-category {
+            color: #3498db;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .phrase-card-malay {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .phrase-card-english {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .phrase-card-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+
+        .phrase-card-btn:hover {
+            background: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -247,6 +426,7 @@
         <button class="nav-btn active" onclick="showSection('home')">Home</button>
         <button class="nav-btn" onclick="showSection('chat')">Interactive Chat</button>
         <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
+        <button class="nav-btn" onclick="showSection('phrases')">Daily Phrases</button>
     </div>
     
     <div class="content-area">
@@ -355,10 +535,56 @@
                 <button class="btn" onclick="backToThemes()">← Back to Themes</button>
                 <div id="quiz-questions"></div>
                 <div class="score" id="quiz-score">Score: 0/0</div>
+                    </div>
+    </div>
+
+    <!-- Daily Phrases Section -->
+    <div id="phrases" class="section">
+        <h2>📅 Malay Phrase of the Day</h2>
+        <p class="subtitle">Learn essential Malay phrases organized by weekly themes</p>
+        
+        <div class="phrase-container">
+            <div class="current-phrase">
+                <div class="phrase-header">
+                    <h3 id="phrase-title">Today's Phrase</h3>
+                    <div class="phrase-meta">
+                        <span id="phrase-week">Week 1</span> • <span id="phrase-category">Greetings</span>
+                    </div>
+                </div>
+                <div class="phrase-content">
+                    <div class="phrase-malay" id="phrase-malay">Selamat pagi</div>
+                    <div class="phrase-english" id="phrase-english">Good morning</div>
+                    <button class="phrase-audio-btn" onclick="speakPhrase()">🔊 Listen</button>
+                </div>
+            </div>
+            
+            <div class="phrase-navigation">
+                <button class="nav-phrase-btn" onclick="previousPhrase()">← Previous</button>
+                <button class="nav-phrase-btn" onclick="randomPhrase()">🎲 Random</button>
+                <button class="nav-phrase-btn" onclick="nextPhrase()">Next →</button>
             </div>
         </div>
+        
+        <div class="week-selector">
+            <h3>Browse by Week</h3>
+            <div class="week-buttons">
+                <button class="week-btn active" onclick="selectWeek(1)">Week 1<br><small>Survival Essentials</small></button>
+                <button class="week-btn" onclick="selectWeek(2)">Week 2<br><small>Shopping & Directions</small></button>
+                <button class="week-btn" onclick="selectWeek(3)">Week 3<br><small>Time & Daily Life</small></button>
+                <button class="week-btn" onclick="selectWeek(4)">Week 4<br><small>Social & Emergencies</small></button>
+                <button class="week-btn" onclick="selectWeek(5)">Week 5<br><small>Home & Community</small></button>
+                <button class="week-btn" onclick="selectWeek(6)">Week 6<br><small>Workplace & Studies</small></button>
+                <button class="week-btn" onclick="selectWeek(7)">Week 7<br><small>Culture & Media</small></button>
+                <button class="week-btn" onclick="selectWeek(8)">Week 8<br><small>Advanced Scenarios</small></button>
+            </div>
+        </div>
+        
+        <div class="phrases-list" id="phrases-list">
+            <!-- Phrases will be populated here -->
+        </div>
+    </div>
 
-
+ 
     </div>
     
     <div class="input-container">
@@ -375,6 +601,203 @@
         let currentTopic = null;
         let conversationStep = 0;
         let conversationContext = {};
+        let currentPhraseIndex = 0;
+        let currentWeek = 1;
+
+        // Daily Phrases Data - 8 weeks of essential Malay phrases
+        const phrasesData = {
+            1: {
+                title: "Survival Essentials & Greetings",
+                categories: {
+                    "Greetings": [
+                        { malay: "Selamat pagi", english: "Good morning" },
+                        { malay: "Apa khabar?", english: "How are you?" },
+                        { malay: "Khabar baik", english: "I'm fine" },
+                        { malay: "Terima kasih", english: "Thank you" },
+                        { malay: "Sama-sama", english: "You're welcome" }
+                    ],
+                    "Food & Drinks": [
+                        { malay: "Saya lapar", english: "I'm hungry" },
+                        { malay: "Saya dahaga", english: "I'm thirsty" },
+                        { malay: "Boleh saya lihat menu?", english: "Can I see the menu?" },
+                        { malay: "Saya nak pesan...", english: "I want to order..." },
+                        { malay: "Ada nasi ayam?", english: "Do you have chicken rice?" },
+                        { malay: "Bilik air di mana?", english: "Where is the toilet?" }
+                    ],
+                    "Polite Requests": [
+                        { malay: "Boleh tolong saya?", english: "Can you help me?" },
+                        { malay: "Maaf", english: "Sorry/Excuse me" },
+                        { malay: "Boleh...?", english: "Can I/May I...?" }
+                    ]
+                }
+            },
+            2: {
+                title: "Shopping & Getting Around",
+                categories: {
+                    "Shopping": [
+                        { malay: "Berapa harganya?", english: "How much is this?" },
+                        { malay: "Mahal sangat!", english: "Too expensive!" },
+                        { malay: "Ada diskaun?", english: "Is there a discount?" },
+                        { malay: "Saya cuma tengok", english: "I'm just looking" },
+                        { malay: "Boleh bayar dengan kad?", english: "Can I pay by card?" }
+                    ],
+                    "Directions": [
+                        { malay: "Di mana stesen bas?", english: "Where is the bus station?" },
+                        { malay: "Di mana stesen teksi?", english: "Where is the taxi station?" },
+                        { malay: "Belok kiri", english: "Turn left" },
+                        { malay: "Belok kanan", english: "Turn right" },
+                        { malay: "Jalan terus", english: "Go straight" },
+                        { malay: "Jauh ke...?", english: "Is it far to...?" },
+                        { malay: "Saya sesat", english: "I'm lost" }
+                    ],
+                    "Transport": [
+                        { malay: "Teksi!", english: "Taxi!" },
+                        { malay: "Berapa tambang ke...?", english: "How much is the fare to...?" },
+                        { malay: "Berhenti di sini", english: "Stop here" }
+                    ]
+                }
+            },
+            3: {
+                title: "Time, Weather & Daily Life",
+                categories: {
+                    "Time & Dates": [
+                        { malay: "Pukul berapa?", english: "What time is it?" },
+                        { malay: "Hari ini hari apa?", english: "What day is today?" },
+                        { malay: "Esok", english: "Tomorrow" },
+                        { malay: "Semalam", english: "Yesterday" },
+                        { malay: "Minggu depan", english: "Next week" },
+                        { malay: "Minggu lepas", english: "Last week" }
+                    ],
+                    "Weather": [
+                        { malay: "Hari ini panas", english: "Today is hot" },
+                        { malay: "Hari ini hujan", english: "Today is rainy" },
+                        { malay: "Ada ribut petir", english: "There's a thunderstorm" },
+                        { malay: "Cuaca baik", english: "The weather is good" },
+                        { malay: "Berapa suhu?", english: "What's the temperature?" }
+                    ],
+                    "Daily Activities": [
+                        { malay: "Saya bangun pukul...", english: "I wake up at..." },
+                        { malay: "Saya pergi kerja", english: "I go to work" },
+                        { malay: "Saya bersenam", english: "I exercise" },
+                        { malay: "Makan malam pukul lapan", english: "Dinner at 8 pm" }
+                    ]
+                }
+            },
+            4: {
+                title: "Social Interactions & Emergencies",
+                categories: {
+                    "Socializing": [
+                        { malay: "Awak berasal dari mana?", english: "Where are you from?" },
+                        { malay: "Apa hobi awak?", english: "What's your hobby?" },
+                        { malay: "Jumpa lagi!", english: "See you again!" },
+                        { malay: "Boleh saya ambil gambar?", english: "Can I take a photo?" }
+                    ],
+                    "Feelings & Opinions": [
+                        { malay: "Saya gembira", english: "I'm happy" },
+                        { malay: "Saya sedih", english: "I'm sad" },
+                        { malay: "Saya tak faham", english: "I don't understand" },
+                        { malay: "Saya setuju", english: "I agree" },
+                        { malay: "Tak setuju", english: "I disagree" },
+                        { malay: "Awak pandai cakap Bahasa Melayu!", english: "You speak Malay well!" }
+                    ],
+                    "Health & Emergencies": [
+                        { malay: "Saya tak sihat", english: "I'm unwell" },
+                        { malay: "Saya demam", english: "I have fever" },
+                        { malay: "Saya sakit perut", english: "I have stomachache" },
+                        { malay: "Tolong panggil doktor!", english: "Please call a doctor!" },
+                        { malay: "Di mana hospital terdekat?", english: "Where's the nearest hospital?" },
+                        { malay: "Tolong!", english: "Help!" }
+                    ]
+                }
+            },
+            5: {
+                title: "Home & Community",
+                categories: {
+                    "Housing": [
+                        { malay: "Rumah sewa", english: "Rental house" },
+                        { malay: "Bil elektrik", english: "Electricity bill" },
+                        { malay: "Bil air", english: "Water bill" },
+                        { malay: "Buang sampah hari apa?", english: "Which day is garbage collection?" },
+                        { malay: "Paip rosak", english: "The pipe is leaking" }
+                    ],
+                    "Neighborhood": [
+                        { malay: "Kami jiran baru", english: "We're new neighbors" },
+                        { malay: "Ada kedai runcit berhampiran?", english: "Is there a grocery store nearby?" },
+                        { malay: "Kawasan ini selamat?", english: "Is this area safe?" },
+                        { malay: "Bising sikit pada waktu malam", english: "It's a bit noisy at night" }
+                    ],
+                    "Local Services": [
+                        { malay: "Tolong panggil tukang elektrik", english: "Please call an electrician" },
+                        { malay: "Pejabat pos di mana?", english: "Where's the post office?" },
+                        { malay: "Ada menu penghantar makanan?", english: "Do you have a food delivery menu?" }
+                    ]
+                }
+            },
+            6: {
+                title: "Workplace & Studies",
+                categories: {
+                    "Professional Phrases": [
+                        { malay: "Boleh saya minta cuti?", english: "Can I request leave?" },
+                        { malay: "Meeting bermula pukul berapa?", english: "What time does the meeting start?" },
+                        { malay: "Fail ini untuk siapa?", english: "Who is this file for?" },
+                        { malay: "Saya perlukan lebih masa", english: "I need more time" }
+                    ],
+                    "Campus/School": [
+                        { malay: "Kuliah dibatalkan hari ini", english: "Lecture is canceled today" },
+                        { malay: "Bila tarikh hantar kerja kursus?", english: "When is the assignment due?" },
+                        { malay: "Perpustakaan buka hingga pukul berapa?", english: "Until when is the library open?" }
+                    ],
+                    "Networking": [
+                        { malay: "Boleh saya ada kad nama awak?", english: "May I have your business card?" },
+                        { malay: "Kita boleh berhubung melalui email", english: "We can connect via email" },
+                        { malay: "Syarikat anda buat apa?", english: "What does your company do?" }
+                    ]
+                }
+            },
+            7: {
+                title: "Culture & Media",
+                categories: {
+                    "Festivals/Traditions": [
+                        { malay: "Apa maksud adat ini?", english: "What's the meaning of this custom?" },
+                        { malay: "Selamat Hari Raya!", english: "Happy Eid!" },
+                        { malay: "Selamat Aidilfitri!", english: "Happy Eid!" },
+                        { malay: "Baju kurung", english: "Traditional Malay dress (female)" },
+                        { malay: "Baju Melayu", english: "Traditional Malay attire (male)" },
+                        { malay: "Boleh saya cuba makanan ini?", english: "Can I try this food?" }
+                    ],
+                    "Entertainment": [
+                        { malay: "Filem tempatan yang best?", english: "Any good local movies?" },
+                        { malay: "Konsert diadakan di mana?", english: "Where's the concert held?" },
+                        { malay: "Lagu ni siapa nyanyi?", english: "Who sings this song?" }
+                    ],
+                    "Expressing Opinions": [
+                        { malay: "Pada pendapat saya...", english: "In my opinion..." },
+                        { malay: "Saya minat seni tempatan", english: "I'm interested in local art" },
+                        { malay: "Tak berapa gemar", english: "I don't really like it" }
+                    ]
+                }
+            },
+            8: {
+                title: "Advanced Scenarios & Troubleshooting",
+                categories: {
+                    "Tech Issues": [
+                        { malay: "Wi-Fi tak berfungsi", english: "Wi-Fi isn't working" },
+                        { malay: "Boleh reset kata laluan?", english: "Can you reset the password?" },
+                        { malay: "Peranti tak boleh disambung", english: "Device won't connect" }
+                    ],
+                    "Complaints/Issues": [
+                        { malay: "Pesanan saya salah", english: "My order is wrong" },
+                        { malay: "Bilik hotel kotor", english: "The hotel room is dirty" },
+                        { malay: "Saya nak buat aduan", english: "I want to make a complaint" }
+                    ],
+                    "Official Matters": [
+                        { malay: "Dokumen untuk visa", english: "Documents for a visa" },
+                        { malay: "Cara isi borang ini?", english: "How to fill this form?" },
+                        { malay: "Pejabat imigresen dekat sini?", english: "Is the immigration office nearby?" }
+                    ]
+                }
+            }
+        };
 
         // Quiz data for all 14 themes
         const quizData = {
@@ -976,9 +1399,115 @@
             addMessage(intro.malay, false, intro.english);
         }
 
+        // Daily Phrases Functions
+        function getAllPhrases() {
+            let allPhrases = [];
+            for (let week in phrasesData) {
+                for (let category in phrasesData[week].categories) {
+                    phrasesData[week].categories[category].forEach(phrase => {
+                        allPhrases.push({
+                            ...phrase,
+                            week: parseInt(week),
+                            category: category,
+                            weekTitle: phrasesData[week].title
+                        });
+                    });
+                }
+            }
+            return allPhrases;
+        }
+
+        function updateCurrentPhrase() {
+            const allPhrases = getAllPhrases();
+            const phrase = allPhrases[currentPhraseIndex];
+            
+            document.getElementById('phrase-malay').textContent = phrase.malay;
+            document.getElementById('phrase-english').textContent = phrase.english;
+            document.getElementById('phrase-week').textContent = `Week ${phrase.week}`;
+            document.getElementById('phrase-category').textContent = phrase.category;
+        }
+
+        function nextPhrase() {
+            const allPhrases = getAllPhrases();
+            currentPhraseIndex = (currentPhraseIndex + 1) % allPhrases.length;
+            updateCurrentPhrase();
+        }
+
+        function previousPhrase() {
+            const allPhrases = getAllPhrases();
+            currentPhraseIndex = currentPhraseIndex === 0 ? allPhrases.length - 1 : currentPhraseIndex - 1;
+            updateCurrentPhrase();
+        }
+
+        function randomPhrase() {
+            const allPhrases = getAllPhrases();
+            currentPhraseIndex = Math.floor(Math.random() * allPhrases.length);
+            updateCurrentPhrase();
+        }
+
+        function speakPhrase() {
+            const phraseText = document.getElementById('phrase-malay').textContent;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(phraseText);
+                utterance.lang = 'ms-MY'; // Malay language
+                utterance.rate = 0.8; // Slightly slower for learning
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function selectWeek(weekNum) {
+            currentWeek = weekNum;
+            
+            // Update active week button
+            document.querySelectorAll('.week-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.week-btn')[weekNum - 1].classList.add('active');
+            
+            // Display phrases for selected week
+            displayWeekPhrases(weekNum);
+        }
+
+        function displayWeekPhrases(weekNum) {
+            const weekData = phrasesData[weekNum];
+            const phrasesList = document.getElementById('phrases-list');
+            
+            let html = `<h3 style="grid-column: 1/-1; text-align: center; color: #2c3e50; margin-bottom: 20px;">
+                Week ${weekNum}: ${weekData.title}
+            </h3>`;
+            
+            for (let category in weekData.categories) {
+                weekData.categories[category].forEach(phrase => {
+                    html += `
+                        <div class="phrase-card">
+                            <div class="phrase-card-category">${category}</div>
+                            <div class="phrase-card-malay">${phrase.malay}</div>
+                            <div class="phrase-card-english">${phrase.english}</div>
+                            <button class="phrase-card-btn" onclick="speakText('${phrase.malay}')">🔊 Listen</button>
+                        </div>
+                    `;
+                });
+            }
+            
+            phrasesList.innerHTML = html;
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ms-MY';
+                utterance.rate = 0.8;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function initializePhrases() {
+            updateCurrentPhrase();
+            displayWeekPhrases(1);
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             showSection('home');
+            initializePhrases();
         });
     </script>
 </body>
