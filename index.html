@@ -546,7 +546,7 @@
         <div class="phrase-container">
             <div class="current-phrase">
                 <div class="phrase-header">
-                    <h3 id="phrase-title">Today's Phrase</h3>
+                    <h3 id="phrase-title">📅 Today's Phrase</h3>
                     <div class="phrase-meta">
                         <span id="phrase-week">Week 1</span> • <span id="phrase-category">Greetings</span>
                     </div>
@@ -559,14 +559,14 @@
             </div>
             
             <div class="phrase-navigation">
-                <button class="nav-phrase-btn" onclick="previousPhrase()">← Previous</button>
-                <button class="nav-phrase-btn" onclick="randomPhrase()">🎲 Random</button>
-                <button class="nav-phrase-btn" onclick="nextPhrase()">Next →</button>
+                <button class="nav-phrase-btn" onclick="previousPhrase()">← Previous Phrase</button>
+                <button class="nav-phrase-btn" onclick="randomPhrase()">🎲 Random Phrase</button>
+                <button class="nav-phrase-btn" onclick="nextPhrase()">Next Phrase →</button>
             </div>
         </div>
         
         <div class="week-selector">
-            <h3>Browse by Week</h3>
+            <h3>📚 Browse Other Weeks</h3>
             <div class="week-buttons">
                 <button class="week-btn active" onclick="selectWeek(1)">Week 1<br><small>Survival Essentials</small></button>
                 <button class="week-btn" onclick="selectWeek(2)">Week 2<br><small>Shopping & Directions</small></button>
@@ -579,8 +579,11 @@
             </div>
         </div>
         
-        <div class="phrases-list" id="phrases-list">
-            <!-- Phrases will be populated here -->
+        <div class="current-week-section">
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">📖 This Week's Complete Phrase Collection</h3>
+            <div class="phrases-list" id="phrases-list">
+                <!-- Phrases will be populated here -->
+            </div>
         </div>
     </div>
 
@@ -1490,6 +1493,23 @@
             phrasesList.innerHTML = html;
         }
 
+        function getTodaysWeek() {
+            // Get current day of year and cycle through weeks 1-8
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = now - start;
+            const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+            return ((Math.floor(dayOfYear / 7) % 8) + 1);
+        }
+
+        function getTodaysPhraseIndex() {
+            // Get a consistent phrase for today based on date
+            const now = new Date();
+            const dayOfYear = now.getDate() + (now.getMonth() * 31);
+            const allPhrases = getAllPhrases();
+            return dayOfYear % allPhrases.length;
+        }
+
         function speakText(text) {
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(text);
@@ -1500,8 +1520,14 @@
         }
 
         function initializePhrases() {
+            // Set today's phrase automatically
+            currentPhraseIndex = getTodaysPhraseIndex();
             updateCurrentPhrase();
-            displayWeekPhrases(1);
+            
+            // Set current week and display only that week's phrases
+            const todaysWeek = getTodaysWeek();
+            currentWeek = todaysWeek;
+            selectWeek(todaysWeek);
         }
 
         // Initialize
