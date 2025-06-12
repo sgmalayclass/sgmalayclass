@@ -185,20 +185,83 @@
             cursor: pointer;
             font-weight: bold;
         }
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
-        }
-        .quick-reply {
-            background: rgba(255,255,255,0.8);
-            color: #2E7D32;
-            border: none;
-            padding: 8px 16px;
+        .topics-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .all-topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .topic-category {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .topic-category h4 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .topic-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 8px;
+        }
+
+        .quick-reply {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            text-align: center;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-reply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+            .all-topics-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .topic-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+            
+            .quick-reply {
+                font-size: 12px;
+                padding: 8px 10px;
+                min-height: 35px;
+            }
         }
         .roleplay-scenarios {
             display: grid;
@@ -456,16 +519,59 @@
                 </div>
             </div>
             
-            <div class="quick-replies">
-                <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
-                <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food</button>
-                <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
-                <button class="quick-reply" onclick="startTopicConversation('transport')">🚇 Transport</button>
-                <button class="quick-reply" onclick="startTopicConversation('work')">💼 Work</button>
-                <button class="quick-reply" onclick="startTopicConversation('family')">👨‍👩‍👧‍👦 Family</button>
-                <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Weather</button>
-                <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobbies</button>
-                <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 More Topics</button>
+            <div class="topics-section">
+                <h3 style="text-align: center; margin-bottom: 20px; color: #2c3e50;">💬 Choose a Conversation Topic</h3>
+                <div class="all-topics-grid">
+                    <!-- Main Topics -->
+                    <div class="topic-category">
+                        <h4>🌟 Essential Topics</h4>
+                        <div class="topic-buttons">
+                            <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
+                            <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food</button>
+                            <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
+                            <button class="quick-reply" onclick="startTopicConversation('transport')">🚇 Transport</button>
+                            <button class="quick-reply" onclick="startTopicConversation('family')">👨‍👩‍👧‍👦 Family</button>
+                            <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Weather</button>
+                        </div>
+                    </div>
+
+                    <!-- Daily Life Topics -->
+                    <div class="topic-category">
+                        <h4>🏠 Daily Life</h4>
+                        <div class="topic-buttons">
+                            <button class="quick-reply" onclick="startTopicConversation('work')">💼 Work</button>
+                            <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobbies</button>
+                            <button class="quick-reply" onclick="startTopicConversation('health')">🏥 Health</button>
+                            <button class="quick-reply" onclick="startTopicConversation('school')">🎓 School</button>
+                            <button class="quick-reply" onclick="startTopicConversation('time')">⏰ Time</button>
+                            <button class="quick-reply" onclick="startTopicConversation('housing')">🏠 Housing</button>
+                        </div>
+                    </div>
+
+                    <!-- Social & Travel Topics -->
+                    <div class="topic-category">
+                        <h4>🌍 Social & Travel</h4>
+                        <div class="topic-buttons">
+                            <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Directions</button>
+                            <button class="quick-reply" onclick="startTopicConversation('help')">🆘 Help</button>
+                            <button class="quick-reply" onclick="startTopicConversation('friends')">👫 Making Friends</button>
+                            <button class="quick-reply" onclick="startTopicConversation('cultural')">🎊 Cultural Events</button>
+                            <button class="quick-reply" onclick="startTopicConversation('hotel')">🏨 Hotel</button>
+                            <button class="quick-reply" onclick="startTopicConversation('banking')">🏦 Banking</button>
+                        </div>
+                    </div>
+
+                    <!-- Professional & Emergency -->
+                    <div class="topic-category">
+                        <h4>💼 Professional & Emergency</h4>
+                        <div class="topic-buttons">
+                            <button class="quick-reply" onclick="startTopicConversation('jobinterview')">💼 Job Interview</button>
+                            <button class="quick-reply" onclick="startTopicConversation('postoffice')">📮 Post Office</button>
+                            <button class="quick-reply" onclick="startTopicConversation('emergency')">🚨 Emergency</button>
+                            <button class="quick-reply" onclick="resetConversation()">🔄 Reset Chat</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -802,91 +908,133 @@
             }
         };
 
-        // Quiz data for all 14 themes
+        // Quiz data for all 14 themes - Now with 7 questions each!
         const quizData = {
             greetings: [
                 { question: "What does 'Terima kasih' mean?", options: ["Good morning", "Thank you", "Excuse me", "How are you"], correct: 1 },
                 { question: "How do you say 'Good morning' in Malay?", options: ["Selamat malam", "Selamat petang", "Selamat pagi", "Selamat tengahari"], correct: 2 },
                 { question: "What does 'Maaf' mean?", options: ["Sorry", "Please", "Welcome", "Goodbye"], correct: 0 },
-                { question: "How do you say 'You're welcome'?", options: ["Terima kasih", "Sama-sama", "Maaf", "Selamat tinggal"], correct: 1 }
+                { question: "How do you say 'You're welcome'?", options: ["Terima kasih", "Sama-sama", "Maaf", "Selamat tinggal"], correct: 1 },
+                { question: "What does 'Selamat tinggal' mean?", options: ["Good luck", "Goodbye", "See you later", "Take care"], correct: 1 },
+                { question: "How do you say 'Please' in Malay?", options: ["Maaf", "Sila", "Tolong", "Boleh"], correct: 1 },
+                { question: "What does 'Apa khabar?' mean?", options: ["What's your name?", "How are you?", "Where are you from?", "What time is it?"], correct: 1 }
             ],
             family: [
                 { question: "What does 'Ayah' mean?", options: ["Mother", "Father", "Brother", "Sister"], correct: 1 },
                 { question: "How do you say 'older sister' in Malay?", options: ["Kakak", "Adik", "Ibu", "Nenek"], correct: 0 },
                 { question: "What does 'Cucu' mean?", options: ["Child", "Grandchild", "Nephew", "Cousin"], correct: 1 },
-                { question: "How do you say 'family' in Malay?", options: ["Rumah", "Keluarga", "Kawan", "Jiran"], correct: 1 }
+                { question: "How do you say 'family' in Malay?", options: ["Rumah", "Keluarga", "Kawan", "Jiran"], correct: 1 },
+                { question: "What does 'Nenek' mean?", options: ["Grandfather", "Grandmother", "Aunt", "Uncle"], correct: 1 },
+                { question: "How do you say 'younger sibling' in Malay?", options: ["Kakak", "Adik", "Sepupu", "Anak"], correct: 1 },
+                { question: "What does 'Bapa' mean?", options: ["Father", "Mother", "Uncle", "Brother"], correct: 0 }
             ],
             food: [
                 { question: "What is 'Nasi lemak'?", options: ["Fried rice", "Coconut rice", "White rice", "Rice noodles"], correct: 1 },
                 { question: "What does 'Minum' mean?", options: ["Eat", "Drink", "Cook", "Buy"], correct: 1 },
                 { question: "What is 'Teh tarik'?", options: ["Coffee", "Pulled tea", "Ice cream", "Soup"], correct: 1 },
-                { question: "What does 'Pedas' mean?", options: ["Sweet", "Sour", "Spicy", "Salty"], correct: 2 }
+                { question: "What does 'Pedas' mean?", options: ["Sweet", "Sour", "Spicy", "Salty"], correct: 2 },
+                { question: "What is 'Char kway teow'?", options: ["Fried noodles", "Rice cake", "Soup", "Dessert"], correct: 0 },
+                { question: "What does 'Lapar' mean?", options: ["Thirsty", "Hungry", "Full", "Tired"], correct: 1 },
+                { question: "How do you say 'delicious' in Malay?", options: ["Pahit", "Sedap", "Masam", "Tawar"], correct: 1 }
             ],
             transport: [
                 { question: "What does 'Bas' mean?", options: ["Train", "Bus", "Car", "Bicycle"], correct: 1 },
                 { question: "How do you say 'MRT station' in Malay?", options: ["Stesen bas", "Stesen MRT", "Lapangan terbang", "Pelabuhan"], correct: 1 },
                 { question: "What does 'Teksi' mean?", options: ["Bus", "Train", "Taxi", "Motorcycle"], correct: 2 },
-                { question: "How do you say 'airport' in Malay?", options: ["Stesen", "Lapangan terbang", "Pelabuhan", "Jalan raya"], correct: 1 }
+                { question: "How do you say 'airport' in Malay?", options: ["Stesen", "Lapangan terbang", "Pelabuhan", "Jalan raya"], correct: 1 },
+                { question: "What does 'Keretapi' mean?", options: ["Car", "Train", "Bicycle", "Boat"], correct: 1 },
+                { question: "How do you say 'ticket' in Malay?", options: ["Tiket", "Kad", "Wang", "Kunci"], correct: 0 },
+                { question: "What does 'Naik' mean in transport context?", options: ["Get off", "Get on", "Wait", "Run"], correct: 1 }
             ],
             shopping: [
                 { question: "What does 'Berapa harga?' mean?", options: ["What color?", "How much?", "Where is?", "What time?"], correct: 1 },
                 { question: "How do you say 'cheap' in Malay?", options: ["Mahal", "Murah", "Besar", "Kecil"], correct: 1 },
                 { question: "What does 'Beli' mean?", options: ["Sell", "Buy", "Look", "Want"], correct: 1 },
-                { question: "How do you say 'expensive' in Malay?", options: ["Murah", "Cantik", "Mahal", "Bagus"], correct: 2 }
+                { question: "How do you say 'expensive' in Malay?", options: ["Murah", "Cantik", "Mahal", "Bagus"], correct: 2 },
+                { question: "What does 'Jual' mean?", options: ["Buy", "Sell", "Give", "Take"], correct: 1 },
+                { question: "How do you say 'discount' in Malay?", options: ["Potongan", "Tambahan", "Harga", "Bayar"], correct: 0 },
+                { question: "What does 'Bayar' mean?", options: ["Pay", "Count", "Change", "Return"], correct: 0 }
             ],
             numbers: [
                 { question: "What is 'Lima' in English?", options: ["Three", "Four", "Five", "Six"], correct: 2 },
                 { question: "How do you say '10' in Malay?", options: ["Sembilan", "Sepuluh", "Sebelas", "Lapan"], correct: 1 },
                 { question: "What does 'Pukul berapa?' mean?", options: ["How many?", "What time?", "How much?", "Which day?"], correct: 1 },
-                { question: "What is 'Satu' in English?", options: ["One", "Two", "Three", "Zero"], correct: 0 }
+                { question: "What is 'Satu' in English?", options: ["One", "Two", "Three", "Zero"], correct: 0 },
+                { question: "How do you say 'twenty' in Malay?", options: ["Dua belas", "Dua puluh", "Dua ratus", "Dua ribu"], correct: 1 },
+                { question: "What is 'Lapan' in English?", options: ["Seven", "Eight", "Nine", "Ten"], correct: 1 },
+                { question: "How do you say 'first' in Malay?", options: ["Pertama", "Kedua", "Ketiga", "Terakhir"], correct: 0 }
             ],
             body: [
                 { question: "What does 'Kepala' mean?", options: ["Hand", "Head", "Foot", "Eye"], correct: 1 },
                 { question: "How do you say 'sick' in Malay?", options: ["Sihat", "Sakit", "Penat", "Lapar"], correct: 1 },
                 { question: "What does 'Mata' mean?", options: ["Nose", "Mouth", "Eye", "Ear"], correct: 2 },
-                { question: "How do you say 'hand' in Malay?", options: ["Kaki", "Tangan", "Badan", "Muka"], correct: 1 }
+                { question: "How do you say 'hand' in Malay?", options: ["Kaki", "Tangan", "Badan", "Muka"], correct: 1 },
+                { question: "What does 'Mulut' mean?", options: ["Nose", "Mouth", "Ear", "Throat"], correct: 1 },
+                { question: "How do you say 'healthy' in Malay?", options: ["Sakit", "Sihat", "Lemah", "Kuat"], correct: 1 },
+                { question: "What does 'Perut' mean?", options: ["Chest", "Back", "Stomach", "Shoulder"], correct: 2 }
             ],
             colors: [
                 { question: "What does 'Merah' mean?", options: ["Blue", "Green", "Red", "Yellow"], correct: 2 },
                 { question: "How do you say 'white' in Malay?", options: ["Hitam", "Putih", "Abu-abu", "Coklat"], correct: 1 },
                 { question: "What does 'Besar' mean?", options: ["Small", "Big", "Long", "Short"], correct: 1 },
-                { question: "How do you say 'beautiful' in Malay?", options: ["Hodoh", "Cantik", "Buruk", "Kotor"], correct: 1 }
+                { question: "How do you say 'beautiful' in Malay?", options: ["Hodoh", "Cantik", "Buruk", "Kotor"], correct: 1 },
+                { question: "What does 'Kuning' mean?", options: ["Purple", "Yellow", "Orange", "Pink"], correct: 1 },
+                { question: "How do you say 'black' in Malay?", options: ["Putih", "Hitam", "Kelabu", "Coklat"], correct: 1 },
+                { question: "What does 'Kecil' mean?", options: ["Big", "Small", "Tall", "Wide"], correct: 1 }
             ],
             weather: [
                 { question: "What does 'Hujan' mean?", options: ["Sun", "Rain", "Wind", "Cloud"], correct: 1 },
                 { question: "How do you say 'hot' in Malay?", options: ["Sejuk", "Panas", "Basah", "Kering"], correct: 1 },
                 { question: "What does 'Angin' mean?", options: ["Rain", "Sun", "Wind", "Storm"], correct: 2 },
-                { question: "How do you say 'cold' in Malay?", options: ["Panas", "Sejuk", "Lembap", "Kering"], correct: 1 }
+                { question: "How do you say 'cold' in Malay?", options: ["Panas", "Sejuk", "Lembap", "Kering"], correct: 1 },
+                { question: "What does 'Mendung' mean?", options: ["Sunny", "Cloudy", "Windy", "Foggy"], correct: 1 },
+                { question: "How do you say 'sunny' in Malay?", options: ["Hujan", "Cerah", "Gelap", "Sejuk"], correct: 1 },
+                { question: "What does 'Ribut' mean?", options: ["Drizzle", "Snow", "Storm", "Mist"], correct: 2 }
             ],
             home: [
                 { question: "What does 'Rumah' mean?", options: ["Room", "House", "Kitchen", "Bathroom"], correct: 1 },
                 { question: "How do you say 'bedroom' in Malay?", options: ["Dapur", "Bilik tidur", "Ruang tamu", "Bilik air"], correct: 1 },
                 { question: "What does 'Katil' mean?", options: ["Chair", "Table", "Bed", "Door"], correct: 2 },
-                { question: "How do you say 'kitchen' in Malay?", options: ["Dapur", "Bilik", "Tingkap", "Pintu"], correct: 0 }
+                { question: "How do you say 'kitchen' in Malay?", options: ["Dapur", "Bilik", "Tingkap", "Pintu"], correct: 0 },
+                { question: "What does 'Tingkap' mean?", options: ["Door", "Window", "Wall", "Roof"], correct: 1 },
+                { question: "How do you say 'bathroom' in Malay?", options: ["Dapur", "Bilik air", "Ruang tamu", "Bilik tidur"], correct: 1 },
+                { question: "What does 'Kerusi' mean?", options: ["Table", "Chair", "Sofa", "Bed"], correct: 1 }
             ],
             work: [
                 { question: "What does 'Kerja' mean?", options: ["Study", "Work", "Play", "Sleep"], correct: 1 },
                 { question: "How do you say 'teacher' in Malay?", options: ["Pelajar", "Cikgu", "Doktor", "Jurutera"], correct: 1 },
                 { question: "What does 'Sekolah' mean?", options: ["Office", "Hospital", "School", "Shop"], correct: 2 },
-                { question: "How do you say 'student' in Malay?", options: ["Cikgu", "Pelajar", "Pekerja", "Doktor"], correct: 1 }
+                { question: "How do you say 'student' in Malay?", options: ["Cikgu", "Pelajar", "Pekerja", "Doktor"], correct: 1 },
+                { question: "What does 'Pejabat' mean?", options: ["School", "Office", "Factory", "Store"], correct: 1 },
+                { question: "How do you say 'doctor' in Malay?", options: ["Jururawat", "Doktor", "Cikgu", "Jurutera"], correct: 1 },
+                { question: "What does 'Gaji' mean?", options: ["Job", "Salary", "Boss", "Meeting"], correct: 1 }
             ],
             hobbies: [
                 { question: "What does 'Bola sepak' mean?", options: ["Basketball", "Football", "Tennis", "Swimming"], correct: 1 },
                 { question: "How do you say 'read' in Malay?", options: ["Tulis", "Baca", "Dengar", "Tengok"], correct: 1 },
                 { question: "What does 'Lagu' mean?", options: ["Dance", "Song", "Movie", "Book"], correct: 1 },
-                { question: "How do you say 'swim' in Malay?", options: ["Lari", "Berenang", "Lompat", "Berjalan"], correct: 1 }
+                { question: "How do you say 'swim' in Malay?", options: ["Lari", "Berenang", "Lompat", "Berjalan"], correct: 1 },
+                { question: "What does 'Lukis' mean?", options: ["Sing", "Draw", "Dance", "Write"], correct: 1 },
+                { question: "How do you say 'music' in Malay?", options: ["Musik", "Nyanyian", "Tarian", "Filem"], correct: 0 },
+                { question: "What does 'Berlari' mean?", options: ["Walk", "Run", "Jump", "Sit"], correct: 1 }
             ],
             directions: [
                 { question: "What does 'Kiri' mean?", options: ["Right", "Left", "Straight", "Back"], correct: 1 },
                 { question: "How do you say 'near' in Malay?", options: ["Jauh", "Dekat", "Tinggi", "Rendah"], correct: 1 },
                 { question: "What does 'Jalan' mean?", options: ["House", "Road", "Bridge", "Building"], correct: 1 },
-                { question: "How do you say 'where is?' in Malay?", options: ["Bila?", "Apa?", "Kat mana?", "Kenapa?"], correct: 2 }
+                { question: "How do you say 'where is?' in Malay?", options: ["Bila?", "Apa?", "Kat mana?", "Kenapa?"], correct: 2 },
+                { question: "What does 'Kanan' mean?", options: ["Left", "Right", "Straight", "Behind"], correct: 1 },
+                { question: "How do you say 'far' in Malay?", options: ["Dekat", "Jauh", "Tinggi", "Besar"], correct: 1 },
+                { question: "What does 'Terus' mean in directions?", options: ["Turn", "Stop", "Straight", "Back"], correct: 2 }
             ],
             emotions: [
                 { question: "What does 'Gembira' mean?", options: ["Sad", "Angry", "Happy", "Tired"], correct: 2 },
                 { question: "How do you say 'angry' in Malay?", options: ["Sedih", "Marah", "Takut", "Penat"], correct: 1 },
                 { question: "What does 'Takut' mean?", options: ["Brave", "Scared", "Calm", "Excited"], correct: 1 },
-                { question: "How do you say 'love' in Malay?", options: ["Benci", "Sayang", "Suka", "Rindu"], correct: 1 }
+                { question: "How do you say 'love' in Malay?", options: ["Benci", "Sayang", "Suka", "Rindu"], correct: 1 },
+                { question: "What does 'Sedih' mean?", options: ["Happy", "Sad", "Excited", "Calm"], correct: 1 },
+                { question: "How do you say 'excited' in Malay?", options: ["Bosan", "Teruja", "Penat", "Malas"], correct: 1 },
+                { question: "What does 'Rindu' mean?", options: ["Hate", "Miss/long for", "Forget", "Remember"], correct: 1 }
             ]
         };
 
@@ -1333,49 +1481,8 @@
             }
         }
 
-        function updateQuickReplies() {
-            // Cycle through different topic sets
-            const quickRepliesContainer = document.querySelector('.quick-replies');
-            const currentButtons = quickRepliesContainer.innerHTML;
-            
-            if (currentButtons.includes('Transport')) {
-                // Show set 2: More topics  
-                quickRepliesContainer.innerHTML = `
-                    <button class="quick-reply" onclick="startTopicConversation('health')">🏥 Health</button>
-                    <button class="quick-reply" onclick="startTopicConversation('school')">🎓 School</button>
-                    <button class="quick-reply" onclick="startTopicConversation('time')">⏰ Time</button>
-                    <button class="quick-reply" onclick="startTopicConversation('housing')">🏠 Housing</button>
-                    <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Directions</button>
-                    <button class="quick-reply" onclick="startTopicConversation('help')">🆘 Help</button>
-                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🎭 Role-Play</button>
-                `;
-            } else if (currentButtons.includes('Banking')) {
-                // Show set 1: Main topics
-                quickRepliesContainer.innerHTML = `
-                    <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
-                    <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food</button>
-                    <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
-                    <button class="quick-reply" onclick="startTopicConversation('transport')">🚇 Transport</button>
-                    <button class="quick-reply" onclick="startTopicConversation('work')">💼 Work</button>
-                    <button class="quick-reply" onclick="startTopicConversation('family')">👨‍👩‍👧‍👦 Family</button>
-                    <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Weather</button>
-                    <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobbies</button>
-                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 More Topics</button>
-                `;
-            } else {
-                // Show set 3: Role-Playing scenarios
-                quickRepliesContainer.innerHTML = `
-                    <button class="quick-reply" onclick="startTopicConversation('banking')">🏦 Banking</button>
-                    <button class="quick-reply" onclick="startTopicConversation('jobinterview')">💼 Job Interview</button>
-                    <button class="quick-reply" onclick="startTopicConversation('hotel')">🏨 Hotel</button>
-                    <button class="quick-reply" onclick="startTopicConversation('emergency')">🚨 Emergency</button>
-                    <button class="quick-reply" onclick="startTopicConversation('friends')">👫 Making Friends</button>
-                    <button class="quick-reply" onclick="startTopicConversation('postoffice')">📮 Post Office</button>
-                    <button class="quick-reply" onclick="startTopicConversation('cultural')">🎊 Cultural Events</button>
-                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 Main Topics</button>
-                `;
-            }
-        }
+        // All topics are now displayed simultaneously in organized categories
+        // No need for cycling through different topic sets
 
         function startRoleplay(scenario) {
             showSection('chat');

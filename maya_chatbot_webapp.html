@@ -45,6 +45,76 @@
             color: #2E7D32;
             align-self: flex-start;
         }
+        .bilingual {
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 0.85em;
+            margin-top: 3px;
+        }
+
+        /* Topics section */
+        .topics-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .topics-title {
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .topic-category {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .topic-category h4 {
+            margin: 0 0 10px 0;
+            color: #1B5E20;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .topic-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        .quick-reply {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 8px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            text-align: center;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-reply:hover, .quick-reply:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+
         .input-container {
             background: rgba(255,255,255,0.9);
             padding: 15px;
@@ -68,21 +138,6 @@
             cursor: pointer;
             font-weight: bold;
         }
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0;
-        }
-        .quick-reply {
-            background: rgba(255,255,255,0.8);
-            color: #2E7D32;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
@@ -91,40 +146,121 @@
     <div class="chat-container" id="chatContainer">
         <div class="message bot-message">
             Selamat datang! Saya Maya. Mari bercakap dalam Bahasa Melayu! 😊
+            <div class="bilingual">Welcome! I'm Maya. Let's chat in Malay!</div>
         </div>
         
-        <div class="quick-replies">
-            <button class="quick-reply" onclick="sendQuickReply('Selamat pagi!')">Selamat pagi!</button>
-            <button class="quick-reply" onclick="sendQuickReply('Apa khabar?')">Apa khabar?</button>
-            <button class="quick-reply" onclick="sendQuickReply('Nak makan apa?')">Nak makan apa?</button>
+        <div class="topics-section">
+            <h3 class="topics-title">💬 Pilih Topik Perbualan</h3>
+            
+            <!-- Essential Topics -->
+            <div class="topic-category">
+                <h4>🌟 Topik Asas</h4>
+                <div class="topic-buttons">
+                    <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Salam</button>
+                    <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Makanan</button>
+                    <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
+                    <button class="quick-reply" onclick="startTopicConversation('transport')">🚇 Transport</button>
+                    <button class="quick-reply" onclick="startTopicConversation('family')">👨‍👩‍👧‍👦 Keluarga</button>
+                    <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Cuaca</button>
+                </div>
+            </div>
+
+            <!-- Daily Life Topics -->
+            <div class="topic-category">
+                <h4>🏠 Kehidupan Harian</h4>
+                <div class="topic-buttons">
+                    <button class="quick-reply" onclick="startTopicConversation('work')">💼 Kerja</button>
+                    <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobi</button>
+                    <button class="quick-reply" onclick="startTopicConversation('health')">🏥 Kesihatan</button>
+                    <button class="quick-reply" onclick="startTopicConversation('school')">🎓 Sekolah</button>
+                    <button class="quick-reply" onclick="startTopicConversation('time')">⏰ Masa</button>
+                    <button class="quick-reply" onclick="startTopicConversation('housing')">🏠 Rumah</button>
+                </div>
+            </div>
+
+            <!-- Social & Travel Topics -->
+            <div class="topic-category">
+                <h4>🌍 Sosial & Travel</h4>
+                <div class="topic-buttons">
+                    <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Arah</button>
+                    <button class="quick-reply" onclick="startTopicConversation('help')">🆘 Bantuan</button>
+                    <button class="quick-reply" onclick="startTopicConversation('banking')">🏦 Bank</button>
+                    <button class="quick-reply" onclick="startTopicConversation('hotel')">🏨 Hotel</button>
+                    <button class="quick-reply" onclick="startTopicConversation('emergency')">🚨 Kecemasan</button>
+                    <button class="quick-reply" onclick="startTopicConversation('postoffice')">📮 Pos</button>
+                </div>
+            </div>
+
+            <!-- Professional Topics -->
+            <div class="topic-category">
+                <h4>💼 Profesional</h4>
+                <div class="topic-buttons">
+                    <button class="quick-reply" onclick="startTopicConversation('jobinterview')">💼 Temuduga</button>
+                    <button class="quick-reply" onclick="startTopicConversation('cultural')">🎊 Budaya</button>
+                    <button class="quick-reply" onclick="resetConversation()">🔄 Reset</button>
+                    <button class="quick-reply" onclick="showHelp()">❓ Bantuan</button>
+                </div>
+            </div>
         </div>
     </div>
     
     <div class="input-container">
-        <input type="text" id="messageInput" placeholder="Taip mesej anda..." 
+        <input type="text" id="messageInput" placeholder="Taip mesej dalam Bahasa Melayu..." 
                onkeypress="if(event.key==='Enter') sendMessage()">
         <button id="sendButton" onclick="sendMessage()">Hantar</button>
     </div>
 
     <script>
+        let currentTopic = null;
+        let conversationStep = 0;
+
+        // Conversation flows for each topic
+        const conversationFlows = {
+            greetings: [
+                { malay: "Selamat pagi! Apa khabar?", english: "Good morning! How are you?" },
+                { malay: "Wah, bagus! Nama saya Maya. Siapa nama awak?", english: "Great! My name is Maya. What's your name?" },
+                { malay: "Senang jumpa awak! Dari mana awak datang?", english: "Nice to meet you! Where are you from?" }
+            ],
+            food: [
+                { malay: "Saya lapar! Awak suka makan apa?", english: "I'm hungry! What do you like to eat?" },
+                { malay: "Wah sedap! Kat mana nak beli?", english: "Wow delicious! Where can we buy it?" },
+                { malay: "Jom makan sama-sama!", english: "Let's eat together!" }
+            ],
+            shopping: [
+                { malay: "Mari pergi shopping! Apa yang awak nak beli?", english: "Let's go shopping! What do you want to buy?" },
+                { malay: "Berapa harga tu? Mahal tak?", english: "How much is that? Is it expensive?" },
+                { malay: "Boleh kurang sikit tak?", english: "Can you reduce the price a bit?" }
+            ],
+            transport: [
+                { malay: "Macam mana nak pergi ke bandar?", english: "How to go to the city?" },
+                { malay: "Naik MRT atau bas?", english: "Take MRT or bus?" },
+                { malay: "Berapa lama perjalanan tu?", english: "How long is the journey?" }
+            ],
+            family: [
+                { malay: "Cerita pasal keluarga awak! Berapa orang?", english: "Tell me about your family! How many people?" },
+                { malay: "Awak duduk dengan mak ayah ke?", english: "Do you live with your parents?" },
+                { malay: "Adik beradik awak ramai tak?", english: "Do you have many siblings?" }
+            ],
+            weather: [
+                { malay: "Cuaca hari ni macam mana?", english: "How's the weather today?" },
+                { malay: "Panas betul hari ni! Awak suka cuaca macam ni?", english: "It's really hot today! Do you like this weather?" },
+                { malay: "Bila musim hujan datang?", english: "When does the rainy season come?" }
+            ]
+        };
+
         const responses = [
-            "Selamat pagi! Apa khabar?",
-            "Baik, terima kasih! Nak makan apa hari ni?",
-            "Saya suka nasi lemak! Sedap tau!",
-            "Wah, best! Kat mana nak beli?",
-            "Alamak, saya pun lapar dah!",
-            "Jom makan sama-sama!",
-            "Okay, jumpa nanti ye!",
-            "Salam! Selamat tinggal!",
-            "Terima kasih banyak-banyak!",
-            "Sama-sama! Jaga diri ye!"
+            { malay: "Terima kasih!", english: "Thank you!" },
+            { malay: "Bagus sekali!", english: "Very good!" },
+            { malay: "Boleh lah!", english: "Can!" },
+            { malay: "Saya faham!", english: "I understand!" },
+            { malay: "Cuba lagi!", english: "Try again!" }
         ];
 
-        function addMessage(text, isUser) {
+        function addMessage(text, isUser, translation) {
             const chatContainer = document.getElementById('chatContainer');
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            messageDiv.textContent = text;
+            messageDiv.innerHTML = text + (translation ? `<div class="bilingual">${translation}</div>` : '');
             chatContainer.appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
@@ -138,17 +274,49 @@
                 
                 setTimeout(() => {
                     const response = responses[Math.floor(Math.random() * responses.length)];
-                    addMessage(response, false);
+                    addMessage(response.malay, false, response.english);
                 }, 1000);
             }
         }
 
-        function sendQuickReply(message) {
-            addMessage(message, true);
-            setTimeout(() => {
-                const response = responses[Math.floor(Math.random() * responses.length)];
-                addMessage(response, false);
-            }, 1000);
+        function startTopicConversation(topic) {
+            currentTopic = topic;
+            conversationStep = 0;
+            
+            if (conversationFlows[topic]) {
+                const firstResponse = conversationFlows[topic][0];
+                addMessage(`📍 ${topic.charAt(0).toUpperCase() + topic.slice(1)} Topic`, false);
+                setTimeout(() => {
+                    addMessage(firstResponse.malay, false, firstResponse.english);
+                }, 500);
+                conversationStep = 1;
+            } else {
+                addMessage(`Mari kita berbual tentang ${topic}!`, false, `Let's talk about ${topic}!`);
+            }
+        }
+
+        function resetConversation() {
+            currentTopic = null;
+            conversationStep = 0;
+            addMessage("Chat direset! Selamat datang semula!", false, "Chat reset! Welcome back!");
+        }
+
+        function showHelp() {
+            const helpText = `Panduan Maya Chatbot:
+
+🗣️ Berbual - Taip apa sahaja dalam Bahasa Melayu
+💬 Topics - Pilih mana-mana topik untuk conversation
+🔄 Reset - Reset chat untuk mula semula
+
+Semua 22 topik tersedia:
+🌟 Essential: Greetings, Food, Shopping, Transport, Family, Weather
+🏠 Daily Life: Work, Hobbies, Health, School, Time, Housing  
+🌍 Social: Directions, Help, Banking, Hotel, Emergency, Post Office
+💼 Professional: Job Interview, Cultural Events
+
+Selamat belajar! 🇸🇬`;
+            
+            addMessage(helpText, false, "Maya Chatbot Guide - All topics available without clicking More Topics!");
         }
     </script>
 </body>
