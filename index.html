@@ -279,10 +279,14 @@
             
             <div class="quick-replies">
                 <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
-                <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food Ordering</button>
+                <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food</button>
                 <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
-                <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Directions</button>
-                <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 New Topic</button>
+                <button class="quick-reply" onclick="startTopicConversation('transport')">🚇 Transport</button>
+                <button class="quick-reply" onclick="startTopicConversation('work')">💼 Work</button>
+                <button class="quick-reply" onclick="startTopicConversation('family')">👨‍👩‍👧‍👦 Family</button>
+                <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Weather</button>
+                <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobbies</button>
+                <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 More Topics</button>
             </div>
         </div>
 
@@ -584,7 +588,16 @@
             shopping: ['beli', 'harga', 'berapa', 'murah', 'mahal', 'jual', 'kedai', 'pasar', 'kurang', 'bagi'],
             directions: ['mana', 'jalan', 'kiri', 'kanan', 'dekat', 'jauh', 'pergi', 'sampai', 'tengok'],
             numbers: ['satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'lapan', 'sembilan', 'sepuluh'],
-            help: ['tolong', 'bantu', 'help', 'tak faham', 'boleh', 'can']
+            help: ['tolong', 'bantu', 'help', 'tak faham', 'boleh', 'can'],
+            family: ['ayah', 'ibu', 'anak', 'kakak', 'adik', 'nenek', 'datuk', 'keluarga', 'kahwin', 'isteri', 'suami'],
+            work: ['kerja', 'office', 'gaji', 'cuti', 'boss', 'meeting', 'project', 'deadline', 'overtime'],
+            health: ['sakit', 'demam', 'batuk', 'doktor', 'ubat', 'hospital', 'clinic', 'sihat', 'penat'],
+            transport: ['mrt', 'bas', 'teksi', 'grab', 'stesen', 'tiket', 'ezlink', 'naik', 'turun'],
+            weather: ['hujan', 'panas', 'sejuk', 'angin', 'mendung', 'cerah', 'ribut', 'cuaca'],
+            hobbies: ['suka', 'hobby', 'baca', 'tengok', 'main', 'bola', 'music', 'lagu', 'filem'],
+            school: ['sekolah', 'belajar', 'exam', 'homework', 'cikgu', 'pelajar', 'kelas', 'universiti'],
+            time: ['masa', 'pukul', 'jam', 'hari', 'minggu', 'bulan', 'tahun', 'awal', 'lambat'],
+            housing: ['rumah', 'sewa', 'rent', 'bilik', 'apartment', 'condo', 'flat', 'hdb']
         };
 
         // Extended conversation flow templates (5-7 interactions each)
@@ -632,6 +645,87 @@
                 { malay: "Bagus! Pronunciation awak dah better. Cuba lagi sekali.", english: "Good! Your pronunciation is getting better. Try once more." },
                 { malay: "Perfect! Awak dah pandai. Nak belajar perkataan baru?", english: "Perfect! You're getting good. Want to learn new words?" },
                 { malay: "Practice makes perfect. Cakap dengan orang Melayu selalu.", english: "Practice makes perfect. Speak with Malay people often." }
+            ],
+            family: [
+                { malay: "Wah, awak ada keluarga besar ke?", english: "Wow, do you have a big family?" },
+                { malay: "Berapa orang dalam keluarga awak?", english: "How many people are in your family?" },
+                { malay: "Ada adik beradik? Awak anak sulung ke?", english: "Do you have siblings? Are you the eldest?" },
+                { malay: "Keluarga awak tinggal dekat ke jauh?", english: "Does your family live nearby or far away?" },
+                { malay: "Awak selalu balik rumah tengok family?", english: "Do you often go home to see your family?" },
+                { malay: "Sweet! Family memang penting dalam budaya kita.", english: "Sweet! Family is really important in our culture." },
+                { malay: "Jaga family baik-baik tau. Diorang sayang awak!", english: "Take good care of your family. They love you!" }
+            ],
+            work: [
+                { malay: "Awak kerja kat mana? Office ke kedai?", english: "Where do you work? Office or shop?" },
+                { malay: "Kerja awak best tak? Stress ke santai?", english: "Is your work good? Stressful or relaxed?" },
+                { malay: "Pukul berapa awak start kerja pagi-pagi?", english: "What time do you start work in the morning?" },
+                { malay: "Boss awak okay tak? Garang ke baik?", english: "Is your boss okay? Fierce or nice?" },
+                { malay: "Gaji cukup untuk hidup kat Singapore?", english: "Is the salary enough to live in Singapore?" },
+                { malay: "Ada cuti public holiday tak? Boleh rest?", english: "Do you have public holidays off? Can you rest?" },
+                { malay: "Kerja kena balance dengan life. Jangan stress sangat!", english: "Work needs to be balanced with life. Don't stress too much!" }
+            ],
+            health: [
+                { malay: "Awak nampak tak sihat hari ni. Apa jadi?", english: "You don't look well today. What happened?" },
+                { malay: "Demam ke batuk? Dah berapa hari sakit?", english: "Fever or cough? How many days have you been sick?" },
+                { malay: "Dah makan ubat? Atau nak pergi clinic?", english: "Have you taken medicine? Or do you want to go to the clinic?" },
+                { malay: "Clinic mana yang dekat? Government ke private?", english: "Which clinic is nearby? Government or private?" },
+                { malay: "Jangan lupa bawa IC dan insurance card.", english: "Don't forget to bring your IC and insurance card." },
+                { malay: "Minum air banyak-banyak dan rehat cukup.", english: "Drink lots of water and get enough rest." },
+                { malay: "Get well soon! Kesihatan tu penting sangat.", english: "Get well soon! Health is very important." }
+            ],
+            transport: [
+                { malay: "Nak pergi mana? Naik apa hari ni?", english: "Where are you going? What transport are you taking today?" },
+                { malay: "MRT lagi fast, tapi bas pun okay jugak.", english: "MRT is faster, but bus is also okay." },
+                { malay: "EZ-Link card awak ada balance tak?", english: "Does your EZ-Link card have balance?" },
+                { malay: "Kalau rush hour, memang jam. Better avoid.", english: "During rush hour, it's definitely jammed. Better avoid." },
+                { malay: "Grab mahal sikit, tapi convenient especially kalau hujan.", english: "Grab is a bit expensive, but convenient especially when it's raining." },
+                { malay: "Singapore transport system memang best. Very efficient!", english: "Singapore's transport system is really good. Very efficient!" },
+                { malay: "Safe travels! Jangan lupa scan when naik dan turun.", english: "Safe travels! Don't forget to scan when getting on and off." }
+            ],
+            weather: [
+                { malay: "Wah, panas gila hari ni! Awak rasa tak?", english: "Wow, it's crazy hot today! Don't you think so?" },
+                { malay: "Nampak macam nak hujan. Bawa payung tak?", english: "Looks like it's going to rain. Did you bring an umbrella?" },
+                { malay: "Singapore weather memang unpredictable. Hot then suddenly hujan.", english: "Singapore weather is really unpredictable. Hot then suddenly rain." },
+                { malay: "Air-con mesti kena on 24/7. Electric bill naik!", english: "Air-con must be on 24/7. Electric bill goes up!" },
+                { malay: "Musim tengkujuh ni, selalu ada thunderstorm.", english: "During monsoon season, there are often thunderstorms." },
+                { malay: "Best time jalan-jalan evening time, not so hot.", english: "Best time to walk around is evening time, not so hot." },
+                { malay: "Stay hydrated! Singapore weather boleh buat dehydrated.", english: "Stay hydrated! Singapore weather can make you dehydrated." }
+            ],
+            hobbies: [
+                { malay: "Awak suka buat apa time free? Ada hobby?", english: "What do you like to do in your free time? Do you have hobbies?" },
+                { malay: "Wah, interesting! Dah berapa lama minat benda tu?", english: "Wow, interesting! How long have you been interested in that?" },
+                { malay: "Kat Singapore ada club atau group untuk hobby tu?", english: "Are there clubs or groups for that hobby in Singapore?" },
+                { malay: "Weekend awak spend time buat hobby ke lepak dengan kawan?", english: "Do you spend weekends doing hobbies or hanging out with friends?" },
+                { malay: "Hobby tu expensive tak? Kena spend banyak duit?", english: "Is that hobby expensive? Do you need to spend a lot of money?" },
+                { malay: "Bagus la ada hobby! Better than staring at phone je.", english: "Good to have hobbies! Better than just staring at the phone." },
+                { malay: "Maybe boleh ajar I someday. I nak belajar new things!", english: "Maybe you can teach me someday. I want to learn new things!" }
+            ],
+            school: [
+                { malay: "Awak student ke working adult? Kat mana study?", english: "Are you a student or working adult? Where do you study?" },
+                { malay: "Ambil course apa? Engineering, business, or arts?", english: "What course are you taking? Engineering, business, or arts?" },
+                { malay: "Exam period stress tak? Banyak assignments?", english: "Is exam period stressful? Lots of assignments?" },
+                { malay: "Lecturer okay tak? Garang ke understanding?", english: "Are the lecturers okay? Strict or understanding?" },
+                { malay: "After graduate, nak kerja kat Singapore ke balik kampung?", english: "After graduation, want to work in Singapore or go back hometown?" },
+                { malay: "Study group dengan classmates boleh help a lot!", english: "Study groups with classmates can help a lot!" },
+                { malay: "All the best for your studies! Education is investment.", english: "All the best for your studies! Education is an investment." }
+            ],
+            time: [
+                { malay: "Eh, pukul berapa sekarang? I lupa tengok jam.", english: "Eh, what time is it now? I forgot to check the time." },
+                { malay: "Awak busy tak hari ni? Ada appointment?", english: "Are you busy today? Do you have appointments?" },
+                { malay: "Weekend ni ada plan? Nak buat apa?", english: "Do you have plans this weekend? What do you want to do?" },
+                { malay: "Time flies so fast! Dah almost end of month.", english: "Time flies so fast! It's almost the end of the month." },
+                { malay: "Awak morning person ke night owl? Early bird?", english: "Are you a morning person or night owl? Early bird?" },
+                { malay: "Singapore timing sama dengan Malaysia, senang la.", english: "Singapore timing is the same as Malaysia, easy." },
+                { malay: "Time management penting, especially kat Singapore everything fast pace!", english: "Time management is important, especially in Singapore where everything is fast-paced!" }
+            ],
+            housing: [
+                { malay: "Awak duduk kat mana? HDB, condo, or landed?", english: "Where do you live? HDB, condo, or landed property?" },
+                { malay: "Sewa ke beli? Kat Singapore property mahal gila!", english: "Rent or buy? Property in Singapore is crazy expensive!" },
+                { malay: "Berapa bilik? Sharing dengan housemates ke?", english: "How many rooms? Sharing with housemates?" },
+                { malay: "Area awak convenient tak? Near MRT?", english: "Is your area convenient? Near MRT?" },
+                { malay: "Landlord okay tak? Some can be very demanding.", english: "Is the landlord okay? Some can be very demanding." },
+                { malay: "Utilities expensive tak? Aircon bill must be high!", english: "Are utilities expensive? Aircon bill must be high!" },
+                { malay: "Singapore housing dream: own property. But so expensive!", english: "Singapore housing dream: own property. But so expensive!" }
             ]
         };
 
@@ -864,18 +958,34 @@
         }
 
         function updateQuickReplies() {
-            // This function can be expanded to show context-aware quick replies
+            // Cycle through different topic sets
             const quickRepliesContainer = document.querySelector('.quick-replies');
-            if (currentTopic) {
-                // Show topic-specific quick replies
-                const topicReplies = {
-                    greetings: ['Khabar baik!', 'Saya sihat', 'Terima kasih'],
-                    food: ['Nasi ayam', 'Teh tarik', 'Berapa harga?'],
-                    shopping: ['Berapa harga?', 'Boleh kurang?', 'Saya nak beli'],
-                    directions: ['Kat mana?', 'Jalan kiri', 'Terima kasih']
-                };
-                
-                // Implementation can be expanded later for dynamic quick replies
+            const currentButtons = quickRepliesContainer.innerHTML;
+            
+            if (currentButtons.includes('Transport')) {
+                // Show set 2: More topics
+                quickRepliesContainer.innerHTML = `
+                    <button class="quick-reply" onclick="startTopicConversation('health')">🏥 Health</button>
+                    <button class="quick-reply" onclick="startTopicConversation('school')">🎓 School</button>
+                    <button class="quick-reply" onclick="startTopicConversation('time')">⏰ Time</button>
+                    <button class="quick-reply" onclick="startTopicConversation('housing')">🏠 Housing</button>
+                    <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Directions</button>
+                    <button class="quick-reply" onclick="startTopicConversation('help')">🆘 Help</button>
+                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 Main Topics</button>
+                `;
+            } else {
+                // Show set 1: Main topics
+                quickRepliesContainer.innerHTML = `
+                    <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
+                    <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food</button>
+                    <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
+                    <button class="quick-reply" onclick="startTopicConversation('transport')">🚇 Transport</button>
+                    <button class="quick-reply" onclick="startTopicConversation('work')">💼 Work</button>
+                    <button class="quick-reply" onclick="startTopicConversation('family')">👨‍👩‍👧‍👦 Family</button>
+                    <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Weather</button>
+                    <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobbies</button>
+                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 More Topics</button>
+                `;
             }
         }
 
