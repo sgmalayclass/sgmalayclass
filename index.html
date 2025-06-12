@@ -245,9 +245,8 @@
     
     <div class="nav-menu">
         <button class="nav-btn active" onclick="showSection('home')">Home</button>
-        <button class="nav-btn" onclick="showSection('chat')">Chat</button>
+        <button class="nav-btn" onclick="showSection('chat')">Interactive Chat</button>
         <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
-        <button class="nav-btn" onclick="showSection('roleplay')">Role-Play</button>
     </div>
     
     <div class="content-area">
@@ -359,123 +358,7 @@
             </div>
         </div>
 
-        <!-- Role-Play Section -->
-        <div class="section" id="roleplay">
-            <h2>🎭 Role-Playing Scenarios</h2>
-            <p>Practice real-life Singapore/Malaysian situations with authentic dialogues!</p>
-            
-            <div class="roleplay-scenarios">
-                <div class="scenario-card">
-                    <h3>🍜 Ordering Food at Hawker Center</h3>
-                    <p><strong>Situation:</strong> You're at Maxwell Food Centre and want to order chicken rice.</p>
-                    <button class="btn" onclick="startRoleplay('food')">Start Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🛒 Shopping at Wet Market</h3>
-                    <p><strong>Situation:</strong> You're buying fresh fruits at Tekka Market.</p>
-                    <button class="btn" onclick="startRoleplay('shopping')">Start Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🚇 Asking for Directions</h3>
-                    <p><strong>Situation:</strong> You're lost and need to get to Orchard Road.</p>
-                    <button class="btn" onclick="startRoleplay('directions')">Start Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🏥 At the Clinic</h3>
-                    <p><strong>Situation:</strong> You're not feeling well and visiting a local clinic.</p>
-                    <button class="btn" onclick="startRoleplay('clinic')">Start Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🏪 At the Mama Shop</h3>
-                    <p><strong>Situation:</strong> You need to buy some daily necessities from the neighborhood shop.</p>
-                    <button class="btn" onclick="startRoleplay('shop')">Start Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🏦 At the Bank (Opening Account, Money Exchange)</h3>
-                    <p><strong>Characters:</strong> Encik Rahman (father) and Bank Officer</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Selamat pagi. Saya mahu buka akaun untuk anak saya."</em></p>
-                        <p><em>"Selamat pagi. Sila isi borang ini."</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('bank')">Start Banking Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>💼 Job Interview (Common Questions, Workplace Etiquette)</h3>
-                    <p><strong>Characters:</strong> New Worker and Manager</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Boleh perkenalkan diri?"</em></p>
-                        <p><em>"Nama saya Aminah. Saya rajin dan suka belajar."</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('jobinterview')">Start Interview Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🏨 At the Hotel (Check-in, Room Service, Complaints)</h3>
-                    <p><strong>Characters:</strong> Guest and Receptionist</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Selamat petang. Saya mahu daftar masuk."</em></p>
-                        <p><em>"Boleh. Sila beri kad pengenalan."</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('hotel')">Start Hotel Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🚨 Emergency Situations (Police, Ambulance, Reporting Incidents)</h3>
-                    <p><strong>Characters:</strong> Mother and Police Officer</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Encik, anak saya hilang di pasar."</em></p>
-                        <p><em>"Apa nama dan umur anak puan?"</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('emergency')">Start Emergency Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🤝 Making Friends (Introductions, Inviting to Events)</h3>
-                    <p><strong>Characters:</strong> Farah and Nurul</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Hai, nama saya Farah. Awak siapa?"</em></p>
-                        <p><em>"Saya Nurul. Saya baru pindah ke sini."</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('friends')">Start Friendship Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>✉️ At the Post Office (Sending Packages, Buying Stamps)</h3>
-                    <p><strong>Characters:</strong> Mak Cik and Post Office Clerk</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Saya mahu hantar bungkusan ke Johor."</em></p>
-                        <p><em>"Nak guna pos biasa atau ekspres?"</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('postoffice')">Start Post Office Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🏠 Rental/Housing (Viewing Apartments, Negotiating Rent)</h3>
-                    <p><strong>Characters:</strong> Pak Cik and House Agent</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Saya mahu lihat rumah sewa tiga bilik."</em></p>
-                        <p><em>"Ini rumahnya. Ada ruang tamu luas."</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('housing')">Start Housing Scenario</button>
-                </div>
-                
-                <div class="scenario-card">
-                    <h3>🎊 Cultural Events (Weddings, Festivals, Religious Ceremonies)</h3>
-                    <p><strong>Characters:</strong> Iqbal and Nenek (Grandmother)</p>
-                    <div class="dialogue-preview">
-                        <p><em>"Nenek, kenapa ramai orang hari ini?"</em></p>
-                        <p><em>"Hari ini kenduri kahwin sepupu kamu."</em></p>
-                    </div>
-                    <button class="btn" onclick="startRoleplay('cultural')">Start Cultural Scenario</button>
-                </div>
-            </div>
-        </div>
+
     </div>
     
     <div class="input-container">
@@ -597,7 +480,14 @@
             hobbies: ['suka', 'hobby', 'baca', 'tengok', 'main', 'bola', 'music', 'lagu', 'filem'],
             school: ['sekolah', 'belajar', 'exam', 'homework', 'cikgu', 'pelajar', 'kelas', 'universiti'],
             time: ['masa', 'pukul', 'jam', 'hari', 'minggu', 'bulan', 'tahun', 'awal', 'lambat'],
-            housing: ['rumah', 'sewa', 'rent', 'bilik', 'apartment', 'condo', 'flat', 'hdb']
+            housing: ['rumah', 'sewa', 'rent', 'bilik', 'apartment', 'condo', 'flat', 'hdb'],
+            banking: ['bank', 'akaun', 'account', 'money', 'exchange', 'tukar', 'wang', 'atm'],
+            jobinterview: ['interview', 'kerja', 'job', 'experience', 'pengalaman', 'gaji', 'salary'],
+            hotel: ['hotel', 'daftar', 'check-in', 'bilik', 'room', 'service', 'tetamu'],
+            emergency: ['emergency', 'polis', 'police', 'hilang', 'lost', 'ambulans', 'urgent'],
+            friends: ['kawan', 'friend', 'jemput', 'invite', 'jumpa', 'meet', 'berkawan'],
+            postoffice: ['pos', 'post', 'hantar', 'send', 'bungkusan', 'package', 'setem'],
+            cultural: ['kenduri', 'wedding', 'kahwin', 'festival', 'celebration', 'budaya']
         };
 
         // Extended conversation flow templates (5-7 interactions each)
@@ -726,6 +616,62 @@
                 { malay: "Landlord okay tak? Some can be very demanding.", english: "Is the landlord okay? Some can be very demanding." },
                 { malay: "Utilities expensive tak? Aircon bill must be high!", english: "Are utilities expensive? Aircon bill must be high!" },
                 { malay: "Singapore housing dream: own property. But so expensive!", english: "Singapore housing dream: own property. But so expensive!" }
+            ],
+            banking: [
+                { malay: "Selamat pagi! Saya mahu buka akaun untuk anak saya.", english: "Good morning! I want to open an account for my child." },
+                { malay: "Selamat pagi, Encik. Sila isi borang ini dahulu.", english: "Good morning, sir. Please fill out this form first." },
+                { malay: "Terima kasih. Bolehkah saya tukar wang juga?", english: "Thank you. Can I also exchange money?" },
+                { malay: "Boleh, Encik. Sila ke kaunter tiga untuk money exchange.", english: "Yes sir. Please go to counter three for money exchange." },
+                { malay: "Berapa lama untuk process akaun baru?", english: "How long to process the new account?" },
+                { malay: "Dalam masa seminggu, akaun awak akan aktif.", english: "Within a week, your account will be active." }
+            ],
+            jobinterview: [
+                { malay: "Selamat pagi! Boleh perkenalkan diri?", english: "Good morning! Can you introduce yourself?" },
+                { malay: "Nama saya Aminah. Saya rajin dan suka belajar.", english: "My name is Aminah. I am hardworking and like to learn." },
+                { malay: "Bagus! Apa pengalaman kerja awak?", english: "Good! What is your work experience?" },
+                { malay: "Saya pernah bantu di perpustakaan sekolah dan kerja part-time.", english: "I have helped at the school library and worked part-time." },
+                { malay: "Kenapa awak berminat dengan jawatan ini?", english: "Why are you interested in this position?" },
+                { malay: "Jangan lupa datang awal dan berpakaian kemas kalau dapat kerja.", english: "Don't forget to come early and dress neatly if you get the job." }
+            ],
+            hotel: [
+                { malay: "Selamat petang! Saya mahu daftar masuk.", english: "Good afternoon! I want to check in." },
+                { malay: "Selamat petang! Boleh beri kad pengenalan dan booking confirmation?", english: "Good afternoon! Can you give me your ID and booking confirmation?" },
+                { malay: "Ada bilik dengan dua katil single?", english: "Do you have a room with two single beds?" },
+                { malay: "Ada! Bilik 508. Nak pesan room service?", english: "Yes! Room 508. Want to order room service?" },
+                { malay: "Ya, saya mahu nasi goreng dan teh tarik.", english: "Yes, I want fried rice and teh tarik." },
+                { malay: "Akan dihantar ke bilik dalam 30 minit. Selamat berehat!", english: "Will be delivered to your room in 30 minutes. Have a good rest!" }
+            ],
+            emergency: [
+                { malay: "Encik polis, anak saya hilang di pasar!", english: "Police officer, my child is lost in the market!" },
+                { malay: "Jangan panik, Puan. Apa nama dan umur anak Puan?", english: "Don't panic, Madam. What is your child's name and age?" },
+                { malay: "Nama dia Hafiz, umur tujuh tahun. Pakai baju merah.", english: "His name is Hafiz, seven years old. Wearing a red shirt." },
+                { malay: "Okay, kami akan broadcast dan cari dia. Puan tunggu di sini.", english: "Okay, we will broadcast and search for him. You wait here." },
+                { malay: "Terima kasih, Encik! Saya sangat risau.", english: "Thank you, sir! I am very worried." },
+                { malay: "Insya-Allah jumpa. Ramai orang akan tolong cari.", english: "God willing we'll find him. Many people will help search." }
+            ],
+            friends: [
+                { malay: "Hai! Nama saya Farah. Awak siapa?", english: "Hi! My name is Farah. Who are you?" },
+                { malay: "Saya Nurul. Saya baru pindah ke area ni.", english: "I'm Nurul. I just moved to this area." },
+                { malay: "Welcome! Jom main badminton di taman petang ini!", english: "Welcome! Let's play badminton at the park this evening!" },
+                { malay: "Boleh! Pukul berapa? Ada racket extra tak?", english: "Can! What time? Do you have an extra racket?" },
+                { malay: "Pukul lima okay? Ada, jangan risau.", english: "Five o'clock okay? Yes, don't worry." },
+                { malay: "Perfect! Lepas main boleh minum teh tarik sekali.", english: "Perfect! After playing we can drink teh tarik together." }
+            ],
+            postoffice: [
+                { malay: "Selamat pagi! Saya mahu hantar bungkusan ke Johor.", english: "Good morning! I want to send a package to Johor." },
+                { malay: "Bungkusan apa ni? Boleh saya tengok isi kandungan?", english: "What package is this? Can I see the contents?" },
+                { malay: "Baju dan makanan kering untuk family. Nak guna pos biasa atau ekspres?", english: "Clothes and dried food for family. Want to use regular or express post?" },
+                { malay: "Pos ekspres lagi cepat. Berapa harganya?", english: "Express post is faster. How much does it cost?" },
+                { malay: "RM15 untuk ekspres. Nak beli setem juga?", english: "RM15 for express. Want to buy stamps too?" },
+                { malay: "Ya, lima setem biasa. Berapa hari sampai Johor?", english: "Yes, five regular stamps. How many days to reach Johor?" }
+            ],
+            cultural: [
+                { malay: "Nenek, kenapa ramai orang hari ini?", english: "Grandmother, why are there so many people today?" },
+                { malay: "Hari ini kenduri kahwin sepupu awak, Iqbal.", english: "Today is your cousin's wedding ceremony, Iqbal." },
+                { malay: "Wah! Saya mahu beri salam dan hadiah.", english: "Wow! I want to give greetings and a gift." },
+                { malay: "Bagus! Jangan lupa ucap 'Selamat Pengantin Baru'.", english: "Good! Don't forget to say 'Congratulations to the newlyweds'." },
+                { malay: "Okay Nenek! Makanan apa ada hari ni?", english: "Okay Grandma! What food is there today?" },
+                { malay: "Ada nasi minyak, rendang, dan kuih-muih tradisional.", english: "There's nasi minyak, rendang, and traditional cakes." }
             ]
         };
 
@@ -963,7 +909,7 @@
             const currentButtons = quickRepliesContainer.innerHTML;
             
             if (currentButtons.includes('Transport')) {
-                // Show set 2: More topics
+                // Show set 2: More topics  
                 quickRepliesContainer.innerHTML = `
                     <button class="quick-reply" onclick="startTopicConversation('health')">🏥 Health</button>
                     <button class="quick-reply" onclick="startTopicConversation('school')">🎓 School</button>
@@ -971,9 +917,9 @@
                     <button class="quick-reply" onclick="startTopicConversation('housing')">🏠 Housing</button>
                     <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Directions</button>
                     <button class="quick-reply" onclick="startTopicConversation('help')">🆘 Help</button>
-                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 Main Topics</button>
+                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🎭 Role-Play</button>
                 `;
-            } else {
+            } else if (currentButtons.includes('Banking')) {
                 // Show set 1: Main topics
                 quickRepliesContainer.innerHTML = `
                     <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
@@ -985,6 +931,18 @@
                     <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Weather</button>
                     <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobbies</button>
                     <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 More Topics</button>
+                `;
+            } else {
+                // Show set 3: Role-Playing scenarios
+                quickRepliesContainer.innerHTML = `
+                    <button class="quick-reply" onclick="startTopicConversation('banking')">🏦 Banking</button>
+                    <button class="quick-reply" onclick="startTopicConversation('jobinterview')">💼 Job Interview</button>
+                    <button class="quick-reply" onclick="startTopicConversation('hotel')">🏨 Hotel</button>
+                    <button class="quick-reply" onclick="startTopicConversation('emergency')">🚨 Emergency</button>
+                    <button class="quick-reply" onclick="startTopicConversation('friends')">👫 Making Friends</button>
+                    <button class="quick-reply" onclick="startTopicConversation('postoffice')">📮 Post Office</button>
+                    <button class="quick-reply" onclick="startTopicConversation('cultural')">🎊 Cultural Events</button>
+                    <button class="quick-reply" onclick="resetConversation(); updateQuickReplies()">🔄 Main Topics</button>
                 `;
             }
         }
