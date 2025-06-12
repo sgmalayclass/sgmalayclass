@@ -587,40 +587,51 @@
             help: ['tolong', 'bantu', 'help', 'tak faham', 'boleh', 'can']
         };
 
-        // Conversation flow templates
+        // Extended conversation flow templates (5-7 interactions each)
         const conversationFlows = {
             greetings: [
                 { malay: "Selamat datang! Apa khabar hari ini?", english: "Welcome! How are you today?" },
-                { malay: "Khabar baik! Awak dari mana?", english: "I'm fine! Where are you from?" },
-                { malay: "Bagus! Nak belajar apa hari ini?", english: "Great! What do you want to learn today?" },
-                { malay: "Mari kita mulakan pembelajaran!", english: "Let's start learning!" }
+                { malay: "Alhamdulillah, saya sihat. Awak dari mana?", english: "Praise be to God, I'm healthy. Where are you from?" },
+                { malay: "Wah, jauh juga! Dah lama duduk sini?", english: "Wow, quite far! Have you been living here long?" },
+                { malay: "Bagus! Suka tak duduk kat Singapore?", english: "Great! Do you like living in Singapore?" },
+                { malay: "Nak belajar Bahasa Melayu untuk apa?", english: "What do you want to learn Malay for?" },
+                { malay: "Okay! Mari kita practice sekarang!", english: "Okay! Let's practice now!" },
+                { malay: "Jom cuba conversation yang lain pula!", english: "Let's try another conversation!" }
             ],
             food: [
-                { malay: "Selamat datang ke restoran! Nak order apa?", english: "Welcome to the restaurant! What would you like to order?" },
-                { malay: "Kami ada nasi ayam, char kway teow, dan laksa. Mana satu awak nak?", english: "We have chicken rice, char kway teow, and laksa. Which one do you want?" },
-                { malay: "Berapa banyak? Satu jer ke?", english: "How many? Just one?" },
-                { malay: "Nak minuman juga? Teh tarik ke air kosong?", english: "Want drinks too? Teh tarik or plain water?" },
-                { malay: "Okay, tunggu sekejap ya. Nanti saya panggilkan.", english: "Okay, please wait. I'll call you later." }
+                { malay: "Selamat datang ke kedai makan! Nak order apa?", english: "Welcome to the food stall! What would you like to order?" },
+                { malay: "Kami ada nasi ayam, char kway teow, laksa, dan mee goreng. Mana satu best?", english: "We have chicken rice, char kway teow, laksa, and fried noodles. Which one is the best?" },
+                { malay: "Nasi ayam memang sedap! Nak yang biasa ke yang roasted?", english: "Chicken rice is really delicious! Want the regular or roasted?" },
+                { malay: "Berapa banyak? Satu jer ke dua?", english: "How many? Just one or two?" },
+                { malay: "Nak minuman? Teh tarik, kopi, atau air kosong?", english: "Want drinks? Teh tarik, coffee, or plain water?" },
+                { malay: "Pedas tak apa? Saya letak chili sikit.", english: "Spicy is okay? I'll put a little chili." },
+                { malay: "Okay, tunggu 10 minit ya. Nanti saya panggilkan nama awak.", english: "Okay, wait 10 minutes. I'll call your name later." }
             ],
             shopping: [
-                { malay: "Selamat datang! Cari apa hari ini?", english: "Welcome! What are you looking for today?" },
-                { malay: "Berapa harga yang awak nak? Ada budget ke?", english: "What price are you looking for? Do you have a budget?" },
-                { malay: "Ini yang paling murah. Nak tengok lagi?", english: "This is the cheapest. Want to see more?" },
-                { malay: "Boleh kurang sikit. Berapa awak nak bagi?", english: "Can reduce a bit. How much do you want to offer?" },
-                { malay: "Okay, deal! Terima kasih beli sini.", english: "Okay, deal! Thank you for buying here." }
+                { malay: "Selamat datang ke kedai! Cari apa hari ini?", english: "Welcome to the shop! What are you looking for today?" },
+                { malay: "Oh, awak nak beli buah-buahan? Pisang, epal, oren semua ada.", english: "Oh, you want to buy fruits? Bananas, apples, oranges - we have everything." },
+                { malay: "Pisang ni fresh, baru sampai pagi tadi. Berapa kilo nak?", english: "These bananas are fresh, just arrived this morning. How many kilos do you want?" },
+                { malay: "Dua kilo? Okay. Harga biasa RM6, tapi saya bagi RM5 je.", english: "Two kilos? Okay. Normal price RM6, but I'll give you RM5." },
+                { malay: "Nak beli apa lagi? Epal Australia ni manis tau.", english: "Want to buy anything else? These Australian apples are sweet." },
+                { malay: "Total semua RM12. Awak bayar cash ke card?", english: "Total everything RM12. You pay cash or card?" },
+                { malay: "Terima kasih! Datang lagi ya! Buah segar selalu ada.", english: "Thank you! Come again! We always have fresh fruits." }
             ],
             directions: [
-                { malay: "Awak nak pergi mana?", english: "Where do you want to go?" },
-                { malay: "Dari sini, jalan terus sampai traffic light.", english: "From here, walk straight until the traffic light." },
-                { malay: "Lepas tu belok kiri. Nampak tak?", english: "Then turn left. Can you see?" },
-                { malay: "Jalan lagi 5 minit, sampai lah.", english: "Walk for another 5 minutes, then you'll arrive." },
-                { malay: "Kalau sesat, tanya orang lagi okay?", english: "If you get lost, ask people again okay?" }
+                { malay: "Eh, awak nampak keliru. Nak pergi mana?", english: "Eh, you look confused. Where do you want to go?" },
+                { malay: "Orchard Road? Wah, jauh sikit. Naik MRT lagi senang.", english: "Orchard Road? Wow, quite far. Taking MRT is easier." },
+                { malay: "Dari sini jalan ke Bugis MRT, lepas tu naik Green Line.", english: "From here walk to Bugis MRT, then take the Green Line." },
+                { malay: "Turun kat Somerset atau Orchard station. Somerset lagi dekat.", english: "Get off at Somerset or Orchard station. Somerset is closer." },
+                { malay: "Keluar je dari station, awak dah nampak shopping mall.", english: "As soon as you exit the station, you'll see the shopping mall." },
+                { malay: "Journey takes about 20 minutes. Jangan lupa bawa EZ-Link card!", english: "Journey takes about 20 minutes. Don't forget to bring your EZ-Link card!" },
+                { malay: "Kalau sesat, tanya kat Information Counter. Diorang boleh tolong.", english: "If you get lost, ask at the Information Counter. They can help." }
             ],
             help: [
-                { malay: "Jangan risau, saya boleh tolong!", english: "Don't worry, I can help!" },
-                { malay: "Apa yang awak tak faham?", english: "What don't you understand?" },
-                { malay: "Cuba cakap perlahan-lahan.", english: "Try to speak slowly." },
-                { malay: "Saya akan terangkan step by step.", english: "I will explain step by step." }
+                { malay: "Jangan risau, saya boleh tolong awak!", english: "Don't worry, I can help you!" },
+                { malay: "Apa yang awak tak faham? Pronunciation ke grammar?", english: "What don't you understand? Pronunciation or grammar?" },
+                { malay: "Okay, cuba cakap perlahan-lahan. Saya akan dengar.", english: "Okay, try to speak slowly. I will listen." },
+                { malay: "Bagus! Pronunciation awak dah better. Cuba lagi sekali.", english: "Good! Your pronunciation is getting better. Try once more." },
+                { malay: "Perfect! Awak dah pandai. Nak belajar perkataan baru?", english: "Perfect! You're getting good. Want to learn new words?" },
+                { malay: "Practice makes perfect. Cakap dengan orang Melayu selalu.", english: "Practice makes perfect. Speak with Malay people often." }
             ]
         };
 
@@ -794,16 +805,30 @@
             // If we're in a topic conversation, continue the flow
             if (currentTopic && conversationFlows[currentTopic]) {
                 const responses = conversationFlows[currentTopic];
-                const response = responses[conversationStep % responses.length];
-                conversationStep++;
                 
-                // Add some encouragement occasionally
-                if (conversationStep % 3 === 0) {
+                // Continue conversation flow if within range
+                if (conversationStep < responses.length) {
+                    const response = responses[conversationStep];
+                    conversationStep++;
+                    return response;
+                }
+                
+                // After completing the flow, give encouragement and suggest new topics
+                if (conversationStep === responses.length) {
+                    conversationStep++;
                     const encouragement = encouragementResponses[Math.floor(Math.random() * encouragementResponses.length)];
                     return encouragement;
                 }
                 
-                return response;
+                // After encouragement, cycle back or suggest new conversation
+                if (conversationStep > responses.length) {
+                    const followUp = [
+                        { malay: "Nak practice topic lain? Cuba click button di bawah!", english: "Want to practice another topic? Try clicking the buttons below!" },
+                        { malay: "Awak dah pandai! Mari cuba conversation baru!", english: "You're getting good! Let's try a new conversation!" },
+                        { malay: "Hebat! Sekarang cuba roleplay scenario pulak!", english: "Great! Now try the roleplay scenarios!" }
+                    ];
+                    return followUp[Math.floor(Math.random() * followUp.length)];
+                }
             }
             
             // Fallback to general helpful responses
