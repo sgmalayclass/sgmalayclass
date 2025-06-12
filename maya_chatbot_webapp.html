@@ -199,6 +199,7 @@
                     <button class="quick-reply" onclick="startTopicConversation('cultural')">🎊 Budaya</button>
                     <button class="quick-reply" onclick="resetConversation()">🔄 Reset</button>
                     <button class="quick-reply" onclick="showHelp()">❓ Bantuan</button>
+                    <button class="quick-reply" onclick="testAudio()" style="background: #e74c3c;">🔊 Test Audio</button>
                 </div>
             </div>
         </div>
@@ -260,7 +261,31 @@
             const chatContainer = document.getElementById('chatContainer');
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            messageDiv.innerHTML = text + (translation ? `<div class="bilingual">${translation}</div>` : '');
+            
+            // Add audio button for bot messages (Malay text)
+            if (!isUser && text && !text.startsWith('📍') && !text.includes('Panduan Maya')) {
+                const audioBtn = document.createElement('button');
+                audioBtn.innerHTML = '🔊';
+                audioBtn.style.cssText = `
+                    background: #4CAF50;
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    margin-left: 10px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    float: right;
+                `;
+                audioBtn.onclick = () => speakMalayText(text);
+                
+                messageDiv.innerHTML = text + (translation ? `<div class="bilingual">${translation}</div>` : '');
+                messageDiv.appendChild(audioBtn);
+            } else {
+                messageDiv.innerHTML = text + (translation ? `<div class="bilingual">${translation}</div>` : '');
+            }
+            
             chatContainer.appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
@@ -317,6 +342,102 @@ Semua 22 topik tersedia:
 Selamat belajar! 🇸🇬`;
             
             addMessage(helpText, false, "Maya Chatbot Guide - All topics available without clicking More Topics!");
+        }
+
+        // Enhanced speech function for mobile
+        function speakMalayText(text) {
+            if (!text || text.trim() === '') {
+                console.log('No text to speak');
+                return;
+            }
+
+            // Clean text from HTML and special characters
+            const cleanText = text.replace(/<[^>]*>/g, '').replace(/[📍🔊]/g, '').trim();
+            
+            if ('speechSynthesis' in window) {
+                try {
+                    speechSynthesis.cancel();
+                    
+                    const utterance = new SpeechSynthesisUtterance(cleanText);
+                    utterance.lang = 'ms-MY';
+                    utterance.rate = 0.7;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 0.8;
+                    
+                    utterance.onstart = () => console.log('🔊 Speaking:', cleanText);
+                    utterance.onerror = (e) => {
+                        console.error('Speech error:', e.error);
+                        showAudioFallback(cleanText);
+                    };
+                    
+                    // Wait for voices if needed
+                    if (speechSynthesis.getVoices().length === 0) {
+                        speechSynthesis.addEventListener('voiceschanged', () => {
+                            speakWithBestVoice(utterance);
+                        }, { once: true });
+                    } else {
+                        speakWithBestVoice(utterance);
+                    }
+                    
+                } catch (error) {
+                    console.error('Speech error:', error);
+                    showAudioFallback(cleanText);
+                }
+            } else {
+                showAudioFallback(cleanText);
+            }
+        }
+
+        function speakWithBestVoice(utterance) {
+            const voices = speechSynthesis.getVoices();
+            
+            // Find best Malay voice
+            let malayVoice = voices.find(voice => 
+                voice.lang === 'ms-MY' || voice.lang === 'ms' || 
+                voice.lang === 'id-ID' || voice.lang === 'id' ||
+                voice.lang.startsWith('ms') || voice.lang.startsWith('id')
+            );
+            
+            if (!malayVoice) {
+                malayVoice = voices.find(voice => 
+                    voice.lang.startsWith('en')
+                );
+            }
+            
+            if (malayVoice) {
+                utterance.voice = malayVoice;
+            }
+            
+            speechSynthesis.speak(utterance);
+        }
+
+        function showAudioFallback(text) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #ff9800;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                z-index: 1000;
+                font-size: 12px;
+                max-width: 80%;
+            `;
+            notification.textContent = `🔇 Audio unavailable: "${text}"`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 3000);
+        }
+
+        function testAudio() {
+            speakMalayText('Selamat datang! Audio test berjaya!');
         }
     </script>
 </body>

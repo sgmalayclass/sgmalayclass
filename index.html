@@ -977,6 +977,7 @@
                 <button class="nav-phrase-btn" onclick="previousPhrase()">← Previous Phrase</button>
                 <button class="nav-phrase-btn" onclick="randomPhrase()">🎲 Random Phrase</button>
                 <button class="nav-phrase-btn" onclick="nextPhrase()">Next Phrase →</button>
+                <button class="nav-phrase-btn" onclick="testSpeech()" style="background: #e74c3c;">🔊 Test Audio</button>
             </div>
         </div>
         
@@ -1943,12 +1944,199 @@
 
         function speakPhrase() {
             const phraseText = document.getElementById('phrase-malay').textContent;
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(phraseText);
-                utterance.lang = 'ms-MY'; // Malay language
-                utterance.rate = 0.8; // Slightly slower for learning
-                speechSynthesis.speak(utterance);
+            speakMalayText(phraseText);
+        }
+
+        function speakMalayText(text) {
+            // Enhanced speech function with better mobile support
+            if (!text || text.trim() === '') {
+                console.log('No text to speak');
+                return;
             }
+
+            // Check if Web Speech API is available
+            if ('speechSynthesis' in window) {
+                try {
+                    // Stop any ongoing speech
+                    speechSynthesis.cancel();
+                    
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    
+                    // Configure for Malay with fallbacks
+                    utterance.lang = 'ms-MY'; // Primary: Malaysian Malay
+                    utterance.rate = 0.7; // Slower for learning
+                    utterance.pitch = 1.0;
+                    utterance.volume = 0.8;
+                    
+                    // Add event listeners for better debugging
+                    utterance.onstart = function() {
+                        console.log('🔊 Speech started:', text);
+                        // Add visual feedback
+                        document.querySelectorAll('.phrase-audio-btn, .phrase-card-btn').forEach(btn => {
+                            if (btn.onclick && btn.onclick.toString().includes(text)) {
+                                btn.style.background = 'rgba(255,255,255,0.5)';
+                                btn.textContent = '🔊 Speaking...';
+                            }
+                        });
+                    };
+                    
+                    utterance.onend = function() {
+                        console.log('✅ Speech ended');
+                        // Reset button appearance
+                        document.querySelectorAll('.phrase-audio-btn, .phrase-card-btn').forEach(btn => {
+                            if (btn.textContent.includes('Speaking')) {
+                                btn.style.background = '';
+                                btn.textContent = '🔊 Listen';
+                            }
+                        });
+                    };
+                    
+                    utterance.onerror = function(event) {
+                        console.error('❌ Speech error:', event.error);
+                        showAudioFallback(text);
+                    };
+                    
+                    // Wait for voices to be loaded
+                    if (speechSynthesis.getVoices().length === 0) {
+                        speechSynthesis.addEventListener('voiceschanged', function() {
+                            speakWithBestVoice(utterance, text);
+                        }, { once: true });
+                    } else {
+                        speakWithBestVoice(utterance, text);
+                    }
+                    
+                } catch (error) {
+                    console.error('Speech synthesis error:', error);
+                    showAudioFallback(text);
+                }
+            } else {
+                console.log('Speech synthesis not supported');
+                showAudioFallback(text);
+            }
+        }
+
+        function speakWithBestVoice(utterance, text) {
+            const voices = speechSynthesis.getVoices();
+            console.log('Available voices:', voices.length);
+            
+            // Try to find the best Malay voice
+            let malayVoice = voices.find(voice => 
+                voice.lang === 'ms-MY' || 
+                voice.lang === 'ms' ||
+                voice.lang.startsWith('ms')
+            );
+            
+            // Fallback to Indonesian if Malay not available (similar language)
+            if (!malayVoice) {
+                malayVoice = voices.find(voice => 
+                    voice.lang === 'id-ID' || 
+                    voice.lang === 'id' ||
+                    voice.lang.startsWith('id')
+                );
+            }
+            
+            // Final fallback to English
+            if (!malayVoice) {
+                malayVoice = voices.find(voice => 
+                    voice.lang === 'en-US' || 
+                    voice.lang === 'en-GB' ||
+                    voice.lang.startsWith('en')
+                );
+                console.log('⚠️ Using English voice as fallback');
+            }
+            
+            if (malayVoice) {
+                utterance.voice = malayVoice;
+                console.log('🎙️ Using voice:', malayVoice.name, malayVoice.lang);
+            }
+            
+            // Try to speak with timeout fallback
+            const timeoutId = setTimeout(() => {
+                speechSynthesis.cancel();
+                console.log('⚠️ Speech timeout, trying fallback');
+                showAudioFallback(text);
+            }, 5000);
+            
+            utterance.onend = function() {
+                clearTimeout(timeoutId);
+                console.log('✅ Speech completed successfully');
+                // Reset button appearance
+                document.querySelectorAll('.phrase-audio-btn, .phrase-card-btn').forEach(btn => {
+                    if (btn.textContent.includes('Speaking')) {
+                        btn.style.background = '';
+                        btn.textContent = '🔊 Listen';
+                    }
+                });
+            };
+            
+            utterance.onerror = function(event) {
+                clearTimeout(timeoutId);
+                console.error('❌ Speech error:', event.error);
+                showAudioFallback(text);
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+
+        function showAudioFallback(text) {
+            // Visual feedback when audio fails
+            const fallbackMsg = document.createElement('div');
+            fallbackMsg.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #ff9800;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 25px;
+                z-index: 1000;
+                font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            `;
+            fallbackMsg.textContent = `🔇 Audio not available. Text: "${text}"`;
+            document.body.appendChild(fallbackMsg);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(fallbackMsg);
+            }, 3000);
+            
+            // Reset button appearance
+            document.querySelectorAll('.phrase-audio-btn, .phrase-card-btn').forEach(btn => {
+                if (btn.textContent.includes('Speaking')) {
+                    btn.style.background = '';
+                    btn.textContent = '🔊 Listen';
+                }
+            });
+        }
+
+        // Test audio on page load
+        function testAudioSupport() {
+            if ('speechSynthesis' in window) {
+                console.log('✅ Speech synthesis supported');
+                
+                // Warm up the speech system
+                const testUtterance = new SpeechSynthesisUtterance('');
+                testUtterance.volume = 0;
+                speechSynthesis.speak(testUtterance);
+                
+                // Load voices
+                setTimeout(() => {
+                    const voices = speechSynthesis.getVoices();
+                    console.log('📱 Available voices:', voices.length);
+                    if (voices.length > 0) {
+                        const malayVoices = voices.filter(v => v.lang.includes('ms') || v.lang.includes('id'));
+                        console.log('🇲🇾 Malay/Indonesian voices found:', malayVoices.length);
+                    }
+                }, 100);
+            } else {
+                console.log('❌ Speech synthesis not supported');
+            }
+        }
+
+        function testSpeech() {
+            speakMalayText('Selamat pagi. Audio test berjaya!');
         }
 
         function selectWeek(weekNum) {
@@ -2004,12 +2192,7 @@
         }
 
         function speakText(text) {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ms-MY';
-                utterance.rate = 0.8;
-                speechSynthesis.speak(utterance);
-            }
+            speakMalayText(text);
         }
 
         function initializePhrases() {
@@ -2027,6 +2210,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             showSection('home');
             initializePhrases();
+            testAudioSupport();
         });
     </script>
 </body>

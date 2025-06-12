@@ -1,8 +1,3 @@
-
-# Security imports
-from security_utils import sanitize_user_input, validate_json_data
-from secure_storage import SecureStorage
-
 #!/usr/bin/env python3
 """
 Malay Chatbot Mobile App - Kivy Version
@@ -27,6 +22,10 @@ import random
 import re
 from datetime import datetime
 from typing import Dict, List, Tuple
+
+# Security imports
+from security_utils import sanitize_user_input, validate_json_data
+from secure_storage import SecureStorage
 
 # Register Malay-friendly fonts
 try:
@@ -123,27 +122,32 @@ class MalayChatbotApp(App):
     
     def load_training_data(self):
         """Load training data with security validation"""
-        """Load training data with security validation"""
-        """Load training data from JSON file"""
         try:
             with open('malay_training_data.json', 'r', encoding='utf-8') as f:
-                self.training_data = json.load(f)
+                raw_data = f.read()
+                if validate_json_data(raw_data):
+                    self.training_data = json.loads(raw_data)
+                else:
+                    self._load_fallback_data()
         except:
-            # Fallback training data
-            self.training_data = {
-                "greetings": [
-                    {"user": "Apa khabar?", "bot": "Khabar baik! Awak macam mana hari ini?"},
-                    {"user": "Hello", "bot": "Hi! Selamat datang! Mari kita berbual dalam Bahasa Melayu!"}
-                ],
-                "food_ordering": [
-                    {"user": "Saya lapar", "bot": "Nak makan apa? Ada nasi lemak, mee goreng, roti prata!"},
-                    {"user": "Berapa harga roti prata?", "bot": "Roti prata kosong $1.20, roti telur $1.80. Nak order berapa keping?"}
-                ],
-                "goodbye": [
-                    {"user": "Bye", "bot": "Selamat tinggal! Jumpa lagi nanti! 👋"},
-                    {"user": "Sampai jumpa", "bot": "Sampai jumpa! Jaga diri baik-baik! 🇸🇬"}
-                ]
-            }
+            self._load_fallback_data()
+    
+    def _load_fallback_data(self):
+        """Load fallback training data"""
+        self.training_data = {
+            "greetings": [
+                {"user": "Apa khabar?", "bot": "Khabar baik! Awak macam mana hari ini?"},
+                {"user": "Hello", "bot": "Hi! Selamat datang! Mari kita berbual dalam Bahasa Melayu!"}
+            ],
+            "food_ordering": [
+                {"user": "Saya lapar", "bot": "Nak makan apa? Ada nasi lemak, mee goreng, roti prata!"},
+                {"user": "Berapa harga roti prata?", "bot": "Roti prata kosong $1.20, roti telur $1.80. Nak order berapa keping?"}
+            ],
+            "goodbye": [
+                {"user": "Bye", "bot": "Selamat tinggal! Jumpa lagi nanti! 👋"},
+                {"user": "Sampai jumpa", "bot": "Sampai jumpa! Jaga diri baik-baik! 🇸🇬"}
+            ]
+        }
     
     def add_message(self, sender, message, is_bot=False):
         """Add message to chat area"""
@@ -195,26 +199,23 @@ class MalayChatbotApp(App):
         user_message = sanitize_user_input(self.text_input.text.strip())
         
         # Validate input length and content
-        if len(user_message) == 0 or len(user_message) > 500:
-            return
-        if not user_message:
+        if not user_message or len(user_message) > 500:
             return
         
-        # Add user message
-        self.add_message("Anda", user_message, is_bot=False)
-        self.conversation_history.append({"user": user_message, "timestamp": datetime.now()})
-        
-        # Clear input
-        self.text_input.text = ""
+        # Add user message to chat
+        self.add_message("You", user_message)
         
         # Get bot response
         bot_response = self.get_bot_response(user_message)
         
-        # Add bot response with delay for natural feel
-        Clock.schedule_once(lambda dt: self.add_message("Maya", bot_response, is_bot=True), 0.5)
+        # Add bot response to chat
+        self.add_message("Maya", bot_response, is_bot=True)
         
-        # Update context
+        # Update conversation context
         self.update_context(user_message, bot_response)
+        
+        # Clear input
+        self.text_input.text = ""
     
     def get_bot_response(self, user_input: str) -> str:
         """Generate bot response based on user input"""

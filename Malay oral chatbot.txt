@@ -408,46 +408,15 @@ Make sure both devices are on the same WiFi network
 Try: http://127.0.0.1:5000 on your computer first (should work)
 Check your phone can access: http://192.168.1.170:5000
 To find your IP again:
+
 ...
-
-
- Your phone can't access the web app because of Windows Firewall or network restrictions
-
-Solution 2: Use ngrok (Easy Public Access)
-If the firewall fix doesn't work, let's use ngrok to create a public URL
-
-------
-Step 2: Get Your Authtoken
-Once you're logged in, let me open the authtoken page:
-Step 3: Configure ngrok with Your Authtoken
-Once you see your authtoken (looks like 2abc...xyz), run this command:
-Apply
-Run
-For example, if your token is 2abc123xyz, run:
-Apply
-Run
-Let me check if ngrok is properly installed first:
-Great! ngrok is installed and ready.
-Step 4: What to do next
-Complete the signup in the browser tabs I opened
-Copy your authtoken from the dashboard
-Tell me your authtoken so I can configure it, or run this command yourself:
-Apply
-Run
-Then I'll test the mobile app with public access!
-Quick Summary:
-✅ ngrok installed (version 3.23.0)
-🔄 Signup page opened
-🔄 Authtoken page opened
-⏳ Waiting for your authtoken
-Once you get the authtoken, just paste it here and I'll configure everything for you!
-The format looks like: 2abc123def456ghi789jklmnop (about 25-30 characters)
 
 -------------------
 
 sgmalayclass@gmail.com, pw - Sgmalayclass123, jan1 2000, 88234378, recovery - kyliu4@gmail.com
 username at GitHub - sgmalayclass, jureast123, code 16938039
 repo - sgmalayclass
+https://sgmalayclass.github.io/sgmalayclass/
 
 sgmalayclass/sgmalayclass is a ✨special ✨ repository that you can use to add a README.md to your GitHub profile. Make sure it’s public and initialize it with a README to get started.
 
@@ -489,7 +458,8 @@ Before proceeding, confirm:
 
 Your site is live at https://
 
-https://sgmalayclass.github.io/maya-chatbot/
+https://sgmalayclass.github.io/sgmalayclass/
+
 
 
 Next Steps:
@@ -517,8 +487,15 @@ Share QR images via WhatsApp, email, social media
 
 there is a message on my hp when i try to install the apk - there was a problem parsing the package
 
-https://drive.google.com/file/d/1XgfSLlFI7bv7j7UaJhdoWl4dcVvpXjBh/view?usp=sharing
+later change from apk to website
 
-https://drive.google.com/file/d/1XgfSLlFI7bv7j7UaJhdoWl4dcVvpXjBh/preview
+hosting at github 
 
+changes - at first manually delete the codes and replace with new ones, later cursor.ai came out a solution to push to amendment to github directly
+
+
+--------------------
+
+
+in building the sgmalayclass chatbot, there is trial and errors, and mistakes are made resulting in wrong or redunant codes, can you clean up the codes so that it can run more efficiently
 
