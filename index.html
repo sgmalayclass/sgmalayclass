@@ -567,6 +567,172 @@
                 font-size: 16px; /* Prevent zoom */
             }
         }
+
+        /* 🎮 GAMIFICATION STYLES */
+        .player-stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .daily-progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .daily-progress {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .theme-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #2E7D32);
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 11px;
+            color: #666;
+            min-width: 35px;
+        }
+
+        /* Animations */
+        @keyframes pointsPopUp {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -70%) scale(1); opacity: 0; }
+        }
+
+        @keyframes levelUpFade {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes levelUpBounce {
+            0% { transform: scale(0.3); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes badgeSlideIn {
+            0% { transform: translateX(100%); }
+            20% { transform: translateX(0); }
+            80% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes streakPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .streak-active {
+            animation: streakPulse 0.5s ease-in-out;
+        }
+
+        /* Badge display */
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .badge-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .badge-card.unlocked {
+            border-color: #FFD700;
+            background: rgba(255,215,0,0.1);
+        }
+
+        .badge-card.locked {
+            opacity: 0.5;
+            filter: grayscale(100%);
+        }
+
+        /* Mobile optimizations for gamification */
+        @media (max-width: 768px) {
+            .player-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 12px 15px;
+                margin-bottom: 15px;
+            }
+
+            .stat-value {
+                font-size: 20px;
+            }
+
+            .stat-label {
+                font-size: 11px;
+            }
+
+            .badges-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .badge-card {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
         .roleplay-scenarios {
             display: grid;
             gap: 15px;
@@ -805,6 +971,34 @@
         <!-- Home Section -->
         <div class="section active" id="home">
             <h2>Welcome to Maya! 🌟</h2>
+            
+            <!-- 🎮 Player Stats -->
+            <div class="player-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="player-level">1</div>
+                    <div class="stat-label">Level</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="player-points">0</div>
+                    <div class="stat-label">⭐ Points</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="current-streak">0</div>
+                    <div class="stat-label">🔥 Streak</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="badges-count">0</div>
+                    <div class="stat-label">🏆 Badges</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="daily-points">0/20</div>
+                    <div class="stat-label">📅 Daily Goal</div>
+                    <div class="daily-progress-bar">
+                        <div class="daily-progress" id="daily-progress"></div>
+                    </div>
+                </div>
+            </div>
+            
             <p><strong>What is Maya?</strong><br>
             Maya is your friendly Singapore Malay learning companion! Practice conversational Malay, test your knowledge with quizzes, and engage in real-life scenarios.</p>
             
@@ -816,6 +1010,14 @@
             
             <p><strong>How to use:</strong><br>
             Click on the tabs above to navigate between different learning modes. Start with Daily Phrases to learn essential vocabulary, then practice with Chat conversations!</p>
+            
+            <!-- 🏆 Badges Section -->
+            <div style="margin-top: 30px;">
+                <h3 style="color: #2c3e50; text-align: center; margin-bottom: 20px;">🏆 Your Badges & Achievements</h3>
+                <div class="badges-grid" id="badges-grid">
+                    <!-- Badges will be populated here -->
+                </div>
+            </div>
         </div>
 
         <!-- Chat Section -->
@@ -891,6 +1093,12 @@
                 <div class="theme-card" onclick="startQuiz('greetings')">
                     <h3>🤝 Greetings & Politeness</h3>
                     <p>Basic greetings, please, thank you, and polite expressions</p>
+                    <div class="theme-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-greetings" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text" id="progress-text-greetings">0/7</div>
+                    </div>
                 </div>
                 <div class="theme-card" onclick="startQuiz('family')">
                     <h3>👨‍👩‍👧‍👦 Family & Relationships</h3>
@@ -1022,6 +1230,241 @@
         let conversationContext = {};
         let currentPhraseIndex = 0;
         let currentWeek = 1;
+
+        // 🎮 GAMIFICATION SYSTEM
+        let playerProfile = {
+            name: 'Student',
+            level: 1,
+            totalPoints: 0,
+            totalQuizzes: 0,
+            correctAnswers: 0,
+            currentStreak: 0,
+            longestStreak: 0,
+            badges: [],
+            dailyGoal: 20, // points needed per day
+            dailyPoints: 0,
+            lastPlayDate: null,
+            themeProgress: {}, // track progress per theme
+            achievements: [],
+            phrasesMastered: 0,
+            conversationsCompleted: 0
+        };
+
+        // Badge definitions
+        const badges = {
+            'first_quiz': { name: '🎯 First Quiz', description: 'Complete your first quiz!', points: 10 },
+            'perfect_score': { name: '💯 Perfect Score', description: 'Get 100% on any quiz!', points: 50 },
+            'streak_5': { name: '🔥 Hot Streak', description: '5 correct answers in a row!', points: 30 },
+            'streak_10': { name: '⚡ Lightning Streak', description: '10 correct answers in a row!', points: 100 },
+            'daily_goal': { name: '📅 Daily Champion', description: 'Reach daily goal!', points: 25 },
+            'phrase_master': { name: '🗣️ Phrase Master', description: 'Listen to 50 phrases!', points: 40 },
+            'theme_expert': { name: '🏆 Theme Expert', description: 'Complete all themes!', points: 200 },
+            'conversation_starter': { name: '💬 Conversation Starter', description: 'Try 10 different topics!', points: 60 },
+            'level_5': { name: '⭐ Rising Star', description: 'Reach Level 5!', points: 75 },
+            'level_10': { name: '🌟 Malay Master', description: 'Reach Level 10!', points: 150 }
+        };
+
+        // Achievement definitions
+        const achievements = {
+            'greetings_master': { name: '🤝 Greetings Master', requirement: 'greetings', threshold: 7 },
+            'food_expert': { name: '🍜 Food Expert', requirement: 'food', threshold: 7 },
+            'quiz_champion': { name: '🏆 Quiz Champion', requirement: 'total_quizzes', threshold: 20 },
+            'phrase_enthusiast': { name: '📚 Phrase Enthusiast', requirement: 'phrases_mastered', threshold: 100 }
+        };
+
+        // Load player profile from localStorage
+        function loadPlayerProfile() {
+            const saved = localStorage.getItem('maya_player_profile');
+            if (saved) {
+                playerProfile = { ...playerProfile, ...JSON.parse(saved) };
+            }
+            
+            // Check if it's a new day
+            const today = new Date().toDateString();
+            if (playerProfile.lastPlayDate !== today) {
+                playerProfile.dailyPoints = 0;
+                playerProfile.lastPlayDate = today;
+            }
+            
+            updateProfileDisplay();
+        }
+
+        // Save player profile
+        function savePlayerProfile() {
+            localStorage.setItem('maya_player_profile', JSON.stringify(playerProfile));
+        }
+
+        // Add points and check for level ups/badges
+        function addPoints(points, reason = '') {
+            playerProfile.totalPoints += points;
+            playerProfile.dailyPoints += points;
+            
+            // Check for level up
+            const newLevel = Math.floor(playerProfile.totalPoints / 100) + 1;
+            if (newLevel > playerProfile.level) {
+                playerProfile.level = newLevel;
+                showLevelUpAnimation(newLevel);
+                checkBadges();
+            }
+            
+            // Check daily goal
+            if (playerProfile.dailyPoints >= playerProfile.dailyGoal) {
+                unlockBadge('daily_goal');
+            }
+            
+            // Show points gained
+            if (points > 0) {
+                showPointsGained(points, reason);
+            }
+            
+            updateProfileDisplay();
+            savePlayerProfile();
+        }
+
+        // Unlock badge
+        function unlockBadge(badgeId) {
+            if (!playerProfile.badges.includes(badgeId)) {
+                playerProfile.badges.push(badgeId);
+                const badge = badges[badgeId];
+                addPoints(badge.points, 'Badge Bonus');
+                showBadgeUnlocked(badge);
+            }
+        }
+
+        // Check for new badges and achievements
+        function checkBadges() {
+            // Level badges
+            if (playerProfile.level >= 5) unlockBadge('level_5');
+            if (playerProfile.level >= 10) unlockBadge('level_10');
+            
+            // Streak badges
+            if (playerProfile.currentStreak >= 5) unlockBadge('streak_5');
+            if (playerProfile.currentStreak >= 10) unlockBadge('streak_10');
+            
+            // Progress badges
+            if (playerProfile.phrasesMastered >= 50) unlockBadge('phrase_master');
+            if (playerProfile.conversationsCompleted >= 10) unlockBadge('conversation_starter');
+            
+            // Theme completion
+            const completedThemes = Object.values(playerProfile.themeProgress).filter(p => p >= 7).length;
+            if (completedThemes >= 14) unlockBadge('theme_expert');
+        }
+
+        // Update profile display
+        function updateProfileDisplay() {
+            // Update header stats
+            document.getElementById('player-level').textContent = playerProfile.level;
+            document.getElementById('player-points').textContent = playerProfile.totalPoints;
+            document.getElementById('daily-progress').style.width = 
+                `${Math.min(100, (playerProfile.dailyPoints / playerProfile.dailyGoal) * 100)}%`;
+            document.getElementById('daily-points').textContent = 
+                `${playerProfile.dailyPoints}/${playerProfile.dailyGoal}`;
+            
+            // Update streak
+            document.getElementById('current-streak').textContent = playerProfile.currentStreak;
+            
+            // Update badges count
+            document.getElementById('badges-count').textContent = playerProfile.badges.length;
+            
+            // Update badges display
+            updateBadgesDisplay();
+        }
+
+        // Show animations and notifications
+        function showPointsGained(points, reason) {
+            const notification = document.createElement('div');
+            notification.className = 'points-gained';
+            notification.innerHTML = `
+                <div class="points-animation">
+                    +${points} ⭐
+                    ${reason ? `<br><small>${reason}</small>` : ''}
+                </div>
+            `;
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(45deg, #FFD700, #FFA500);
+                color: #1a1a1a;
+                padding: 15px 25px;
+                border-radius: 25px;
+                font-weight: bold;
+                font-size: 18px;
+                z-index: 10000;
+                animation: pointsPopUp 2s ease-out forwards;
+                text-align: center;
+                box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            `;
+            
+            document.body.appendChild(notification);
+            setTimeout(() => document.body.removeChild(notification), 2000);
+        }
+
+        function showLevelUpAnimation(level) {
+            const animation = document.createElement('div');
+            animation.innerHTML = `
+                <div class="level-up">
+                    🎉 LEVEL UP! 🎉
+                    <div class="level-number">Level ${level}</div>
+                    <div class="level-subtitle">Keep learning!</div>
+                </div>
+            `;
+            animation.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10001;
+                animation: levelUpFade 3s ease-out forwards;
+            `;
+            
+            animation.querySelector('.level-up').style.cssText = `
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 40px;
+                border-radius: 20px;
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                animation: levelUpBounce 1s ease-out;
+            `;
+            
+            document.body.appendChild(animation);
+            setTimeout(() => document.body.removeChild(animation), 3000);
+        }
+
+        function showBadgeUnlocked(badge) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div class="badge-unlock">
+                    ${badge.name}
+                    <div class="badge-desc">${badge.description}</div>
+                    <div class="badge-points">+${badge.points} ⭐</div>
+                </div>
+            `;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #4CAF50, #2E7D32);
+                color: white;
+                padding: 20px;
+                border-radius: 15px;
+                z-index: 10000;
+                animation: badgeSlideIn 3s ease-out forwards;
+                max-width: 250px;
+                box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+            `;
+            
+            document.body.appendChild(notification);
+            setTimeout(() => document.body.removeChild(notification), 3000);
+        }
 
         // Daily Phrases Data - 8 weeks of essential Malay phrases
         const phrasesData = {
@@ -1587,6 +2030,14 @@
             quizScore = 0;
             quizTotal = 0;
             
+            // Track quiz attempt
+            playerProfile.totalQuizzes++;
+            
+            // First quiz badge
+            if (playerProfile.totalQuizzes === 1) {
+                unlockBadge('first_quiz');
+            }
+            
             document.getElementById('quiz-themes').style.display = 'none';
             document.getElementById('quiz-content').style.display = 'block';
             
@@ -1632,13 +2083,45 @@
 
         function checkAnswer(button, isCorrect, questionIndex) {
             quizTotal++;
+            
             if (isCorrect) {
                 button.style.background = '#FFD700'; // Yellow for correct answer
                 button.style.color = '#000'; // Black text for better contrast on yellow
                 quizScore++;
+                playerProfile.correctAnswers++;
+                playerProfile.currentStreak++;
+                
+                // Update longest streak
+                if (playerProfile.currentStreak > playerProfile.longestStreak) {
+                    playerProfile.longestStreak = playerProfile.currentStreak;
+                }
+                
+                // Award points
+                addPoints(10, 'Correct Answer');
+                
+                // Update theme progress
+                if (!playerProfile.themeProgress[currentQuiz]) {
+                    playerProfile.themeProgress[currentQuiz] = 0;
+                }
+                playerProfile.themeProgress[currentQuiz]++;
+                
+                // Streak animation
+                const streakElement = document.getElementById('current-streak');
+                if (streakElement) {
+                    streakElement.classList.add('streak-active');
+                    setTimeout(() => streakElement.classList.remove('streak-active'), 500);
+                }
+                
+                // Check badges
+                checkBadges();
+                
             } else {
                 button.style.background = '#f44336'; // Red for wrong answer
                 button.style.color = '#fff';
+                
+                // Reset streak
+                playerProfile.currentStreak = 0;
+                
                 // Highlight correct answer in yellow
                 const options = button.parentElement.querySelectorAll('.quiz-option');
                 const correctAnswer = quizData[currentQuiz][questionIndex].correct;
@@ -1654,16 +2137,45 @@
             });
             
             updateQuizScore();
+            updateThemeProgress();
         }
 
         function updateQuizScore() {
             document.getElementById('quiz-score').textContent = `Score: ${quizScore}/${quizTotal}`;
         }
 
+        function updateThemeProgress() {
+            // Update progress bars for all themes
+            Object.keys(quizData).forEach(theme => {
+                const progress = playerProfile.themeProgress[theme] || 0;
+                const maxQuestions = quizData[theme].length;
+                const percentage = (progress / maxQuestions) * 100;
+                
+                const progressBar = document.getElementById(`progress-${theme}`);
+                const progressText = document.getElementById(`progress-text-${theme}`);
+                
+                if (progressBar) {
+                    progressBar.style.width = `${Math.min(100, percentage)}%`;
+                }
+                if (progressText) {
+                    progressText.textContent = `${Math.min(progress, maxQuestions)}/${maxQuestions}`;
+                }
+            });
+        }
+
         function backToThemes() {
+            // Check for perfect score before leaving
+            if (quizTotal === 7 && quizScore === 7) { // All 7 questions correct
+                unlockBadge('perfect_score');
+                addPoints(25, 'Perfect Quiz!');
+            }
+            
             document.getElementById('quiz-themes').style.display = 'grid';
             document.getElementById('quiz-content').style.display = 'none';
             currentQuiz = null;
+            
+            // Update theme progress display
+            updateThemeProgress();
         }
 
         // Chat functions
@@ -1783,6 +2295,11 @@
         function startTopicConversation(topic) {
             currentTopic = topic;
             conversationStep = 0;
+            
+            // Award points for starting conversations
+            playerProfile.conversationsCompleted++;
+            addPoints(5, 'Conversation Started');
+            checkBadges();
             
             if (conversationFlows[topic]) {
                 const firstResponse = conversationFlows[topic][0];
@@ -1945,6 +2462,11 @@
         function speakPhrase() {
             const phraseText = document.getElementById('phrase-malay').textContent;
             speakMalayText(phraseText);
+            
+            // Award points for listening to phrases
+            playerProfile.phrasesMastered++;
+            addPoints(2, 'Phrase Listened');
+            checkBadges();
         }
 
         function speakMalayText(text) {
@@ -2206,11 +2728,59 @@
             selectWeek(todaysWeek);
         }
 
+        // Update badges display
+        function updateBadgesDisplay() {
+            const badgesGrid = document.getElementById('badges-grid');
+            if (!badgesGrid) return;
+            
+            badgesGrid.innerHTML = '';
+            
+            Object.keys(badges).forEach(badgeId => {
+                const badge = badges[badgeId];
+                const isUnlocked = playerProfile.badges.includes(badgeId);
+                
+                const badgeCard = document.createElement('div');
+                badgeCard.className = `badge-card ${isUnlocked ? 'unlocked' : 'locked'}`;
+                badgeCard.innerHTML = `
+                    <div style="font-size: 24px; margin-bottom: 8px;">${badge.name.split(' ')[0]}</div>
+                    <div style="font-size: 12px; font-weight: bold; margin-bottom: 5px;">${badge.name.substring(2)}</div>
+                    <div style="font-size: 10px; opacity: 0.8;">${badge.description}</div>
+                    <div style="font-size: 11px; margin-top: 5px; color: #FFD700;">+${badge.points} ⭐</div>
+                `;
+                
+                badgesGrid.appendChild(badgeCard);
+            });
+        }
+
+        // Add progress bars to all theme cards
+        function addProgressToThemeCards() {
+            const themes = ['greetings', 'family', 'food', 'transport', 'shopping', 'numbers', 'body', 'colors', 'weather', 'home', 'work', 'hobbies', 'directions', 'emotions'];
+            
+            themes.forEach(theme => {
+                const themeCard = document.querySelector(`[onclick="startQuiz('${theme}')"]`);
+                if (themeCard && !themeCard.querySelector('.theme-progress')) {
+                    const progressHtml = `
+                        <div class="theme-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-${theme}" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text" id="progress-text-${theme}">0/7</div>
+                        </div>
+                    `;
+                    themeCard.insertAdjacentHTML('beforeend', progressHtml);
+                }
+            });
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            loadPlayerProfile();
             showSection('home');
             initializePhrases();
             testAudioSupport();
+            addProgressToThemeCards();
+            updateThemeProgress();
+            updateBadgesDisplay();
         });
     </script>
 </body>
