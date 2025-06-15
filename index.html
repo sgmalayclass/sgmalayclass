@@ -107,10 +107,11 @@
             font-size: 14px;
         }
         .quiz-question {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            background: #fff !important;
+            color: #222 !important;
+        }
+        .quiz-question h4 {
+            color: #2E7D32 !important;
         }
         .quiz-options {
             display: grid;
@@ -118,9 +119,9 @@
             margin-top: 10px;
         }
         .quiz-option {
-            background: #4CAF50;
-            color: white;
-            border: none;
+            background: #2E7D32 !important;
+            color: #fff !important;
+            border: 2px solid #4CAF50 !important;
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
@@ -128,9 +129,11 @@
             transition: all 0.3s;
         }
         .quiz-option:hover {
-            background: #2E7D32;
+            background: #388e3c !important;
         }
         .quiz-option:disabled {
+            background: #bbb !important;
+            color: #fff !important;
             cursor: not-allowed;
             opacity: 0.7;
         }
@@ -947,6 +950,18 @@
         .phrase-card-btn:hover {
             background: #2980b9;
         }
+
+        .feedback-section a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .feedback-section {
+        margin: 15px 5px;
+        padding: 10px;
+    }
+}
     </style>
 </head>
 <body>
@@ -965,6 +980,7 @@
         <button class="nav-btn" onclick="showSection('chat')">Interactive Chat</button>
         <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
         <button class="nav-btn" onclick="showSection('phrases')">Daily Phrases</button>
+        <button class="nav-btn" onclick="window.location.href='mailto:sgmalayclass@gmail.com?subject=Feedback%20for%20Maya%20Chatbot'">Feedback</button>
     </div>
     
     <div class="content-area">
@@ -1010,7 +1026,26 @@
             
             <p><strong>How to use:</strong><br>
             Click on the tabs above to navigate between different learning modes. Start with Daily Phrases to learn essential vocabulary, then practice with Chat conversations!</p>
-            
+
+            <!-- Feedback Section -->
+            <div style="margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #4CAF50, #2E7D32); border-radius: 15px; color: white; text-align: center;">
+                <h3 style="color: white; margin-bottom: 15px; font-size: 24px;">📝 Send Us Your Feedback!</h3>
+                <p style="margin-bottom: 20px; font-size: 16px;">Help us improve Maya! We value your suggestions, comments, and bug reports.</p>
+                <a href="mailto:sgmalayclass@gmail.com" style="
+                    display: inline-block;
+                    padding: 12px 25px;
+                    background: white;
+                    color: #4CAF50;
+                    text-decoration: none;
+                    border-radius: 25px;
+                    font-weight: bold;
+                    font-size: 18px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    transition: all 0.3s ease;">
+                    ✉️ sgmalayclass@gmail.com
+                </a>
+            </div>
+
             <!-- 🏆 Badges Section -->
             <div style="margin-top: 30px;">
                 <h3 style="color: #2c3e50; text-align: center; margin-bottom: 20px;">🏆 Your Badges & Achievements</h3>
@@ -1030,61 +1065,12 @@
                 </div>
             </div>
             
-            <div class="topics-section">
-                <h3 style="text-align: center; margin-bottom: 20px; color: #2c3e50;">💬 Choose a Conversation Topic</h3>
-                <div class="all-topics-grid">
-                    <!-- Main Topics -->
-                    <div class="topic-category">
-                        <h4>🌟 Essential Topics</h4>
-                        <div class="topic-buttons">
-                            <button class="quick-reply" onclick="startTopicConversation('greetings')">🤝 Greetings</button>
-                            <button class="quick-reply" onclick="startTopicConversation('food')">🍜 Food</button>
-                            <button class="quick-reply" onclick="startTopicConversation('shopping')">🛒 Shopping</button>
-                            <button class="quick-reply" onclick="startTopicConversation('transport')">🚇 Transport</button>
-                            <button class="quick-reply" onclick="startTopicConversation('family')">👨‍👩‍👧‍👦 Family</button>
-                            <button class="quick-reply" onclick="startTopicConversation('weather')">🌦️ Weather</button>
-                        </div>
-                    </div>
-
-                    <!-- Daily Life Topics -->
-                    <div class="topic-category">
-                        <h4>🏠 Daily Life</h4>
-                        <div class="topic-buttons">
-                            <button class="quick-reply" onclick="startTopicConversation('work')">💼 Work</button>
-                            <button class="quick-reply" onclick="startTopicConversation('hobbies')">🎨 Hobbies</button>
-                            <button class="quick-reply" onclick="startTopicConversation('health')">🏥 Health</button>
-                            <button class="quick-reply" onclick="startTopicConversation('school')">🎓 School</button>
-                            <button class="quick-reply" onclick="startTopicConversation('time')">⏰ Time</button>
-                            <button class="quick-reply" onclick="startTopicConversation('housing')">🏠 Housing</button>
-                        </div>
-                    </div>
-
-                    <!-- Social & Travel Topics -->
-                    <div class="topic-category">
-                        <h4>🌍 Social & Travel</h4>
-                        <div class="topic-buttons">
-                            <button class="quick-reply" onclick="startTopicConversation('directions')">🧭 Directions</button>
-                            <button class="quick-reply" onclick="startTopicConversation('help')">🆘 Help</button>
-                            <button class="quick-reply" onclick="startTopicConversation('friends')">👫 Making Friends</button>
-                            <button class="quick-reply" onclick="startTopicConversation('cultural')">🎊 Cultural Events</button>
-                            <button class="quick-reply" onclick="startTopicConversation('hotel')">🏨 Hotel</button>
-                            <button class="quick-reply" onclick="startTopicConversation('banking')">🏦 Banking</button>
-                        </div>
-                    </div>
-
-                    <!-- Professional & Emergency -->
-                    <div class="topic-category">
-                        <h4>💼 Professional & Emergency</h4>
-                        <div class="topic-buttons">
-                            <button class="quick-reply" onclick="startTopicConversation('jobinterview')">💼 Job Interview</button>
-                            <button class="quick-reply" onclick="startTopicConversation('postoffice')">📮 Post Office</button>
-                            <button class="quick-reply" onclick="startTopicConversation('emergency')">🚨 Emergency</button>
-                            <button class="quick-reply" onclick="resetConversation()">🔄 Reset Chat</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <div class="input-container">
+        <input type="text" id="messageInput" placeholder="Type your message in Malay..." 
+               onkeypress="if(event.key==='Enter') sendMessage()">
+        <button id="sendButton" onclick="sendMessage()">Hantar</button>
+    </div>
+</div>
 
         <!-- Quiz Section -->
         <div class="section" id="quiz">
@@ -2197,17 +2183,50 @@
         }
 
         function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            if (message && currentSection === 'chat') {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (message) {
                 addMessage(message, true);
-                input.value = '';
+                messageInput.value = '';
                 
-                setTimeout(() => {
-                    const response = getContextualResponse(message);
-                    addMessage(response.malay, false, response.english);
-                }, 1000);
+                // Get bot response
+                const response = getBotResponse(message);
+                addMessage(response.malay, false, response.english);
             }
+        }
+
+        function getBotResponse(userMessage) {
+            if (currentTopic && conversationFlows[currentTopic]) {
+                const responses = conversationFlows[currentTopic];
+                
+                // Continue conversation flow if within range
+                if (conversationStep < responses.length) {
+                    const response = responses[conversationStep];
+                    conversationStep++;
+                    return response;
+                }
+                
+                // After completing the flow, give encouragement and suggest new topics
+                if (conversationStep === responses.length) {
+                    conversationStep++;
+                    const encouragement = encouragementResponses[Math.floor(Math.random() * encouragementResponses.length)];
+                    return encouragement;
+                }
+                
+                // After encouragement, suggest new conversation
+                if (conversationStep > responses.length) {
+                    const followUp = [
+                        { malay: "Nak practice topic lain? Cuba click button di bawah!", english: "Want to practice another topic? Try clicking the buttons below!" },
+                        { malay: "Mari cuba conversation baru!", english: "Let's try a new conversation!" },
+                        { malay: "Cuba roleplay scenario pulak!", english: "Try the roleplay scenarios!" }
+                    ];
+                    return followUp[Math.floor(Math.random() * followUp.length)];
+                }
+            }
+            
+            // Fallback to general helpful responses
+            return getGeneralResponse(userMessage);
         }
 
         function sendQuickReply(malay, english) {
@@ -2295,12 +2314,6 @@
         function startTopicConversation(topic) {
             currentTopic = topic;
             conversationStep = 0;
-            
-            // Award points for starting conversations
-            playerProfile.conversationsCompleted++;
-            addPoints(5, 'Conversation Started');
-            checkBadges();
-            
             if (conversationFlows[topic]) {
                 const firstResponse = conversationFlows[topic][0];
                 addMessage(firstResponse.malay, false, firstResponse.english);
