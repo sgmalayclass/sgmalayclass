@@ -118,8 +118,8 @@
             margin-top: 10px;
         }
         .quiz-option {
-            background: #4CAF50;
-            color: white;
+            background: #fff;
+            color: #000;
             border: none;
             padding: 10px;
             border-radius: 5px;
@@ -2104,7 +2104,13 @@
             quizTotal++;
             const options = button.parentElement.querySelectorAll('.quiz-option');
             const correctAnswer = quizData[currentQuiz][questionIndex].correct;
-            // Set all options to red by default
+            // Set all options to default black first
+            options.forEach((opt) => {
+                opt.style.background = '#fff';
+                opt.style.color = '#000';
+                opt.style.fontWeight = 'normal';
+            });
+            // Now color the answers
             options.forEach((opt, idx) => {
                 if (idx === correctAnswer) {
                     opt.style.background = '#2196F3'; // Blue for correct answer
