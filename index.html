@@ -1013,6 +1013,22 @@
             
             <p><strong>How to use:</strong><br>
             Click on the tabs above to navigate between different learning modes. Start with Daily Phrases to learn essential vocabulary, then practice with Chat conversations!</p>
+
+            <!-- Feedback Section -->
+            <div id="feedback-section" style="margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #4CAF50, #2E7D32); border-radius: 15px; color: white; text-align: center;">
+                <h3 style="color: white; margin-bottom: 15px; font-size: 24px;">📝 Send Us Your Feedback!</h3>
+                <p style="margin-bottom: 20px; font-size: 16px;">Help us improve Maya! We value your suggestions, comments, and bug reports.</p>
+                <form id="feedback-form" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                    <label for="fb-name">Name:</label><br>
+                    <input type="text" id="fb-name" name="name" style="width: 100%; padding: 8px; border-radius: 8px; border: none; margin-bottom: 10px;"><br>
+                    <label for="fb-email">Email:</label><br>
+                    <input type="email" id="fb-email" name="email" style="width: 100%; padding: 8px; border-radius: 8px; border: none; margin-bottom: 10px;"><br>
+                    <label for="fb-message">Message:</label><br>
+                    <textarea id="fb-message" name="message" rows="4" style="width: 100%; padding: 8px; border-radius: 8px; border: none; margin-bottom: 10px;"></textarea><br>
+                    <button type="submit" style="background: white; color: #4CAF50; padding: 10px 25px; border-radius: 25px; font-weight: bold; font-size: 18px; border: none; cursor: pointer;">Send Feedback</button>
+                </form>
+                <div id="feedback-success" style="display:none; color: #FFD700; margin-top: 10px; font-weight: bold;">Thank you for your feedback!</div>
+            </div>
             
             <!-- 🏆 Badges Section -->
             <div style="margin-top: 30px;">
@@ -2086,61 +2102,44 @@
 
         function checkAnswer(button, isCorrect, questionIndex) {
             quizTotal++;
-            
+            const options = button.parentElement.querySelectorAll('.quiz-option');
+            const correctAnswer = quizData[currentQuiz][questionIndex].correct;
+            // Always highlight the correct answer in yellow
+            options[correctAnswer].style.background = '#FFD700';
+            options[correctAnswer].style.color = '#000';
+            options[correctAnswer].style.fontWeight = 'bold';
             if (isCorrect) {
-                button.style.background = '#FFD700'; // Yellow for correct answer
-                button.style.color = '#000'; // Black text for better contrast on yellow
+                // If user picked correct, keep it yellow
                 quizScore++;
                 playerProfile.correctAnswers++;
                 playerProfile.currentStreak++;
-                
-                // Update longest streak
                 if (playerProfile.currentStreak > playerProfile.longestStreak) {
                     playerProfile.longestStreak = playerProfile.currentStreak;
                 }
-                
-                // Award points
                 addPoints(10, 'Correct Answer');
-                
-                // Update theme progress
                 if (!playerProfile.themeProgress[currentQuiz]) {
                     playerProfile.themeProgress[currentQuiz] = 0;
                 }
                 playerProfile.themeProgress[currentQuiz]++;
-                
-                // Streak animation
                 const streakElement = document.getElementById('current-streak');
                 if (streakElement) {
                     streakElement.classList.add('streak-active');
                     setTimeout(() => streakElement.classList.remove('streak-active'), 500);
                 }
-                
-                // Check badges
                 checkBadges();
-                
             } else {
-                button.style.background = '#f44336'; // Red for wrong answer
+                // If user picked wrong, show their choice as red
+                button.style.background = '#f44336';
                 button.style.color = '#fff';
-                
-                // Reset streak
                 playerProfile.currentStreak = 0;
-                
-                // Highlight correct answer in yellow
-                const options = button.parentElement.querySelectorAll('.quiz-option');
-                const correctAnswer = quizData[currentQuiz][questionIndex].correct;
-                options[correctAnswer].style.background = '#FFD700'; // Yellow for correct answer
-                options[correctAnswer].style.color = '#000'; // Black text for better contrast
-                options[correctAnswer].style.fontWeight = 'bold'; // Make it stand out more
             }
-            
-            // Disable all options for this question
-            button.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+            // Disable all options for this question and persist colors
+            options.forEach(opt => {
                 opt.disabled = true;
                 opt.style.cursor = 'not-allowed';
                 opt.style.background = opt.style.background;
                 opt.style.color = opt.style.color;
             });
-            
             updateQuizScore();
             updateThemeProgress();
         }
@@ -2800,6 +2799,36 @@
             addProgressToThemeCards();
             updateThemeProgress();
             updateBadgesDisplay();
+        });
+
+        // Feedback form submission (using Formspree for demo, replace with your own endpoint if needed)
+        document.addEventListener('DOMContentLoaded', function() {
+            var fbForm = document.getElementById('feedback-form');
+            if (fbForm) {
+                fbForm.onsubmit = function(e) {
+                    e.preventDefault();
+                    var data = {
+                        name: document.getElementById('fb-name').value,
+                        email: document.getElementById('fb-email').value,
+                        message: document.getElementById('fb-message').value
+                    };
+                    // Replace with your Formspree endpoint or backend
+                    fetch('https://formspree.io/f/xnqekqzv', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    }).then(function(response) {
+                        if (response.ok) {
+                            document.getElementById('feedback-success').style.display = 'block';
+                            fbForm.reset();
+                        } else {
+                            alert('There was a problem sending your feedback.');
+                        }
+                    }).catch(function() {
+                        alert('There was a problem sending your feedback.');
+                    });
+                };
+            }
         });
     </script>
 </body>
