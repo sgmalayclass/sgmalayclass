@@ -2104,12 +2104,19 @@
             quizTotal++;
             const options = button.parentElement.querySelectorAll('.quiz-option');
             const correctAnswer = quizData[currentQuiz][questionIndex].correct;
-            // Always highlight the correct answer in yellow
-            options[correctAnswer].style.background = '#FFD700';
-            options[correctAnswer].style.color = '#000';
-            options[correctAnswer].style.fontWeight = 'bold';
+            // Set all options to red by default
+            options.forEach((opt, idx) => {
+                if (idx === correctAnswer) {
+                    opt.style.background = '#2196F3'; // Blue for correct answer
+                    opt.style.color = '#fff';
+                    opt.style.fontWeight = 'bold';
+                } else {
+                    opt.style.background = '#f44336'; // Red for wrong answers
+                    opt.style.color = '#fff';
+                    opt.style.fontWeight = 'normal';
+                }
+            });
             if (isCorrect) {
-                // If user picked correct, keep it yellow
                 quizScore++;
                 playerProfile.correctAnswers++;
                 playerProfile.currentStreak++;
@@ -2128,9 +2135,6 @@
                 }
                 checkBadges();
             } else {
-                // If user picked wrong, show their choice as red
-                button.style.background = '#f44336';
-                button.style.color = '#fff';
                 playerProfile.currentStreak = 0;
             }
             // Disable all options for this question and persist colors
