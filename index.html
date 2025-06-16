@@ -2327,7 +2327,7 @@
         function startTopicConversation(topic) {
             currentTopic = topic;
             conversationStep = 0;
-            // Removed gamification for chat: no points, no badge, no increment
+            // Ensure no gamification for chat: no points, no badge, no increment
             if (conversationFlows[topic]) {
                 const firstResponse = conversationFlows[topic][0];
                 addMessage(firstResponse.malay, false, firstResponse.english);
