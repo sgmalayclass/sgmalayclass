@@ -2109,17 +2109,20 @@
                 opt.style.background = '#fff';
                 opt.style.color = '#000';
                 opt.style.fontWeight = 'normal';
+                opt.style.fontSize = '16px';
             });
-            // Now color the answers
+            // Now color the answers and enlarge correct
             options.forEach((opt, idx) => {
                 if (idx === correctAnswer) {
                     opt.style.background = '#2196F3'; // Blue for correct answer
                     opt.style.color = '#fff';
                     opt.style.fontWeight = 'bold';
+                    opt.style.fontSize = '22px'; // Bigger font for correct answer
                 } else {
                     opt.style.background = '#f44336'; // Red for wrong answers
                     opt.style.color = '#fff';
                     opt.style.fontWeight = 'normal';
+                    opt.style.fontSize = '16px';
                 }
             });
             if (isCorrect) {
@@ -2149,6 +2152,7 @@
                 opt.style.cursor = 'not-allowed';
                 opt.style.background = opt.style.background;
                 opt.style.color = opt.style.color;
+                opt.style.fontSize = opt.style.fontSize;
             });
             updateQuizScore();
             updateThemeProgress();
